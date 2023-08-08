@@ -1,11 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Игровой рейтинг</title>
 </head>
 <body>
-    <div>Hey shelter mafia club!</div>
-    
+  <h1>Таблица рейтинга игроков</h1>
+  <table id="rating-table">
+    <thead>
+      <tr>
+        <th>Игрок</th>
+        <th>Победитель</th>
+        <th>Баллы</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Здесь будут добавляться строки с данными из JavaScript -->
+    </tbody>
+  </table>
+
+  <button id="add-game-btn">Добавить игру</button>
+
+  <!-- Модальное окно для ввода ссылки на игру -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <label for="game-link">Ссылка на игру:</label>
+      <input type="text" id="game-link" />
+      <button id="save-game-btn">Сохранить</button>
+    </div>
+  </div>
+
+  <script src="main.js"></script>
 </body>
 </html>
