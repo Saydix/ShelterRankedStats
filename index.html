@@ -1,38 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  <title>Игровой рейтинг</title>
-</head>
+<!DOCTYPE html> 
+<html lang="ru">
+    <head>
+        <title>Мафия</title>
+        <meta charset="utf8">
+        <link rel="stylesheet" href="/style.css">
+        <script defer src="/main.js"></script>
+    </head>
 <body>
-  <h1>Таблица рейтинга игроков</h1>
-  <table id="rating-table">
-    <thead>
-      <tr>
-        <th>Игрок</th>
-        <th>Победитель</th>
-        <th>Баллы</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- Здесь будут добавляться строки с данными из JavaScript -->
-    </tbody>
-  </table>
-
-  <button id="add-game-btn">Добавить игру</button>
-
-  <!-- Модальное окно для ввода ссылки на игру -->
-  <div id="modal" class="modal">
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <label for="game-link">Ссылка на игру:</label>
-      <input type="text" id="game-link" />
-      <button id="save-game-btn">Сохранить</button>
+    <div class="container">
+        <table id="data-table">
+            <thead>
+                <tr>
+                    <th>Место</th>
+                    <th>Nick</th>
+                    <th>ID игры</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>John Doe</td>
+                    <td>25</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Jane Smith</td>
+                    <td>30</td>
+                </tr>
+                <!-- Add more rows as needed -->
+            </tbody>
+        </table>
+        <button class="addGame"> Добавить игру </button>
     </div>
-  </div>
-
-  <script src="main.js"></script>
 </body>
 </html>
