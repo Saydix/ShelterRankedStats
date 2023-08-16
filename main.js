@@ -5,7 +5,7 @@ let gameId;
 addButton.addEventListener('click', async () => {
   try {
     gameId = prompt('Введите URL игры:', '');
-    const response = await fetch(`gameId`);
+    const response = await fetch(gameId);
     const data = await response.text();
     
     console.log(data);
