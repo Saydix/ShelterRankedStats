@@ -1,4 +1,4 @@
-// Получаем кнопку по классу
+// Получаем кнопку
 const addButton = document.querySelector('.addGame');
 let gameId;
 
