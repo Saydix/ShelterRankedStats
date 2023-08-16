@@ -1,4 +1,4 @@
-console.log('Версия: 1.22')
+console.log('Версия: 1.23');
 // Получаем кнопку
 const addButton = document.querySelector('.addGame');
 let gameId;
