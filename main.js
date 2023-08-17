@@ -1,4 +1,4 @@
-console.log('Версия: 1.2');
+console.log('Версия: 1.3');
 
 const addButton = document.querySelector('.addGame');
 const apiUrl = 'https://shelterstats.glitch.me'; 
@@ -8,7 +8,7 @@ addButton.addEventListener('click', async () => {
 
   if (gameId) {
     try {
-        const response = await axios.get(apiUrl, {
+        const response = await axios.get(`${apiUrl}/fetch-game`, {
         params: { gameId: encodeURIComponent(gameId) },
         });
 
