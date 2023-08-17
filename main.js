@@ -1,16 +1,20 @@
-console.log('Версия: 1.23');
-// Получаем кнопку
-const addButton = document.querySelector('.addGame');
-let gameId;
+console.log('Версия: 1.0');
 
-addButton.addEventListener('click', async () => {
-  try {
-    gameId = prompt('Введите URL игры:', '');
-    const response = await fetch(gameId);
-    const data = await response.text();
-    
-    console.log(data);
-  } catch (error) {
-    console.error('Ошибка работы с URL:', error);
-  }
+document.addEventListener('DOMContentLoaded', () => {
+    const addButton = document.querySelector('.addGame');
+    addButton.addEventListener('click', async () => {
+        const gameId = prompt('Введите URL игры:', '');
+
+        if (gameId) {
+            try {
+                const response = await axios.get(`/fetch-game?gameId=${encodeURIComponent(gameId)}`);
+                const data = response.data;
+                console.log(data);
+            } catch (error) {
+                console.error('Ошибка работы с URL:', error);
+            }
+        } else {
+            console.log('URL игры не был введен');
+        }
+    });
 });
