@@ -1,4 +1,5 @@
 console.log('Версия: 1.3');
+console.log('Версия: 1.4');
 
 const addButton = document.querySelector('.addGame');
 const apiUrl = 'https://shelterstats.glitch.me'; 
