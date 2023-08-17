@@ -1,4 +1,3 @@
-console.log('Версия: 1.3');
 console.log('Версия: 1.4');
 
 const addButton = document.querySelector('.addGame');
@@ -8,8 +7,9 @@ addButton.addEventListener('click', async () => {
   const gameId = prompt('Введите URL игры:', '');
 
   if (gameId) {
+    console.log('Fetching game data for gameId:', gameId); // Отладочный вывод
     try {
-        const response = await axios.get(`${apiUrl}/fetch-game`, {
+        const response = await axios.get(apiUrl, {
         params: { gameId: encodeURIComponent(gameId) },
         });
 
@@ -21,9 +21,9 @@ addButton.addEventListener('click', async () => {
             text += `${$(elem).text()}\n`
         });
 
-        console.log(text);
+        console.log('Fetched data:', text); // Отладочный вывод
     } catch (error) {
-      console.error('Ошибка работы с URL:', error);
+      console.error('Error fetching game data:', error.message);
     }
   } else {
     console.log('URL игры не был введен');
