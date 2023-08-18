@@ -1,4 +1,4 @@
-console.log('Version: 1.3');
+console.log('Version: 1.4');
 
 const serverUrl = 'https://shelterstats.glitch.me/';
 const targetUrl = 'https://polemicagame.com/game-statistics/197277';
@@ -6,7 +6,7 @@ const targetUrl = 'https://polemicagame.com/game-statistics/197277';
 fetch(`${serverUrl}/getHtml?url=${encodeURIComponent(targetUrl)}`)
   .then(response => response.text())
   .then(data => {
-    // console.log(data); // Uncomment this line to see the fetched HTML data
+    console.log(data, 'End of main'); 
 
     const playerDataPattern = /"players":\[(.*?)\]/;
     const playerDataMatch = data.match(playerDataPattern);
