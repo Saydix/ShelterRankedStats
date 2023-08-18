@@ -1,25 +1,14 @@
-console.log('Version: 1.5');
+console.log('Version: 1.0');
 
-const addButton = document.querySelector('.addGame');
-const apiUrl = 'https://shelterstats.glitch.me';
+const axios = require('axios');
 
-addButton.addEventListener('click', fetchGameData);
+const serverUrl = 'https://shelterstats.glitch.me/';
+const targetUrl = 'https://polemicagame.com/game-statistics/197277';
 
-async function fetchGameData() {
-  const gameId = prompt('Введите URL игры:', '');
-
-  if (gameId !== null && gameId !== '') {
-    console.log(`Fetching game data for gameId: ${gameId}`);
-    try {
-      const response = await axios.get(apiUrl, {
-        params: { gameId: encodeURIComponent(gameId) },
-      });
-
-      console.log('Fetched data:', response.data);
-    } catch (error) {
-      console.error('Error fetching game data:', error);
-    }
-  } else {
-    console.log('URL игры не был введен');
-  }
-}
+axios.get(`${serverUrl}/getHtml?url=${encodeURIComponent(targetUrl)}`)
+  .then(response => {
+    console.log(response.data); 
+  })
+  .catch(error => {
+    console.error('An error occurred:', error);
+  });
