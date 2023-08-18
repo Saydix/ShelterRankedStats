@@ -1,9 +1,3 @@
-console.log('Version: 1.2');
-
-let serverUrl = 'https://shelterstats.glitch.me';
-const targetUrl = 'https://polemicagame.com/game-statistics/197277';
-
-
 async function fetchData() {
   try {
     const response = await fetch(`${serverUrl}/getHtml?url=${encodeURIComponent(targetUrl)}`);
@@ -17,10 +11,13 @@ async function fetchData() {
     if (gameDataAttr) {
       const gameData = JSON.parse(gameDataAttr);
       const players = gameData.players.map(player => {
+        const achievementsSum = player.achievementsSum;
+        const totalPoints = Object.values(achievementsSum.achievements).reduce((sum, achievement) => sum + achievement.points, 0);
+
         return {
           username: player.username,
           role: player.role.title,
-          points: player.points,
+          points: totalPoints.toFixed(2),
           victory: player.w_l === "win" ? "Победа" : "Поражение",
           winnerCode: gameData.winnerCode === 1 ? "Победа Мирных" : "Победа Мафии"
         };
