@@ -1,7 +1,7 @@
 console.log('Version: 1.2');
 
-const serverUrl = 'https://shelterstats.glitch.me';
-const targetUrl = 'https://polemicagame.com/game-statistics/197277';
+let serverUrl = 'https://shelterstats.glitch.me';
+const targetUrl = 'https://polemicagame.com/game-statistics/197278';
 
 
 async function fetchData() {
