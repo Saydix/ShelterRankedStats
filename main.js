@@ -1,7 +1,12 @@
-console.log('Version: 1.3');
-console.log('Добавлено: id игры, обработка всплывающего меню, стили, первая версия сохранения игры в базу')
+console.log('Version: 1.4');
+console.log('Добавлено: Лоад скрин, Исправлено: преждевременный вызов фугкции fetchData');
 
-// Добавить обработку по нажатию кнопки
+//!ВЫПОЛНЕНО Добавить отображение загрузки после "Далее"
+// Отображение загрузки после сохранения игры
+// Автоочистка переменной для "Найдено" после "Да"/"Нет" (После вопроса "Добавить игру?")
+// Решить проблему сохранения игры
+// Добавить подгрузку данных с базы
+
 let gameUrl; // = prompt('Введите ссылку на игру:', 'https://polemicagame.com/game-statistics/197277');
 const getStatsFromPolemica = 'https://shelterstats.glitch.me';
 const sendStatsOnServer = 'https://baseshelter.glitch.me/';
@@ -9,6 +14,9 @@ const sendStatsOnServer = 'https://baseshelter.glitch.me/';
 let players;
 
 async function fetchData() {
+  const loadingIndicator = document.getElementById('loadingScreen');
+  loadingIndicator.style.display = 'block';
+
   try {
     const response = await fetch(`${getStatsFromPolemica}/getHtml?url=${encodeURIComponent(gameUrl)}`);
     const data = await response.text();
@@ -43,16 +51,16 @@ async function fetchData() {
       } else {
       throw new Error('Не удалось найти атрибут с данными игры');
       }
+
+      loadingIndicator.style.display = 'none';
+
   } catch (error) {
     console.error('Ошибка обработки:', error);
+    loadingIndicator.style.display = 'none';
+    alert('Ошибка поиска игры'); // Сделать другой вывод ошибки
     return [];
   }
 }
-
-fetchData()
-  .then(players => {
-    console.log(players);
-});
 
 async function saveGame(){
   const gameInfo = JSON.stringify(players);
