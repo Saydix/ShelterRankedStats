@@ -1,12 +1,16 @@
-console.log('Version: 1.2');
+console.log('Version: 1.3');
+console.log('Добавлено: id игры, обработка всплывающего меню, стили, первая версия сохранения игры в базу')
 
-let gameUrl = prompt('Введите ссылку на игру:', 'https://polemicagame.com/game-statistics/197277');
-let serverUrl = 'https://shelterstats.glitch.me';
+// Добавить обработку по нажатию кнопки
+let gameUrl; // = prompt('Введите ссылку на игру:', 'https://polemicagame.com/game-statistics/197277');
+const getStatsFromPolemica = 'https://shelterstats.glitch.me';
+const sendStatsOnServer = 'https://baseshelter.glitch.me/';
 
+let players;
 
 async function fetchData() {
   try {
-    const response = await fetch(`${serverUrl}/getHtml?url=${encodeURIComponent(gameUrl)}`);
+    const response = await fetch(`${getStatsFromPolemica}/getHtml?url=${encodeURIComponent(gameUrl)}`);
     const data = await response.text();
 
     const dummyElement = document.createElement('div');
@@ -16,7 +20,8 @@ async function fetchData() {
 
     if (gameDataAttr) {
       const gameData = JSON.parse(gameDataAttr);
-      const players = gameData.players.map(player => {
+
+      players = gameData.players.map(player => {
         const achievementsSum = player.achievements.reduce((sum, achievement) => {
           if (typeof achievement.sum === 'number') {
             return sum + achievement.sum;
@@ -25,6 +30,7 @@ async function fetchData() {
           }, 0);
     
       return {
+        ID: gameData.id,
         username: player.username,
         role: player.role.title,
         points: achievementsSum, 
@@ -46,4 +52,73 @@ async function fetchData() {
 fetchData()
   .then(players => {
     console.log(players);
+});
+
+async function saveGame(){
+  const gameInfo = JSON.stringify(players);
+  fetch(sendStatsOnServer, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: gameInfo,
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log('Ответ от сервера:', data);
+  })
+  .catch(error => {
+    alert('Ошибка сохранения игры!');
+    console.error('Ошибка отправки запроса:', error);
   });
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  const openPopupButton = document.getElementById('openPopupButton');
+  const closePopupButton1 = document.getElementById('closePopupButton1');
+  const closePopupButton2 = document.getElementById('closePopupButton2');
+  const gameLink = document.getElementById('gameLinkInput');
+  const nextButton = document.getElementById('nextButton');
+  const yesButton = document.getElementById('yesButton');
+  const noButton = document.getElementById('noButton');
+  const gameInfoSpan = document.getElementById('gameInfoForAdd');
+  const addGamePopup1 = document.getElementById('addGamePopup1');
+  const addGamePopup2 = document.getElementById('addGamePopup2');
+  
+  openPopupButton.addEventListener('click', function () {
+    addGamePopup1.style.display = 'block';
+  });
+
+  closePopupButton1.addEventListener('click', function () {
+    addGamePopup1.style.display = 'none';
+  });
+
+  nextButton.addEventListener('click', function () {
+    gameUrl = gameLinkInput.value;
+    fetchData()
+      .then(players => {
+      console.log(players);
+    });
+    const gameInfo = players.map(player => {
+      return `${player.username} (${player.role}): ${player.points} Баллов <br>`;
+    }).join('<br>');
+    gameInfoSpan.innerHTML = `Найдено: <br> ${gameInfo}`;
+    addGamePopup1.style.display = 'none';
+    addGamePopup2.style.display = 'block';
+  });
+
+  closePopupButton2.addEventListener('click', function () {
+    addGamePopup2.style.display = 'none';
+  });
+
+  yesButton.addEventListener('click', function () {
+    alert('Выполнено!');
+    saveGame();
+    addGamePopup2.style.display = 'none';
+  });
+
+  noButton.addEventListener('click', function () {
+    alert('Не сохранено!');
+    addGamePopup2.style.display = 'none';
+  });
+});

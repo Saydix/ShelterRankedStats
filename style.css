@@ -1,12 +1,12 @@
-@charset "UTF-8";
 /*Обнуление*/
-@import url("https://fonts.googleapis.com/css2?family=Oswald&family=Poppins:ital,wght@0,100;1,100&family=Roboto:wght@300&display=swap");
+@import url("nullstyle.css");
 
+/* Общие стили для страницы */
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Helvetica Neue', sans-serif;
+  background-color: #f2f2f2;
   margin: 0;
   padding: 0;
-  background-color: #f5f5f5;
 }
 
 .container {
@@ -14,7 +14,21 @@ body {
   margin: 0 auto;
   padding: 20px;
   background-color: #fff;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+/* Стили для заголовка */
+h1 {
+  font-size: 24px;
+  margin: 0 0 20px;
+  color: #333;
+}
+
+h2 {
+  font-size: 30px;
+  margin: 0 0 20px;
+  color: #333;
 }
 
 /* Стили для таблицы */
@@ -24,27 +38,123 @@ table {
   margin-bottom: 20px;
 }
 
-th, td {
-  padding: 10px;
+table th, table td {
+  padding: 15px;
   text-align: left;
   border-bottom: 1px solid #ddd;
 }
 
-th {
-  background-color: #f5f5f5;
+table th {
+  background-color: #f0f0f0;
+  color: #444;
 }
 
-/* Стили для кнопки */
-.addGame {
-  background-color: #007bff;
+/* Стили для кнопок */
+button.addGame {
+  background-color: #0074cc;
   color: #fff;
+  padding: 10px 10px;
   border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
+  border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  font-size: 14px;
 }
 
-.addGame:hover {
-  background-color: #0056b3;
+button.addGame:hover {
+  background-color: #005bbd;
+}
+
+/* Стили для всплывающего окна */
+.popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  width: 400px;
+  border-radius: 10px;
+}
+
+.popup-content {
+  text-align: center;
+  padding: 35px 30px 10px 10px;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  color: #777;
+  cursor: pointer;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 10px 10px 10px 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+input[type="text"]:focus {
+  border-color: #0074cc;
+}
+
+button {
+  padding: 15px 30px;
+  margin: 10px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  width: 120px;
+}
+
+span#gameInfoForAdd {
+  font-size: 18px;
+  color: gray;
+}
+
+button#nextButton {
+  background-color: #0074cc;
+  color: #fff;
+  padding: 15px 10px;
+  border-radius: 15px;
+}
+
+button#nextButton:hover {
+  background-color: #005bbd;
+}
+
+button#yesButton {
+  background-color: #69b96c;
+  color: #fff;
+  padding: 10px 5px;
+  display: inline-block;
+  margin-top: 10%;
+  margin-left: 20px;
+}
+
+button#noButton {
+  background-color: #c0433b;
+  color: #fff;
+  padding: 10px 5px;
+  display: inline-block;
+  margin-left: 15%;
+}
+
+button.yesButton:hover, button.noButton:hover {
+  opacity: 0.9;
+}
+
+/* Стили для текста в всплывающем окне */
+.popup-text {
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: #333;
 }

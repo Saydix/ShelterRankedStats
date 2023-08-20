@@ -4,8 +4,6 @@
     <title>Мафия</title>
     <meta charset="utf8">
     <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/cheerio"></script>
     <script defer src="main.js"></script>
 </head>
 <body>
@@ -31,7 +29,25 @@
                 </tr>
             </tbody>
         </table>
-        <button class="addGame"> Добавить игру </button>
+        <button class="addGame" id="openPopupButton"> Добавить игру </button>
+    </div>
+    <div id="addGamePopup1" class="popup">
+        <div class="popup-content">
+            <span class="close" id="closePopupButton1">&times;</span>
+            <h2>Введите ссылку</h2>
+            <input type="text" id="gameLinkInput" placeholder="Введите ссылку...">
+            <button id="nextButton">Далее</button>
+        </div>
+    </div>
+
+    <div id="addGamePopup2" class="popup">
+        <div class="popup-content">
+            <span class="close" id="closePopupButton2">&times;</span>
+            <h2>Добавить игру?</h2>
+            <span id="gameInfoForAdd"></span>
+            <button id="yesButton">Да</button>
+            <button id="noButton">Нет</button>
+        </div>
     </div>
 </body>
 </html>
