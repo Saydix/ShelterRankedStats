@@ -109,10 +109,10 @@ document.addEventListener('DOMContentLoaded', function () {
       .then(players => {
       console.log(players);
     });
-    addGamePopup2.style.display = 'block';
     const gameInfo = players.map(player => {
       return `${player.username} (${player.role}): ${player.points} Баллов <br>`;
     }).join('<br>');
+    addGamePopup2.style.display = 'block';
     gameInfoSpan.innerHTML = `Найдено: <br> ${gameInfo}`;
   });
 
