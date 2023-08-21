@@ -108,16 +108,17 @@ document.addEventListener('DOMContentLoaded', function () {
     fetchData()
       .then(players => {
       console.log(players);
+      const gameInfo = players.map(player => {
+        return `${player.username} (${player.role}): ${player.points} Баллов <br>`;
+      }).join('<br>');
+      addGamePopup2.style.display = 'block';
+      gameInfoSpan.innerHTML = `Найдено: <br> ${gameInfo}`;
     });
-    const gameInfo = players.map(player => {
-      return `${player.username} (${player.role}): ${player.points} Баллов <br>`;
-    }).join('<br>');
-    addGamePopup2.style.display = 'block';
-    gameInfoSpan.innerHTML = `Найдено: <br> ${gameInfo}`;
   });
 
   closePopupButton2.addEventListener('click', function () {
     addGamePopup2.style.display = 'none';
+    players = null;
   });
 
   yesButton.addEventListener('click', function () {
@@ -130,5 +131,6 @@ document.addEventListener('DOMContentLoaded', function () {
   noButton.addEventListener('click', function () {
     alert('Не сохранено!');
     addGamePopup2.style.display = 'none';
+    players = null;
   });
 });

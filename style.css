@@ -175,7 +175,7 @@ button.yesButton:hover, button.noButton:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
   transform: translate(-50%, -50%);
-  font-size: 30px;
+  font-size: 25px;
   text-align: center;
   padding-top: 12%;
 }
