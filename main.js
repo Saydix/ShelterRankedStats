@@ -1,11 +1,12 @@
 console.log('Version: 1.4');
-console.log('Добавлено: Лоад скрин, Исправлено: преждевременный вызов фугкции fetchData');
+console.log('Добавлено:  . Исправлено: ЛоадСкрин');
 
 //!ВЫПОЛНЕНО Добавить отображение загрузки после "Далее"
-// Отображение загрузки после сохранения игры
-// Автоочистка переменной для "Найдено" после "Да"/"Нет" (После вопроса "Добавить игру?")
+//!ВЫПОЛНЕНО Отображение загрузки после сохранения игры
+//!ВЫПОЛНЕНО Автоочистка переменной для "Найдено" после "Да"/"Нет" (После вопроса "Добавить игру?")
 // Решить проблему сохранения игры
 // Добавить подгрузку данных с базы
+// После лоадСкрина - "успешно"
 
 let gameUrl; // = prompt('Введите ссылку на игру:', 'https://polemicagame.com/game-statistics/197277');
 const getStatsFromPolemica = 'https://shelterstats.glitch.me';
@@ -14,7 +15,7 @@ const sendStatsOnServer = 'https://baseshelter.glitch.me/';
 let players;
 
 async function fetchData() {
-  const loadingIndicator = document.getElementById('loadingScreen');
+  const loadingIndicator = document.getElementById('loadingPopup');
   loadingIndicator.style.display = 'block';
 
   try {
@@ -46,17 +47,17 @@ async function fetchData() {
         winnerCode: gameData.winnerCode === 1 ? "Победа Мирных" : "Победа Мафии"
         };
       });
-    
+
+      loadingIndicator.style.display = 'none';
+
       return players;
       } else {
       throw new Error('Не удалось найти атрибут с данными игры');
       }
-
-      loadingIndicator.style.display = 'none';
-
+      
   } catch (error) {
-    console.error('Ошибка обработки:', error);
     loadingIndicator.style.display = 'none';
+    console.error('Ошибка обработки:', error);
     alert('Ошибка поиска игры'); // Сделать другой вывод ошибки
     return [];
   }
@@ -122,6 +123,7 @@ document.addEventListener('DOMContentLoaded', function () {
   yesButton.addEventListener('click', function () {
     alert('Выполнено!');
     saveGame();
+    players = null;
     addGamePopup2.style.display = 'none';
   });
 

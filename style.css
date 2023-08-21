@@ -73,7 +73,7 @@ button.addGame:hover {
   transform: translate(-50%, -50%);
   background-color: #fff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  z-index: 1000;
+  z-index: 10;
   width: 400px;
   border-radius: 10px;
 }
@@ -159,17 +159,28 @@ button.yesButton:hover, button.noButton:hover {
   color: #333;
 }
 
-.loadingScreenAnimation {
-  --size: 30px;
+/*Анимация загрузки*/
+.loadingPopupAnimation {
+  --size: 40px;
   --first-block-clr: #005bba;
   --second-block-clr: #fed500;
   --clr: #111;
-  width: 100px;
-  height: 100px;
-  position: relative;
+  width: 200px;
+  height: 200px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 11;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  transform: translate(-50%, -50%);
+  font-size: 30px;
+  text-align: center;
+  padding-top: 12%;
 }
 
-.loadingScreenAnimation::after, .loadingScreenAnimation::before {
+.loadingPopupAnimation::after, .loadingPopupAnimation::before {
   box-sizing: border-box;
   position: absolute;
   content: "";
@@ -181,7 +192,7 @@ button.yesButton:hover, button.noButton:hover {
   background: var(--first-block-clr);
 }
 
-.loadingScreenAnimation::after {
+.loadingPopupAnimation::after {
   background: var(--second-block-clr);
   top: calc(50% - var(--size));
   left: calc(50% - var(--size));
