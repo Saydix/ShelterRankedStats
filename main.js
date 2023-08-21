@@ -16,6 +16,7 @@ let players;
 
 async function fetchData() {
   const loadingIndicator = document.getElementById('loadingPopup');
+  addGamePopup1.style.display = 'none';
   loadingIndicator.style.display = 'block';
 
   try {
@@ -111,9 +112,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const gameInfo = players.map(player => {
       return `${player.username} (${player.role}): ${player.points} Баллов <br>`;
     }).join('<br>');
-    gameInfoSpan.innerHTML = `Найдено: <br> ${gameInfo}`;
-    addGamePopup1.style.display = 'none';
     addGamePopup2.style.display = 'block';
+    gameInfoSpan.innerHTML = `Найдено: <br> ${gameInfo}`;
   });
 
   closePopupButton2.addEventListener('click', function () {
