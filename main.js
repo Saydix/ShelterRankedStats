@@ -65,12 +65,13 @@ async function fetchData() {
 
 async function saveGame(){
   playersJson = JSON.stringify(players);
+  console.log(playersJson);
   fetch(sendStatsOnServer, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: gameInfo,
+    body: playersJson,
   })
   .then(response => response.json())
   .then(data => {
