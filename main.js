@@ -8,7 +8,7 @@ console.log('Добавлено:  . Исправлено: ');
 
 let gameUrl; // = prompt('Введите ссылку на игру:', 'https://polemicagame.com/game-statistics/197277');
 const getStatsFromPolemica = 'https://shelterstats.glitch.me';
-const sendStatsOnServer = 'https://baseshelter.glitch.me/';
+const sendStatsOnServer = 'https://baseshelter.glitch.me/save-game';
 
 let players;
 let playersJson;
