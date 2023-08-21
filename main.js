@@ -1,9 +1,7 @@
 console.log('Version: 1.4');
-console.log('Добавлено:  . Исправлено: ЛоадСкрин');
+console.log('Добавлено:  . Исправлено: ');
 
-//!ВЫПОЛНЕНО Добавить отображение загрузки после "Далее"
-//!ВЫПОЛНЕНО Отображение загрузки после сохранения игры
-//!ВЫПОЛНЕНО Автоочистка переменной для "Найдено" после "Да"/"Нет" (После вопроса "Добавить игру?")
+//Отображение загрузки после сохранения игры
 // Решить проблему сохранения игры
 // Добавить подгрузку данных с базы
 // После лоадСкрина - "успешно"
@@ -13,6 +11,7 @@ const getStatsFromPolemica = 'https://shelterstats.glitch.me';
 const sendStatsOnServer = 'https://baseshelter.glitch.me/';
 
 let players;
+let playersSave;
 
 async function fetchData() {
   const loadingIndicator = document.getElementById('loadingPopup');
@@ -65,7 +64,7 @@ async function fetchData() {
 }
 
 async function saveGame(){
-  const gameInfo = JSON.stringify(players);
+  const gameInfo = JSON.stringify(playersSave);
   fetch(sendStatsOnServer, {
     method: 'POST',
     headers: {
@@ -108,6 +107,7 @@ document.addEventListener('DOMContentLoaded', function () {
     fetchData()
       .then(players => {
       console.log(players);
+      playersSave = players;
       const gameInfo = players.map(player => {
         return `${player.username} (${player.role}): ${player.points} Баллов <br>`;
       }).join('<br>');
@@ -122,7 +122,6 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   yesButton.addEventListener('click', function () {
-    alert('Выполнено!');
     saveGame();
     players = null;
     addGamePopup2.style.display = 'none';
