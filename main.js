@@ -11,7 +11,6 @@ const getStatsFromPolemica = 'https://shelterstats.glitch.me';
 const sendStatsOnServer = 'https://baseshelter.glitch.me/';
 
 let players;
-let playersSave;
 
 async function fetchData() {
   const loadingIndicator = document.getElementById('loadingPopup');
@@ -64,7 +63,7 @@ async function fetchData() {
 }
 
 async function saveGame(){
-  const gameInfo = JSON.stringify(playersSave);
+  const gameInfo = JSON.stringify(players);
   fetch(sendStatsOnServer, {
     method: 'POST',
     headers: {
@@ -79,6 +78,7 @@ async function saveGame(){
   .catch(error => {
     alert('Ошибка сохранения игры!');
     console.error('Ошибка отправки запроса:', error);
+    console.log(players);
   });
 }
 
@@ -107,7 +107,6 @@ document.addEventListener('DOMContentLoaded', function () {
     fetchData()
       .then(players => {
       console.log(players);
-      playersSave = players;
       const gameInfo = players.map(player => {
         return `${player.username} (${player.role}): ${player.points} Баллов <br>`;
       }).join('<br>');
