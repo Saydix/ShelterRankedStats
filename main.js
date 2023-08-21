@@ -79,6 +79,7 @@ async function saveGame(){
     alert('Ошибка сохранения игры!');
     console.error('Ошибка отправки запроса:', error);
     console.log(players);
+    players = null;
   });
 }
 
@@ -122,7 +123,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
   yesButton.addEventListener('click', function () {
     saveGame();
-    players = null;
     addGamePopup2.style.display = 'none';
   });
 
