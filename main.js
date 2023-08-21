@@ -11,6 +11,7 @@ const getStatsFromPolemica = 'https://shelterstats.glitch.me';
 const sendStatsOnServer = 'https://baseshelter.glitch.me/';
 
 let players;
+let playersJson;
 
 async function fetchData() {
   const loadingIndicator = document.getElementById('loadingPopup');
@@ -63,7 +64,7 @@ async function fetchData() {
 }
 
 async function saveGame(){
-  const gameInfo = JSON.stringify(players);
+  playersJson = JSON.stringify(players);
   fetch(sendStatsOnServer, {
     method: 'POST',
     headers: {
@@ -108,7 +109,7 @@ document.addEventListener('DOMContentLoaded', function () {
     fetchData()
       .then(players => {
       console.log(players);
-      const gameInfo = players.map(player => {
+      let gameInfo = players.map(player => {
         return `${player.username} (${player.role}): ${player.points} Баллов <br>`;
       }).join('<br>');
       addGamePopup2.style.display = 'block';
