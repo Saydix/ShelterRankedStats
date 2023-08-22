@@ -17,6 +17,8 @@ const gameTable = document.getElementById('gameTable');
 const gameTableData = document.getElementById('gameTableData');
 
 async function getData() {
+  const loadingGamesIndicator = document.getElementById('loadingGames');
+  loadingGamesIndicator.style.display = 'block';
   try {
     const response = await fetch(getStatsFromServer);
     if (!response.ok) {
@@ -33,8 +35,12 @@ async function getData() {
       row.insertCell(3).textContent = player.points;
       row.insertCell(4).textContent = player.avgPoints;
     });
+
+    
+    loadingGamesIndicator.style.display = 'none';
   } catch (error) {
     console.error('Произошла ошибка:', error);
+    loadingGamesIndicator.style.display = 'none';
   }
 }
 getData();

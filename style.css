@@ -177,7 +177,84 @@ button.yesButton:hover, button.noButton:hover {
   color: #333;
 }
 
-/*Анимация загрузки*/
+/*Анимация загрузки игры с сервера*/
+.loadingGamesAnimation {
+  --size: 40px;
+  --first-block-clr: #0057b8;
+  --second-block-clr: #ffd700;
+  --clr: #111;
+  width: 240px;
+  height: 240px;
+  position: fixed;
+  top: 12%;
+  left: 50%;
+  z-index: 12;
+  border-radius: 10px;
+  transform: translate(-50%, -50%);
+}
+
+.loadingGamesAnimation::after, .loadingGamesAnimation::before {
+  box-sizing: border-box;
+  position: absolute;
+  content: "";
+  width: var(--size);
+  height: var(--size);
+  top: 50%;
+  animation: upp 2.4s cubic-bezier(0, 0, 0.24, 1.21) infinite;
+  left: 50%;
+  background: var(--first-block-clr);
+  z-index: 12;
+}
+
+.loadingGamesAnimation::after {
+  background: var(--second-block-clr);
+  top: calc(50% - var(--size));
+  left: calc(50% - var(--size));
+  animation: down 2.4s cubic-bezier(0, 0, 0.24, 1.21) infinite;
+}
+
+.loadingGameAnimationText {
+  position: relative;
+  left: -1px;
+  z-index: 11;
+  transform: scale(0.6667);
+}
+
+@keyframes down {
+  0%, 100% {
+    transform: none;
+  }
+  25% {
+    transform: translateX(100%);
+  }
+
+  50% {
+    transform: translateX(100%) translateY(100%);
+  }
+
+  75% {
+    transform: translateY(100%);
+  }
+}
+@keyframes upp {
+  0%, 100% {
+   transform: none;
+  }
+ 
+  25% {
+   transform: translateX(-100%);
+  }
+ 
+  50% {
+   transform: translateX(-100%) translateY(-100%);
+  }
+ 
+  75% {
+   transform: translateY(-100%);
+  }
+ }
+
+/*Анимация загрузки поиска игры*/
 .loadingPopupAnimation {
   --size: 60px;
   --first-block-clr: #0057b8;
