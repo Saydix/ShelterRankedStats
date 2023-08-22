@@ -18,7 +18,7 @@ const gameTableData = document.getElementById('gameTableData');
 
 async function getData() {
   try {
-    const response = await fetch(sendStatsOnServer);
+    const response = await fetch(getStatsFromServer);
     if (!response.ok) {
       throw new Error('Ошибка при получении данных');
     }
