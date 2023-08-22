@@ -18,6 +18,24 @@ body {
   border-radius: 5px;
 }
 
+.logoIcon {
+  width: 140px;
+  height: auto; 
+  display: block; 
+  position: absolute; 
+  top: 1px; 
+  left: 1px; 
+  border: 2px solid #0074cc; 
+  border-radius: 50%; 
+  background-color: transparent; 
+  padding: 10px; 
+  transition: transform 0.2s ease-in-out; 
+}
+
+.logoIcon:hover {
+  transform: scale(1.3); 
+}
+
 /* Стили для заголовка */
 h1 {
   font-size: 24px;
@@ -161,23 +179,20 @@ button.yesButton:hover, button.noButton:hover {
 
 /*Анимация загрузки*/
 .loadingPopupAnimation {
-  --size: 40px;
-  --first-block-clr: #005bba;
-  --second-block-clr: #fed500;
+  --size: 60px;
+  --first-block-clr: #0057b8;
+  --second-block-clr: #ffd700;
   --clr: #111;
-  width: 200px;
-  height: 200px;
+  width: 240px;
+  height: 240px;
   position: fixed;
   top: 50%;
   left: 50%;
-  z-index: 11;
+  z-index: 12;
   background-color: #fff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
   transform: translate(-50%, -50%);
-  font-size: 25px;
-  text-align: center;
-  padding-top: 12%;
 }
 
 .loadingPopupAnimation::after, .loadingPopupAnimation::before {
@@ -190,6 +205,7 @@ button.yesButton:hover, button.noButton:hover {
   animation: up 2.4s cubic-bezier(0, 0, 0.24, 1.21) infinite;
   left: 50%;
   background: var(--first-block-clr);
+  z-index: 12;
 }
 
 .loadingPopupAnimation::after {
@@ -197,6 +213,12 @@ button.yesButton:hover, button.noButton:hover {
   top: calc(50% - var(--size));
   left: calc(50% - var(--size));
   animation: down 2.4s cubic-bezier(0, 0, 0.24, 1.21) infinite;
+}
+
+.loadingPopupAnimationText {
+  position: relative;
+  left: -1px;
+  z-index: 11;
 }
 
 @keyframes down {
