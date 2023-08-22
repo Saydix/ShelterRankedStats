@@ -53,7 +53,7 @@ async function getData() {
       row.insertCell(0).textContent = index + 1;
       row.insertCell(1).textContent = player.username;
       row.insertCell(2).textContent = player.games;
-      row.insertCell(3).textContent = (player.points);
+      row.insertCell(3).textContent = player.points;
       row.insertCell(4).textContent = (player.points / player.games).toFixed(2);
     });
 
