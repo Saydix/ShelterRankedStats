@@ -1,9 +1,9 @@
 console.log('Version: 1.5');
 console.log('Добавлено: Загрузка в таблицу  Исправлено:  ');
 
-//Отображение загрузки после сохранения игры
+
 // Добавить подгрузку данных с базы
-// После лоадСкрина - "успешно"
+// После загрузки данных добавить - "успешно" всплывающим небольшим окном
 
 let gameUrl; // = prompt('Введите ссылку на игру:', 'https://polemicagame.com/game-statistics/197277');
 const getStatsFromPolemica = 'https://shelterstats.glitch.me';
@@ -27,16 +27,36 @@ async function getData() {
 
     const data = await response.json();
 
-    data.forEach((player, index) => {
-      const row = gameTable.insertRow();
-      row.insertCell(0).textContent = index + 1;
-      row.insertCell(1).textContent = player.nickname;
-      row.insertCell(2).textContent = player.games;
-      row.insertCell(3).textContent = player.points;
-      row.insertCell(4).textContent = player.avgPoints;
+    const playerStats = {};
+
+    data.forEach(game => {
+      game.allGames.forEach(player => {
+        const username = player.username;
+        if (!playerStats[username]) {
+          playerStats[username] = {
+            username,
+            games: 0,
+            points: 0,
+          };
+        }
+        playerStats[username].games++;
+        playerStats[username].points += player.points;
+      });
     });
 
-    
+    const soertedPlayers = Object.values(playerStats).sort((a, b) => {
+      return b.points / b.games - a.points / a.games;
+    });
+
+    soertedPlayers.forEach((player, index) => {
+      const row = gameTable.insertRow();
+      row.insertCell(0).textContent = index + 1;
+      row.insertCell(1).textContent = player.username;
+      row.insertCell(2).textContent = player.games;
+      row.insertCell(3).textContent = player.points;
+      row.insertCell(4).textContent = (player.points / player.games).toFixed(2);
+    });
+
     loadingGamesIndicator.style.display = 'none';
   } catch (error) {
     console.error('Произошла ошибка:', error);
