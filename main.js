@@ -1,5 +1,5 @@
 console.log('Version: 1.5');
-console.log('Добавлено: Сохранение игр в базе ModoDB. Логотип. Исправлено: Загрузка в виде лого ');
+console.log('Добавлено: Загрузка в таблицу  Исправлено:  ');
 
 //Отображение загрузки после сохранения игры
 // Добавить подгрузку данных с базы
@@ -11,6 +11,32 @@ const sendStatsOnServer = 'https://baseshelter.glitch.me/save-game';
 
 let players;
 let playersJson;
+
+const gameTable = document.getElementById('gameTable');
+const gameTableData = document.getElementById('gameTableData');
+
+async function getData() {
+  try {
+    const response = await fetch(sendStatsOnServer);
+    if (!response.ok) {
+      throw new Error('Ошибка при получении данных');
+    }
+
+    const data = await response.json();
+
+    data.forEach((player, index) => {
+      const row = gameTable.insertRow();
+      row.insertCell(0).textContent = index + 1;
+      row.insertCell(1).textContent = player.nickname;
+      row.insertCell(2).textContent = player.games;
+      row.insertCell(3).textContent = player.points;
+      row.insertCell(4).textContent = player.avgPoints;
+    });
+  } catch (error) {
+    console.error('Произошла ошибка:', error);
+  }
+}
+getData();
 
 async function fetchData() {
   const loadingIndicator = document.getElementById('loadingPopup');
