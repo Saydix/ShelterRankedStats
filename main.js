@@ -8,6 +8,7 @@ console.log('Добавлено: Загрузка в таблицу  Испра�
 let gameUrl; // = prompt('Введите ссылку на игру:', 'https://polemicagame.com/game-statistics/197277');
 const getStatsFromPolemica = 'https://shelterstats.glitch.me';
 const sendStatsOnServer = 'https://baseshelter.glitch.me/save-game';
+const getStatsFromServer = 'https://baseshelter.glitch.me/get-games';
 
 let players;
 let playersJson;
