@@ -65,7 +65,6 @@ async function fetchData() {
 
 async function saveGame(){
   playersJson = JSON.stringify(players);
-  console.log(playersJson);
   fetch(sendStatsOnServer, {
     method: 'POST',
     headers: {
@@ -80,7 +79,6 @@ async function saveGame(){
   .catch(error => {
     alert('Ошибка сохранения игры!');
     console.error('Ошибка отправки запроса:', error);
-    console.log(players);
     players = null;
   });
 }
@@ -109,7 +107,6 @@ document.addEventListener('DOMContentLoaded', function () {
     gameUrl = gameLinkInput.value;
     fetchData()
       .then(players => {
-      console.log(players);
       let gameInfo = players.map(player => {
         return `${player.username} (${player.role}): ${player.points} Баллов <br>`;
       }).join('<br>');
