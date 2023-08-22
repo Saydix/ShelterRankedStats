@@ -94,7 +94,7 @@ async function fetchData() {
         ID: gameData.id,
         username: player.username,
         role: player.role.title,
-        points: achievementsSum, 
+        points: achievementsSum.toFixed(2), 
         victory: player.w_l === "win" ? "Победа" : "Поражение",
         winnerCode: gameData.winnerCode === 1 ? "Победа Мирных" : "Победа Мафии"
         };
