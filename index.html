@@ -8,9 +8,11 @@
 </head>
 <body>
     <div class="container">
+
         <a href="https://t.me/+bV35q5wgnXFiNDVi" target="_blank" class="LogoIconContainer">
             <img src="images/telegramLogo.png" alt="" class="logoIcon">
         </a>
+
         <table id="gameTable">
             <thead>
                 <tr>
@@ -22,15 +24,42 @@
                     <th></th>
                 </tr>
             </thead>
+
             <tbody id="gameTableData">
 
-                <div id="loadingGames" class="loadingGamesAnimation">
+                <div id="loadingGames" class="loadingGamesAnimation" style="display: none;">
                     <img src="images/ShelterStatsLogo(WithoutCube).png" alt="" class="loadingGameAnimationText">
                 </div>
 
             </tbody>
         </table>
-        <button class="addGame" id="openPopupButton"> Добавить игру </button>
+
+        <button class="addGame" id="openPopupButton">
+                <span class="addGameSpan">Добавить игру</span>
+            </button>
+            
+            <div class="infoBox">
+                <div class="infoBoxTotalGames">
+                    <h3>Количество игр</h3>
+                    <span>100</span>
+                </div>
+                <div class="infoBoxWinRatio">
+                    <h3>Соотношение побед</h3>
+                    <span>60%</span>
+                </div>
+                <div class="infoBoxBestDuo">
+                    <h3>Лучший дуэт</h3>
+                    <span>Yumit / Yumit</span>
+                </div>
+                <div class="infoBoxMvp">
+                    <h3>Бесценный игрок</h3>
+                    <span>Obraz</span>
+                </div>
+                <div class="infoBoxBestStreak">
+                    <h3>Лучшая серия побед</h3>
+                    <span>12 игр</span>
+                </div>
+            </div>
     </div>
 
     <div id="addGamePopup1" class="popup">
