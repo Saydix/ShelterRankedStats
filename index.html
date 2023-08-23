@@ -8,7 +8,9 @@
 </head>
 <body>
     <div class="container">
-        <img src="images/ShelterStatsLogo(Days-Regular).png" alt="" class="logoIcon">
+        <a href="https://t.me/+bV35q5wgnXFiNDVi" target="_blank" class="LogoIconContainer">
+            <img src="images/ShelterStatsLogo(Days-Regular).png" alt="" class="logoIcon">
+        </a>
         <table id="gameTable">
             <thead>
                 <tr>
@@ -17,16 +19,20 @@
                     <th>Игры</th>
                     <th>Баллы</th>
                     <th>Ср.Балл</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody id="gameTableData">
-                <div id="loadingGames" class="loadingGamesAnimation" style="display: none;">
+
+                <div id="loadingGames" class="loadingGamesAnimation">
                     <img src="images/ShelterStatsLogo(WithoutCube).png" alt="" class="loadingGameAnimationText">
                 </div>
+                
             </tbody>
         </table>
         <button class="addGame" id="openPopupButton"> Добавить игру </button>
     </div>
+
     <div id="addGamePopup1" class="popup">
         <div class="popup-content">
             <span class="close" id="closePopupButton1">&times;</span>
@@ -35,9 +41,11 @@
             <button id="nextButton">Далее</button>
         </div>
     </div>
+
     <div id="loadingPopup" class="loadingPopupAnimation" style="display: none;">
         <img src="images/ShelterStatsLogo(WithoutCube).png" alt="" class="loadingPopupAnimationText">
     </div>
+
     <div id="addGamePopup2" class="popup">
         <div class="popup-content">
             <span class="close" id="closePopupButton2">&times;</span>
@@ -47,5 +55,6 @@
             <button id="noButton">Нет</button>
         </div>
     </div>
+
 </body>
 </html>

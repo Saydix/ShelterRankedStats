@@ -18,18 +18,18 @@ body {
   border-radius: 5px;
 }
 
-.logoIcon {
-  width: 140px;
-  height: auto; 
-  display: block; 
-  position: absolute; 
-  top: 1px; 
-  left: 1px; 
-  border: 2px solid #0074cc; 
-  border-radius: 50%; 
-  background-color: transparent; 
-  padding: 10px; 
+.LogoIconContainer {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 25px;
+}
+
+.logoIcon { 
   transition: transform 0.2s ease-in-out; 
+  max-height: 140px;
 }
 
 .logoIcon:hover {
