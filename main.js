@@ -17,8 +17,12 @@ const gameTable = document.getElementById('gameTable');
 const gameTableData = document.getElementById('gameTableData');
 
 async function getData() {
-  const loadingGamesIndicator = document.getElementById('loadingGames');
+
+  const loadingGamesIndicator = document.getElementById('loadingGamesAnimation');
+  const loadingGamesIndicator2 = document.getElementById('loadingGamesAnimation2');
   loadingGamesIndicator.style.display = 'block';
+  loadingGamesIndicator2.style.display = 'block';
+
   try {
     const response = await fetch(getStatsFromServer);
     if (!response.ok) {
@@ -58,9 +62,11 @@ async function getData() {
     });
 
     loadingGamesIndicator.style.display = 'none';
+    loadingGamesIndicator2.style.display = 'none';
   } catch (error) {
     console.error('Произошла ошибка:', error);
     loadingGamesIndicator.style.display = 'none';
+    loadingGamesIndicator2.style.display = 'none';
   }
 }
 getData();
