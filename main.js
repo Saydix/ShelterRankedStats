@@ -34,7 +34,8 @@ async function getData() {
     const playerStats = {};
     const totalGamesCounter = document.getElementById('totalGames');
 
-    totalGamesCounter.innerHTML += data.count;
+    // totalGamesCounter.innerHTML += data.count;
+    console.log(data);
 
     data.forEach(game => {
       game.allGames.forEach(player => {
