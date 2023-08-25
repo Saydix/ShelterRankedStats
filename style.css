@@ -1,26 +1,29 @@
 /*Обнуление*/
 @import url("nullstyle.css");
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Days+One&family=Montserrat&display=swap');
 
 /* Общие стили для страницы */
 body {
-  font-family: 'Helvetica Neue', sans-serif;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
   background-color: #f2f2f2;
   margin: 0;
   padding: 0;
 }
 
 .container {
-  max-width: 999px;
+  max-width: 1300px;
   margin: 0 auto;
   padding: 20px;
   display: flex;
   flex-direction: row;
 }
 
-.gameTableStyle {
+.gameTable {
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
+  font-size: 18px;
 }
 /* Стили для таблицы */
 table {
@@ -51,6 +54,8 @@ table th {
   background-size: 200% 100%;
   background-position: 100% 0;
   animation: loadInfo 1s infinite;
+
+  display: none;
 }
 .loadingGameInfo2{
   width: 625px;
@@ -63,6 +68,8 @@ table th {
   background-size: 200% 100%;
   background-position: 100% 0;
   animation: loadInfo 1.2s infinite;
+
+  display: none;
 }
 .loadingGameInfoBox{
   width: 100px;
@@ -76,6 +83,8 @@ table th {
   background-size: 200% 100%;
   background-position: 100% 0;
   animation: loadInfo 1.2s infinite;
+
+  display: none;
 }
 .loadingGameInfoBox2 {
   width: 100px;
@@ -89,6 +98,8 @@ table th {
   background-size: 200% 100%;
   background-position: 100% 0;
   animation: loadInfo 1.1s infinite;
+  
+  display: none;
 }
 .loadingGameInfoBox3 {
   width: 100px;
@@ -102,6 +113,8 @@ table th {
   background-size: 200% 100%;
   background-position: 100% 0;
   animation: loadInfo 1s infinite;
+  
+  display: none;
 }
 .loadingGameInfoBox4 {
   width: 100px;
@@ -115,6 +128,8 @@ table th {
   background-size: 200% 100%;
   background-position: 100% 0;
   animation: loadInfo 1.1s infinite;
+  
+  display: none;
 }
 .loadingGameInfoBox5 {
   width: 100px;
@@ -128,6 +143,8 @@ table th {
   background-size: 200% 100%;
   background-position: 100% 0;
   animation: loadInfo 1s infinite;
+  
+  display: none;
 }
 
 @keyframes loadInfo {
@@ -135,6 +152,7 @@ table th {
     background-position: -100% 0;
   }
 }
+
 /*Инфо боксы*/
 .infoBox {
   margin-left: 20px;
@@ -142,24 +160,94 @@ table th {
 }
 
 .infoBoxTotalGames {
-  width: 150px;
-  height: 70px;
+  width: 120%;
+  height: 40%;
   text-align: center;
   padding: 10px;
   margin-bottom: 10px;
   background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  position: relative;
+  cursor: pointer;
 }
+.infoBoxTotalGames h3 {
+  font-size: 25px;
+}
+/* Выглядит как календарь ?
+.infoBoxTotalGames::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: #74747469;
+  position: absolute;
+  left: 0;
+  top: 25%;
+}
+*/
+.totalGamesCount {
+  font-family: 'Bebas Neue', sans-serif;
+  font-weight: 400;
+  font-size: 73px;
+  position: relative;
+  top: 20%;
+  text-align: center;
+  letter-spacing: 3px;
+}
+.arrowIcon {
+  font-size: 25px;
+  font-weight: 100;
+  position: absolute;
+  bottom: 5px;
+  right: 10px;
+  transition: transform 0.3s ease;
+  color: #929292;
+}
+.arrowIcon::before {
+  content: ">";
+  display: inline-block;
+}
+.arrowIcon.opened::before {
+  transform: rotate(30deg);
+}
+.gameList {
+  position: relative;
+  min-width: 150%;
+  min-height: 100%;
+  text-align: center;
+  background-color: #fff;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  left: 110%;
+  cursor: default;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 2s ease, max-height 2s ease;
+  transform-origin: center top;
+}
+.gameList.opened {
+  opacity: 1;
+  max-height: 300%;
+}
+.gameList span {
+  position: relative;
+  top: 10px;
+}
+
+
+
 .infoBoxWinRatio {
-  width: 150px;
-  height: 70px;
+  width: 120%;
+  height: 40%;
   text-align: center;
   padding: 10px;
   margin-bottom: 10px;
   background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  position: relative;
 }
 
 .infoBoxBestDuo {
@@ -243,7 +331,8 @@ h2 {
   text-decoration: none;
   position: relative;
   overflow: hidden;
-  max-height: 45px;
+  max-height: 55px;
+  width: 150px;
   transition: background-color 0.3s, border-color 0.3s;
 }
 
@@ -374,83 +463,6 @@ button.yesButton:hover, button.noButton:hover {
   margin-bottom: 20px;
   color: #333;
 }
-
-/*Анимация загрузки игры с сервера*/
-.loadingGamesAnimation {
-  --size: 40px;
-  --first-block-clr: #0057b8;
-  --second-block-clr: #ffd700;
-  --clr: #111;
-  width: 240px;
-  height: 240px;
-  position: fixed;
-  top: 12%;
-  left: 50%;
-  z-index: 12;
-  border-radius: 10px;
-  transform: translate(-50%, -50%);
-}
-
-.loadingGamesAnimation::after, .loadingGamesAnimation::before {
-  box-sizing: border-box;
-  position: absolute;
-  content: "";
-  width: var(--size);
-  height: var(--size);
-  top: 50%;
-  animation: upp 2.4s cubic-bezier(0, 0, 0.24, 1.21) infinite;
-  left: 50%;
-  background: var(--first-block-clr);
-  z-index: 12;
-}
-
-.loadingGamesAnimation::after {
-  background: var(--second-block-clr);
-  top: calc(50% - var(--size));
-  left: calc(50% - var(--size));
-  animation: down 2.4s cubic-bezier(0, 0, 0.24, 1.21) infinite;
-}
-
-.loadingGameAnimationText {
-  position: relative;
-  left: -1px;
-  z-index: 11;
-  transform: scale(0.6667);
-}
-
-@keyframes down {
-  0%, 100% {
-    transform: none;
-  }
-  25% {
-    transform: translateX(100%);
-  }
-
-  50% {
-    transform: translateX(100%) translateY(100%);
-  }
-
-  75% {
-    transform: translateY(100%);
-  }
-}
-@keyframes upp {
-  0%, 100% {
-   transform: none;
-  }
- 
-  25% {
-   transform: translateX(-100%);
-  }
- 
-  50% {
-   transform: translateX(-100%) translateY(-100%);
-  }
- 
-  75% {
-   transform: translateY(-100%);
-  }
- }
 
 /*Анимация загрузки поиска игры*/
 .loadingPopupAnimation {

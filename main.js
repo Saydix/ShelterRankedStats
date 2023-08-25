@@ -34,7 +34,7 @@ async function getData() {
     const playerStats = {};
     const totalGamesCounter = document.getElementById('totalGames');
 
-    // totalGamesCounter.innerHTML += data.count;
+    totalGamesCounter.innerHTML += data.games.length;
     console.log(data);
 
     data.forEach(game => {
@@ -144,6 +144,28 @@ async function saveGame(){
     players = null;
   });
 }
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  const infoBox = document.getElementById('infoBox');
+  const gameList = document.getElementById('gameList');
+  const arrowIcon = document.getElementById('arrowIcon');
+
+  infoBox.addEventListener('click', function () {
+      if (event.target === gameList || gameList.contains(event.target)) {
+          return;
+      }
+      if (gameList.style.display === 'none') {
+          gameList.style.display = 'block';
+          gameList.classList.add('opened');
+          arrowIcon.classList.add('opened');
+      } else {
+          gameList.style.display = 'none';
+          gameList.classList.remove('opened');
+          arrowIcon.classList.remove('opened');
+      }
+  });
+});
 
 document.addEventListener('DOMContentLoaded', function () {
   const openPopupButton = document.getElementById('openPopupButton');
