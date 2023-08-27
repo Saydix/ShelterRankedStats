@@ -30,12 +30,13 @@ async function getData() {
     }
 
     const data = await response.json();
-
+    console.log(data);
+    
     const playerStats = {};
     const totalGamesCounter = document.getElementById('totalGames');
 
     totalGamesCounter.innerHTML += data.games.length;
-    console.log(data);
+    
 
     data.forEach(game => {
       game.allGames.forEach(player => {
