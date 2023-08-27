@@ -161,7 +161,7 @@ table th {
 
 .infoBoxTotalGames {
   width: 120%;
-  height: 40%;
+  height: 165px;
   text-align: center;
   padding: 10px;
   margin-bottom: 10px;
@@ -240,7 +240,7 @@ table th {
 
 .infoBoxWinRatio {
   width: 120%;
-  height: 40%;
+  height: 165px;
   text-align: center;
   padding: 10px;
   margin-bottom: 10px;
