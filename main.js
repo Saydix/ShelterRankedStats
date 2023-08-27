@@ -31,12 +31,18 @@ async function getData() {
 
     const data = await response.json();
     console.log(data);
-    
-    const playerStats = {};
-    const totalGamesCounter = document.getElementById('totalGames');
 
-    totalGamesCounter.innerHTML += data.games.length;
-    
+    const playerStats = {};
+    const totalGamesList = [];
+
+    data.forEach(item => {
+      if(item._id) {
+        totalGamesList.push(item._id);
+      }
+    });
+    const totalGamesCounter = document.getElementById('totalGames');
+    totalGamesCounter.textContent = totalGamesList.length;
+
 
     data.forEach(game => {
       game.allGames.forEach(player => {
