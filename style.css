@@ -238,7 +238,7 @@ table th {
 .gameListId{
   margin-top: 15px;
 }
-.gameListId tr {
+.gameListId td {
   padding: 10px 0px;
 }
 .deleteButton {
