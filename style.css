@@ -244,8 +244,8 @@ table th {
 .deleteButton {
   padding: 10px 0px;
 }
-.gameListIdThead tr {
-  padding: 0px 0px;
+.gameListIdThead tr:last-child {
+  margin-left: 10px;
 }
 
 
