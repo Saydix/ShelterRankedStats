@@ -1,5 +1,5 @@
-console.log('Version: 1.5');
-console.log('Добавлено: Загрузка в таблицу  Исправлено:  ');
+console.log('Version: 1.6');
+console.log('Добавлено: Список добавленных игр  Исправлено:  ');
 
 
 // Добавить подгрузку данных с базы
@@ -42,7 +42,13 @@ async function getData() {
     });
     const totalGamesCounter = document.getElementById('totalGames');
     totalGamesCounter.textContent = totalGamesList.length;
-
+    
+    const gameListId = document.getElementById('gameListId');
+    totalGamesList.forEach(id => {
+      const listItem = document.createElement('li');
+      listItem.textContent = id;
+      gameListId.appendChild(listItem);
+    });
 
     data.forEach(game => {
       game.allGames.forEach(player => {
@@ -154,11 +160,11 @@ async function saveGame(){
 
 
 document.addEventListener('DOMContentLoaded', function () {
-  const infoBox = document.getElementById('infoBox');
+  const infoBoxTotalGames = document.getElementById('infoBoxTotalGames');
   const gameList = document.getElementById('gameList');
   const arrowIcon = document.getElementById('arrowIcon');
 
-  infoBox.addEventListener('click', function () {
+  infoBoxTotalGames.addEventListener('click', function () {
       if (event.target === gameList || gameList.contains(event.target)) {
           return;
       }
