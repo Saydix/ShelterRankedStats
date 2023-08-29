@@ -45,10 +45,16 @@ async function getData() {
     
     const gameListId = document.getElementById('gameListId');
     totalGamesList.forEach(id => {
-      const listItem = document.createElement('li');
-      listItem.textContent = id;
-      gameListId.appendChild(listItem);
+      const row = gameListId.insertRow();
+      const cell1 = row.insertCell(0);
+      const cell2 = row.insertCell(1);
+      const cell3 = row.insertCell(2);
+
+      cell1.textContent = id;
+      cell2.textContent = '29.08.2023'; // Заменить на настоящую дату
+      cell3.innerHTML = '<button class="delete-button">Удалить</button>';
     });
+
 
     data.forEach(game => {
       game.allGames.forEach(player => {
