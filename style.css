@@ -226,6 +226,7 @@ table th {
   transition: opacity 2s ease, max-height 2s ease;
   transform-origin: center top;
   font-size: 13px;
+  overflow-y: auto; 
 }
 .gameList.opened {
   opacity: 1;
@@ -233,7 +234,7 @@ table th {
 }
 .gameList span {
   position: relative;
-  top: 10px;
+  top: -1px;
 }
 .gameListId{
   margin-top: 15px;
