@@ -238,14 +238,19 @@ table th {
 .gameListId{
   margin-top: 15px;
 }
+.gameListId tr:last-child {
+  border-bottom: none;
+}
 .gameListId td {
   padding: 4px 14px;
+  text-align: center;
 }
 .deleteButton {
   padding: 10px 0px;
 }
-.gameListIdThead tr:last-child {
-  margin-left: 10px;
+.gameListIdThead th {
+  text-align: center;
+  padding: 10px;
 }
 
 
