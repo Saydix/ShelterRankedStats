@@ -249,8 +249,8 @@ table th {
 }
 
 .deleteButton {
-  width: 50px;
-  height: 50px;
+  width: 25px; 
+  height: 25px; 
   border-radius: 50%;
   background-color: rgb(20, 20, 20);
   border: none;
@@ -266,7 +266,7 @@ table th {
 }
 
 .deleteButtonSvg {
-  width: 12px;
+  width: 6px; 
   transition-duration: .3s;
 }
 
@@ -275,15 +275,16 @@ table th {
 }
 
 .deleteButton:hover {
-  width: 140px;
+  width: 70px; 
+  height: 70px; 
   border-radius: 50px;
   transition-duration: .3s;
   background-color: rgb(255, 69, 69);
   align-items: center;
 }
 
-.deleteButton:hover .svgIcon {
-  width: 50px;
+.deleteButton:hover .deleteButtonSvg {
+  width: 25px; 
   transition-duration: .3s;
   transform: translateY(60%);
 }
