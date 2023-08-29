@@ -239,10 +239,13 @@ table th {
   margin-top: 15px;
 }
 .gameListId td {
-  padding: 10px 0px;
+  padding: 4px 14px;
 }
 .deleteButton {
   padding: 10px 0px;
+}
+.gameListIdThead {
+  padding: 0px 0px;
 }
 
 
