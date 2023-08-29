@@ -52,7 +52,7 @@ async function getData() {
 
       cell1.textContent = id;
       cell2.textContent = '29.08.2023'; // Заменить на настоящую дату
-      cell3.innerHTML = '<button class="delete-button">Удалить</button>';
+      cell3.innerHTML = '<button class="deleteButton">Удалить</button>';
     });
 
 

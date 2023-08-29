@@ -160,7 +160,7 @@ table th {
 }
 
 .infoBoxTotalGames {
-  width: 120%;
+  width: 180px;
   height: 165px;
   text-align: center;
   padding: 10px;
@@ -213,8 +213,7 @@ table th {
 }
 .gameList {
   position: relative;
-  min-width: 150%;
-  min-height: 100%;
+  min-width: 350px;
   text-align: center;
   background-color: #fff;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
@@ -226,6 +225,7 @@ table th {
   overflow: hidden;
   transition: opacity 2s ease, max-height 2s ease;
   transform-origin: center top;
+  font-size: 13px;
 }
 .gameList.opened {
   opacity: 1;
@@ -238,11 +238,17 @@ table th {
 .gameListId{
   margin-top: 15px;
 }
+.gameListId tr {
+  padding: 10px 0px;
+}
+.deleteButton {
+  padding: 10px 0px;
+}
 
 
 
 .infoBoxWinRatio {
-  width: 120%;
+  width: 180px;
   height: 165px;
   text-align: center;
   padding: 10px;
