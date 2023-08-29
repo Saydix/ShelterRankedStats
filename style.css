@@ -239,21 +239,70 @@ table th {
 .gameListId{
   margin-top: 15px;
 }
-.gameListId tr:last-child {
-  border-bottom: none;
-}
 .gameListId td {
   padding: 4px 14px;
   text-align: center;
-}
-.deleteButton {
-  padding: 10px 0px;
 }
 .gameListIdThead th {
   text-align: center;
   padding: 10px;
 }
 
+.deleteButton {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: rgb(20, 20, 20);
+  border: none;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164);
+  cursor: pointer;
+  transition-duration: .3s;
+  overflow: hidden;
+  position: relative;
+}
+
+.deleteButtonSvg {
+  width: 12px;
+  transition-duration: .3s;
+}
+
+.deleteButtonSvg path {
+  fill: white;
+}
+
+.deleteButton:hover {
+  width: 140px;
+  border-radius: 50px;
+  transition-duration: .3s;
+  background-color: rgb(255, 69, 69);
+  align-items: center;
+}
+
+.deleteButton:hover .svgIcon {
+  width: 50px;
+  transition-duration: .3s;
+  transform: translateY(60%);
+}
+
+.deleteButton::before {
+  position: absolute;
+  top: -20px;
+  content: "Delete";
+  color: white;
+  transition-duration: .3s;
+  font-size: 2px;
+}
+
+.deleteButton:hover::before {
+  font-size: 13px;
+  opacity: 1;
+  transform: translateY(30px);
+  transition-duration: .3s;
+}
 
 
 .infoBoxWinRatio {
