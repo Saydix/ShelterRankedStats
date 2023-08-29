@@ -1,4 +1,4 @@
-console.log('Version: 1.6');
+console.log('Version: 1.7');
 console.log('Добавлено: Список добавленных игр  Исправлено:  ');
 
 
