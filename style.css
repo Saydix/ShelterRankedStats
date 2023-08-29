@@ -248,7 +248,7 @@ table th {
   padding: 10px;
 }
 
-.deleteButton.button {
+.deleteButton {
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -265,16 +265,16 @@ table th {
   position: relative;
 }
 
-.deleteButton.button .svgIcon {
+.deleteButtonSvg {
   width: 12px;
   transition-duration: .3s;
 }
 
-.deleteButton.button .svgIcon path {
+.deleteButtonSvg path {
   fill: white;
 }
 
-.deleteButton.button:hover {
+.deleteButton:hover {
   width: 140px;
   border-radius: 50px;
   transition-duration: .3s;
@@ -282,13 +282,13 @@ table th {
   align-items: center;
 }
 
-.deleteButton.button:hover .svgIcon {
+.deleteButton:hover .svgIcon {
   width: 50px;
   transition-duration: .3s;
   transform: translateY(60%);
 }
 
-.deleteButton.button::before {
+.deleteButton::before {
   position: absolute;
   top: -20px;
   content: "Delete";
@@ -297,7 +297,7 @@ table th {
   font-size: 2px;
 }
 
-.deleteButton.button:hover::before {
+.deleteButton:hover::before {
   font-size: 13px;
   opacity: 1;
   transform: translateY(30px);
