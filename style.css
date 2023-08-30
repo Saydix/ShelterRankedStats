@@ -319,6 +319,7 @@ table th {
 }
 
 .deleteConfirmation {
+  display: none;
   background-color: #fff;
   width: 300px;
   margin: 100px auto;
