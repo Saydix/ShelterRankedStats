@@ -95,14 +95,17 @@ async function getData() {
 }
 getData();
 
-const deleteButtons = document.querySelectorAll('.deleteButton');
-deleteButtons.forEach(button => {
-  button.addEventListener('click', function() {
-    const row = this.closest('tr');
-    const gameId = row.cells[0].textContent;
-    deleteGame(gameId);
+document.addEventListener('DOMContentLoaded', function() {
+  const deleteButtons = document.querySelectorAll('.deleteButton');
+  deleteButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      const row = this.closest('tr');
+      const gameId = row.cells[0].textContent;
+      deleteGame(gameId);
+    });
   });
 });
+
 
 async function deleteGame(gameIdInfo) {
   const deleteConfirmation = document.getElementById('deleteConfirmation');
