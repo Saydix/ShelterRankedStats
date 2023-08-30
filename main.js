@@ -1,5 +1,5 @@
-console.log('Version: 1.7');
-console.log('Добавлено: Список добавленных игр  Исправлено:  ');
+console.log('Version: 1.9');
+console.log('Добавлено: Удаление игры  Исправлено:  ');
 
 
 // Добавить подгрузку данных с базы
@@ -94,30 +94,28 @@ async function getData() {
 }
 getData();
 
-async function deleteGame() {
-  const deleteButton = document.querySelectorAll('.deleteButton');
 
-  deleteButton.forEach(button => {
-    button.addEventListener('click', async function() {
-      const gameId = this.closest('tr').id;
+const deleteButtons = document.querySelectorAll('.deleteButton');
+deleteButtons.forEach(button => {
+  button.addEventListener('click', function() {
+    const gameId = this.closest('tr').id;
 
-      try {
-        const response = await fetch(`/delete-game/${gameId}`, {
-          method: 'DELETE'
-        });
-
-        if (response.ok) {
-          console.log('Игра удалена');
-        } else {
-          console.error('Ошибка удаления');
-        }
-      } catch (error) {
-        console.error('Происзошла ошибка:', error);
+    fetch(`/delete-game/${gameId}`, {
+      method: 'DELETE'
+    })
+    .then(response => {
+      if (response.ok) {
+        
+        console.log('Игра успешно удалена.');
+      } else {
+        console.error('Ошибка при удалении игры.');
       }
+    })
+    .catch(error => {
+      console.error('Произошла ошибка:', error);
     });
   });
-}
-deleteGame();
+});
 
 async function fetchData() {
   const loadingIndicator = document.getElementById('loadingPopup');
