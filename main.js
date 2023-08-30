@@ -9,6 +9,7 @@ let gameUrl; // = prompt('Введите ссылку на игру:', 'https://
 const getStatsFromPolemica = 'https://shelterstats.glitch.me';
 const sendStatsOnServer = 'https://baseshelter.glitch.me/save-game';
 const getStatsFromServer = 'https://baseshelter.glitch.me/get-games';
+const deleteGameOnServer = 'https://baseshelter.glitch.me/delete-game/';
 
 let players;
 let playersJson;
@@ -98,15 +99,14 @@ getData();
 
 const tbody = document.getElementById('gameListId');
 
-
 tbody.addEventListener('click', function(event) {
     const target = event.target;
     if (target.classList.contains('deleteButton')) {
         console.log('Кнопка работает');
-        
+
         const gameId = target.closest('tr').id;
 
-        fetch(`/delete-game/${gameId}`, {
+        fetch(deleteGameOnServer + gameId {
             method: 'DELETE'
         })
         .then(response => {
