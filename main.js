@@ -52,7 +52,7 @@ async function getData() {
 
       cell1.textContent = id;
       cell2.textContent = '29.08.2023'; // Заменить на настоящую дату
-      cell3.innerHTML = '<div class="deleteButtonBlock"> <button id="deleteButton" class="deleteButton"> <svg viewBox="0 0 448 512" class="deleteButtonSvg"><path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"></path></svg> </button> </div>';
+      cell3.innerHTML = '<div class="deleteButtonBlock"> <button class="deleteButton"> <svg viewBox="0 0 448 512" class="deleteButtonSvg"><path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"></path></svg> </button> </div>';
     });
 
 
@@ -95,28 +95,31 @@ async function getData() {
 getData();
 
 
-document.addEventListener('DOMContentLoaded', function() {
-  const deleteButtons = document.querySelectorAll('.deleteButton');
-  deleteButtons.forEach(button => {
-      button.addEventListener('click', function() {
-          console.log('Кнопка работает');
-          const gameId = this.closest('tr').id;
 
-          fetch(`/delete-game/${gameId}`, {
-              method: 'DELETE'
-          })
-          .then(response => {
-              if (response.ok) {
-                  console.log('Игра успешно удалена.');
-              } else {
-                  console.error('Ошибка при удалении игры.');
-              }
-          })
-          .catch(error => {
-              console.error('Произошла ошибка:', error);
-          });
-      });
-  });
+const tbody = document.getElementById('gameListId');
+
+
+tbody.addEventListener('click', function(event) {
+    const target = event.target;
+    if (target.classList.contains('deleteButton')) {
+        console.log('Кнопка работает');
+        
+        const gameId = target.closest('tr').id;
+
+        fetch(`/delete-game/${gameId}`, {
+            method: 'DELETE'
+        })
+        .then(response => {
+            if (response.ok) {
+                console.log('Игра успешно удалена.');
+            } else {
+                console.error('Ошибка при удалении игры.');
+            }
+        })
+        .catch(error => {
+            console.error('Произошла ошибка:', error);
+        });
+    }
 });
 
 async function fetchData() {
