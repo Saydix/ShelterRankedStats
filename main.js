@@ -95,32 +95,49 @@ async function getData() {
 }
 getData();
 
-
-
-const tbody = document.getElementById('gameListId');
-
-tbody.addEventListener('click', function(event) {
-    const target = event.target;
-    if (target.classList.contains('deleteButton')) {
-        console.log('Кнопка работает');
-
-        const gameId = target.closest('tr').id;
-
-        fetch(deleteGameOnServer + gameId, {
-            method: 'DELETE'
-        })
-        .then(response => {
-            if (response.ok) {
-                console.log('Игра успешно удалена.');
-            } else {
-                console.error('Ошибка при удалении игры.');
-            }
-        })
-        .catch(error => {
-            console.error('Произошла ошибка:', error);
-        });
-    }
+const deleteButtons = document.querySelectorAll('.deleteButton');
+deleteButtons.forEach(button => {
+  button.addEventListener('click', function() {
+    const row = this.closest('tr');
+    const gameId = row.cells[0].textContent;
+    deleteGame(gameId);
+  });
 });
+
+async function deleteGame(gameIdInfo) {
+  const deleteConfirmation = document.getElementById('deleteConfirmation');
+  const deleteConfirmationData = document.getElementById('deleteConfirmationData');
+  const deleteConfirmationButtonCancel = document.getElementById('deleteConfirmationButtonCancel');
+  const deleteConfirmationButtonDelete = document.getElementById('deleteConfirmationButtonDelete');
+
+
+  let gameInfoToDelete = players.map(player => {
+    return `${player.username} (${player.role}): ${player.points} Баллов <br>`;
+  }).join('<br>');
+  deleteConfirmationData.innerHTML = `Эти данные будут удалены: <br> ${gameInfoToDelete}`;
+
+  deleteConfirmation.style.display = 'block';
+
+  deleteConfirmationButtonCancel.addEventListener('click', () => {
+    deleteConfirmation.style.display = 'none';
+  });
+
+  deleteConfirmationButtonDelete.addEventListener('click', () => {
+    fetch(`/delete-game/${gameIdInfo}`, {
+      method: 'DELETE'
+    })
+      .then(response => {
+        if (response.ok) {
+          console.log('Игра успешно удалена');
+        } else {
+          console.error('Ошибка удаления игры');
+        }
+      })
+      .catch(error => {
+        console.error('Произошла ошибка:', error);
+      });
+  });
+}
 
 async function fetchData() {
   const loadingIndicator = document.getElementById('loadingPopup');
