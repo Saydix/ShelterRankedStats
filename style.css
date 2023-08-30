@@ -289,7 +289,7 @@ table th {
   align-items: center;
 }
 
-.deleteButton:hover .svgIcon {
+.deleteButton:hover .deleteButtonSvg {
   width: 35px;
   transition-duration: .3s;
   transform: translateY(60%);
