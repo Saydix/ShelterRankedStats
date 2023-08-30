@@ -254,6 +254,7 @@ table th {
   height: 35px;
   top: 50%;
   left: 25%;
+  margin-left: 0;
 }
 .deleteButton {
   width: 35px;
@@ -283,6 +284,7 @@ table th {
 
 .deleteButton:hover {
   width: 65px;
+  margin-left: -15px;
   border-radius: 50px;
   transition-duration: .3s;
   background-color: rgb(255, 69, 69);
@@ -297,7 +299,7 @@ table th {
 
 .deleteButton::before {
   position: absolute;
-  top: -30px;
+  top: -28px;
   content: "Delete";
   color: white;
   transition-duration: .3s;
@@ -311,6 +313,10 @@ table th {
   transition-duration: .3s;
 }
 
+.deleteButton:active::before {
+  transform: translateY(50%);
+  transition: transform 0.3s ease;
+}
 
 .infoBoxWinRatio {
   width: 180px;
