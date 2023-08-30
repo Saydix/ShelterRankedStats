@@ -95,26 +95,27 @@ async function getData() {
 getData();
 
 
-const deleteButtons = document.querySelectorAll('.deleteButton');
-deleteButtons.forEach(button => {
-  button.addEventListener('click', function() {
-    console.log('Кнопка работает');
-    const gameId = this.closest('tr').id;
+document.addEventListener('DOMContentLoaded', function() {
+  const deleteButtons = document.querySelectorAll('.deleteButton');
+  deleteButtons.forEach(button => {
+      button.addEventListener('click', function() {
+          console.log('Кнопка работает');
+          const gameId = this.closest('tr').id;
 
-    fetch(`/delete-game/${gameId}`, {
-      method: 'DELETE'
-    })
-    .then(response => {
-      if (response.ok) {
-        
-        console.log('Игра успешно удалена.');
-      } else {
-        console.error('Ошибка при удалении игры.');
-      }
-    })
-    .catch(error => {
-      console.error('Произошла ошибка:', error);
-    });
+          fetch(`/delete-game/${gameId}`, {
+              method: 'DELETE'
+          })
+          .then(response => {
+              if (response.ok) {
+                  console.log('Игра успешно удалена.');
+              } else {
+                  console.error('Ошибка при удалении игры.');
+              }
+          })
+          .catch(error => {
+              console.error('Произошла ошибка:', error);
+          });
+      });
   });
 });
 
