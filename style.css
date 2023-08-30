@@ -249,12 +249,15 @@ table th {
 }
 
 .deleteButtonBlock{
-  width: 50px;
-  height: 50px;
+  position: relative;
+  width: 35px;
+  height: 35px;
+  top: 50%;
+  left: 25%;
 }
 .deleteButton {
-  width: 50px;
-  height: 50px;
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
   background-color: rgb(20, 20, 20);
   border: none;
@@ -270,7 +273,7 @@ table th {
 }
 
 .deleteButtonSvg {
-  width: 12px;
+  width: 10px;
   transition-duration: .3s;
 }
 
@@ -279,7 +282,7 @@ table th {
 }
 
 .deleteButton:hover {
-  width: 140px;
+  width: 65px;
   border-radius: 50px;
   transition-duration: .3s;
   background-color: rgb(255, 69, 69);
@@ -294,7 +297,7 @@ table th {
 
 .deleteButton::before {
   position: absolute;
-  top: -20px;
+  top: -30px;
   content: "Delete";
   color: white;
   transition-duration: .3s;
