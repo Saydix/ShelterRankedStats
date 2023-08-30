@@ -249,8 +249,8 @@ table th {
 }
 
 .deleteButton {
-  width: 25px; 
-  height: 25px; 
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   background-color: rgb(20, 20, 20);
   border: none;
@@ -266,7 +266,7 @@ table th {
 }
 
 .deleteButtonSvg {
-  width: 6px; 
+  width: 12px;
   transition-duration: .3s;
 }
 
@@ -275,16 +275,15 @@ table th {
 }
 
 .deleteButton:hover {
-  width: 70px; 
-  height: 70px; 
+  width: 140px;
   border-radius: 50px;
   transition-duration: .3s;
   background-color: rgb(255, 69, 69);
   align-items: center;
 }
 
-.deleteButton:hover .deleteButtonSvg {
-  width: 25px; 
+.deleteButton:hover .svgIcon {
+  width: 50px;
   transition-duration: .3s;
   transform: translateY(60%);
 }
@@ -390,19 +389,23 @@ h2 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.5rem 1rem;
   background-color: #34D399;
   border: 2px solid #34D399;
-  border-radius: 0.375rem;
+  border-radius: 10px;
   color: #fff;
   font-weight: 600;
   text-decoration: none;
   position: relative;
   overflow: hidden;
-  max-height: 55px;
+  max-height: 48px;
   width: 150px;
   transition: background-color 0.3s, border-color 0.3s;
+  padding: 15px 30px;
+  margin: 0px 0px 0px 10px;
+  cursor: pointer;
+  font-size: 18px;
 }
+
 
 .addGame .addGameSpan {
   font-size: 15px;
@@ -478,7 +481,7 @@ input[type="text"]:focus {
   border-color: #0074cc;
 }
 
-button {
+.popup button {
   padding: 15px 30px;
   margin: 10px;
   border: none;
