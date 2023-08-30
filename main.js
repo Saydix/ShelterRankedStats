@@ -98,6 +98,7 @@ getData();
 const deleteButtons = document.querySelectorAll('.deleteButton');
 deleteButtons.forEach(button => {
   button.addEventListener('click', function() {
+    console.log('Кнопка работает');
     const gameId = this.closest('tr').id;
 
     fetch(`/delete-game/${gameId}`, {
