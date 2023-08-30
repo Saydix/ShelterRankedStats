@@ -106,7 +106,7 @@ tbody.addEventListener('click', function(event) {
 
         const gameId = target.closest('tr').id;
 
-        fetch(deleteGameOnServer + gameId {
+        fetch(deleteGameOnServer + gameId, {
             method: 'DELETE'
         })
         .then(response => {
