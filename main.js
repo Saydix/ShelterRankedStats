@@ -93,19 +93,20 @@ async function getData() {
     loadingGamesIndicator2.style.display = 'none';
   }
 }
-getData();
 
-document.addEventListener('DOMContentLoaded', function () {
-  const gameList = document.getElementById('gameListId');
-  gameList.addEventListener('click', function (event) {
-    const target = event.target;
-    if (target.classList.contains('deleteButton')) {
-      const row = target.closest('tr');
+async function deleteGameInit() {
+  await getData();
+  const deleteButtons = document.querySelectorAll('.deleteButton');
+  deleteButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      console.log('Кнопка работает');
+      const row = this.closest('tr');
       const gameId = row.cells[0].textContent;
-      delete(gameId);
-    }
+      deleteGame(gameId);
+    });
   });
-});
+}
+deleteGameInit();
 
 async function deleteGame(gameIdInfo) {
   const deleteConfirmation = document.getElementById('deleteConfirmation');
