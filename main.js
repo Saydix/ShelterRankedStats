@@ -114,11 +114,7 @@ async function deleteGame(gameIdInfo) {
   const deleteConfirmationButtonCancel = document.getElementById('deleteConfirmationButtonCancel');
   const deleteConfirmationButtonDelete = document.getElementById('deleteConfirmationButtonDelete');
 
-
-  let gameInfoToDelete = players.map(player => {
-    return `${player.username} (${player.role}): ${player.points} Баллов <br>`;
-  }).join('<br>');
-  deleteConfirmationData.innerHTML = `Эти данные будут удалены: <br> ${gameInfoToDelete}`;
+  deleteConfirmationData.innerHTML = `Игра ${gameIdInfo} будет удалена`;
 
   deleteConfirmation.style.display = 'block';
 
