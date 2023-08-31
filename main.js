@@ -97,6 +97,7 @@ getData();
 
 document.addEventListener('DOMContentLoaded', function() {
   const deleteButtons = document.querySelectorAll('.deleteButton');
+  console.log(`Найдено ${deleteButtons.length} кнопок с классом 'deleteButton'`);
   deleteButtons.forEach(button => {
     button.addEventListener('click', function() {
       console.log('Кнопка работает');
