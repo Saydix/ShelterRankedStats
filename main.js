@@ -95,16 +95,15 @@ async function getData() {
 }
 getData();
 
-document.addEventListener('DOMContentLoaded', function() {
-  const deleteButtons = document.querySelectorAll('.deleteButton');
-  console.log(`Найдено ${deleteButtons.length} кнопок с классом 'deleteButton'`);
-  deleteButtons.forEach(button => {
-    button.addEventListener('click', function() {
-      console.log('Кнопка работает');
-      const row = this.closest('tr');
+document.addEventListener('DOMContentLoaded', function () {
+  const gameList = document.getElementById('gameListId');
+  gameList.addEventListener('click', function (event) {
+    const target = event.target;
+    if (target.classList.contains('deleteButton')) {
+      const row = target.closest('tr');
       const gameId = row.cells[0].textContent;
-      deleteGame(gameId);
-    });
+      delete(gameId);
+    }
   });
 });
 
