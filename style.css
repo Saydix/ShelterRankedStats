@@ -230,7 +230,7 @@ table th {
 }
 .gameList.opened {
   opacity: 1;
-  max-height: 300%;
+  min-height: 350px;
 }
 .gameListId{
   margin-top: 15px;
@@ -319,7 +319,7 @@ table th {
   background-color: rgba(255, 255, 255, 0.95);
   width: 310px;
   height: 288px;
-  margin: 15px 20px;
+  margin: 40px 20px;
   text-align: center;
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
