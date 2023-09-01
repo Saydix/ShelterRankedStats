@@ -1,9 +1,15 @@
-console.log('Version: 1.9');
-console.log('Добавлено: Удаление игры  Исправлено:  ');
+console.log('Version: 2.0');
+console.log('Добавлено: ');
+console.log('Исправлено: ');
 
 
-// Добавить подгрузку данных с базы
+// Игра уже добавлена (Уведомление что игра уже есть (БЕЗ ЗАПРОСА НА СЕРВЕР))
 // После загрузки данных добавить - "успешно" всплывающим небольшим окном
+// Плавность анимаций
+
+// Инфобокс: "Почему я?!" - Наибольшый луз-стрик
+// Резульат интересных опросников из тг
+// Добавление игры не только по ссылке, но и по id
 
 let gameUrl; // = prompt('Введите ссылку на игру:', 'https://polemicagame.com/game-statistics/197277');
 const getStatsFromPolemica = 'https://shelterstats.glitch.me';
@@ -31,7 +37,6 @@ async function getData() {
     }
 
     const data = await response.json();
-    console.log(data);
 
     const playerStats = {};
     const totalGamesList = [];
@@ -99,7 +104,6 @@ async function deleteGameInit() {
   const deleteButtons = document.querySelectorAll('.deleteButton');
   deleteButtons.forEach(button => {
     button.addEventListener('click', function() {
-      console.log('Кнопка работает');
       const row = this.closest('tr');
       const gameId = row.cells[0].textContent;
       deleteGame(gameId);
@@ -123,15 +127,14 @@ async function deleteGame(gameIdInfo) {
   });
 
   deleteConfirmationButtonDelete.addEventListener('click', () => {
-    console.log(`${deleteGameOnServer}${gameIdInfo}`);
     fetch(`${deleteGameOnServer}${gameIdInfo}`, {
       method: 'DELETE'
     })
       .then(response => {
         if (response.ok) {
-          console.log('Игра успешно удалена');
+          // Уведомление "Игра успешно удалена"
         } else {
-          console.error('Ошибка удаления игры');
+          // Уведомление "Ошибка удаления игры"
         }
       })
       .catch(error => {
@@ -201,6 +204,7 @@ async function saveGame(){
   })
   .then(response => response.json())
   .then(data => {
+    // Уведомление
     console.log('Ответ от сервера:', data);
   })
   .catch(error => {

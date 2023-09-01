@@ -12,7 +12,7 @@ body {
 }
 
 .container {
-  max-width: 1300px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
   display: flex;
@@ -231,10 +231,6 @@ table th {
 .gameList.opened {
   opacity: 1;
   max-height: 300%;
-}
-.gameList span {
-  position: relative;
-  top: -1px;
 }
 .gameListId{
   margin-top: 15px;
