@@ -127,6 +127,12 @@ async function deleteGame(gameIdInfo) {
   });
 
   deleteConfirmationButtonDelete.addEventListener('click', () => {
+    deleteConfirmation.style.display = 'none';
+    const rowToDelete = document.querySelector(`#gameListId tr td:first-child:contains('${gameIdInfo}')`).closest('tr');
+    if (rowToDelete) {
+      rowToDelete.remove(); // Удалить элемент <tr> из DOM
+    }
+
     fetch(`${deleteGameOnServer}${gameIdInfo}`, {
       method: 'DELETE'
     })
