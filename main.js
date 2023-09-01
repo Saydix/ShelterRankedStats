@@ -99,8 +99,8 @@ async function getData() {
   }
 }
 
+let isHidden = localStorage.getItem('deleteConfirmationRememberChoice');
 window.addEventListener('load', () => {
-  const isHidden = localStorage.getItem('deleteConfirmationRememberChoice');
   if (isHidden === 'true') {
     deleteConfirmationRememberChoice.checked = true;
   }
