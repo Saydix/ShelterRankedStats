@@ -124,12 +124,14 @@ async function deleteGame(gameIdInfo) {
   deleteConfirmation.style.display = 'block';
 
   deleteConfirmationButtonCancel.addEventListener('click', () => {
+    const row = document.querySelector(`tr td:first-child:contains("${gameIdInfo}")`).closest('tr');
+    row.style.display = 'table-row';
     deleteConfirmation.style.display = 'none';
   });
 
   deleteConfirmationButtonDelete.addEventListener('click', () => {
     deleteConfirmation.style.display = 'none';
-
+    
     fetch(`${deleteGameOnServer}${gameIdInfo}`, {
       method: 'DELETE'
     })
