@@ -106,6 +106,7 @@ async function deleteGameInit() {
     button.addEventListener('click', function() {
       const row = this.closest('tr');
       const gameId = row.cells[0].textContent;
+      row.style.display = 'none';
       deleteGame(gameId);
     });
   });
@@ -128,10 +129,6 @@ async function deleteGame(gameIdInfo) {
 
   deleteConfirmationButtonDelete.addEventListener('click', () => {
     deleteConfirmation.style.display = 'none';
-    const rowToDelete = document.querySelector(`#gameListId tr td:first-child:contains('${gameIdInfo}')`).closest('tr');
-    if (rowToDelete) {
-      rowToDelete.remove(); // Удалить элемент <tr> из DOM
-    }
 
     fetch(`${deleteGameOnServer}${gameIdInfo}`, {
       method: 'DELETE'
