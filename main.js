@@ -124,8 +124,12 @@ async function deleteGame(gameIdInfo) {
   deleteConfirmation.style.display = 'block';
 
   deleteConfirmationButtonCancel.addEventListener('click', () => {
-    const row = document.querySelector(`tr td:first-child:contains("${gameIdInfo}")`).closest('tr');
-    row.style.display = 'table-row';
+    const rows = document.querySelectorAll('#gameListId tr');
+    rows.forEach(row => {
+      if (row.cells[0].textContent === gameIdInfo) {
+        row.style.display = 'table-row';
+      }
+    });
     deleteConfirmation.style.display = 'none';
   });
 
