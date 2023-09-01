@@ -333,12 +333,15 @@ table th {
   border-top: 10px solid #f00;
 }
 
-
+.deleteConfirmationSvgContainer {
+  margin-bottom: 10px;
+  background-color: red;
+  border-radius: 50%;
+}
 .deleteConfirmationSvg {
   width: 44px;
   height: 44px;
-  fill: red;
-  margin-bottom: 10px;
+  fill: #fff;
 }
 
 
