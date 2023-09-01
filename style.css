@@ -343,9 +343,10 @@ table th {
   left: 125px;
 }
 .deleteConfirmationSvg {
-  width: 44px;
-  height: 44px;
+  width: 40px;
+  height: 40px;
   fill: #fff;
+  margin-top: 10px;
 }
 
 
@@ -363,7 +364,7 @@ table th {
 
 
 .deleteConfirmationButtons {
-  margin-top: 100px;
+  margin-top: 115px;
 }
 
 .deleteConfirmation button {
@@ -371,13 +372,15 @@ table th {
   font-size: 16px;
   margin: 0 10px;
   cursor: pointer;
+  border-radius: 15%;
 }
 
 
 .deleteConfirmation label {
   display: block;
-  margin-top: 10px;
   font-size: 16px;
+  position: relative;
+  top:100px
 }
 
 
