@@ -372,7 +372,12 @@ table th {
   font-size: 16px;
   margin: 0 10px;
   cursor: pointer;
-  border-radius: 15%;
+  border-radius: 5%;
+}
+
+#deleteConfirmationButtonDelete {
+  background-color: #ff4a5c;
+  color:white;
 }
 
 
