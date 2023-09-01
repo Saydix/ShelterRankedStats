@@ -320,19 +320,23 @@ table th {
 
 .deleteConfirmation {
   display: none;
-  background-color: #fff;
-  width: 300px;
-  margin: 100px auto;
-  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.95);
+  width: 310px;
+  height: 288px;
+  margin: 7px 20px;
+  padding: 27px;
   text-align: center;
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  position: absolute;
+  z-index: 10;
+  border-top: 10px solid #f00;
 }
 
 
 .deleteConfirmationSvg {
-  width: 24px;
-  height: 24px;
+  width: 44px;
+  height: 44px;
   fill: red;
   margin-bottom: 10px;
 }
