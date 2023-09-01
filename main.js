@@ -123,6 +123,7 @@ async function deleteGame(gameIdInfo) {
   });
 
   deleteConfirmationButtonDelete.addEventListener('click', () => {
+    console.log(`/delete-game/${gameIdInfo}`);
     fetch(`/delete-game/${gameIdInfo}`, {
       method: 'DELETE'
     })
