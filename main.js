@@ -99,19 +99,56 @@ async function getData() {
   }
 }
 
+window.addEventListener('load', () => {
+  const isHidden = localStorage.getItem('deleteConfirmationRememberChoice');
+  if (isHidden === 'true') {
+    deleteConfirmationRememberChoice.checked = true;
+  }
+});
+
 async function deleteGameInit() {
   await getData();
+ 
+  let deleteGameInitCount = localStorage.getItem('deleteGameInitCount');
+  if (!deleteGameInitCount) {
+    deleteGameInitCount = 0;
+  }
+  deleteGameInitCount++;
+
   const deleteButtons = document.querySelectorAll('.deleteButton');
   deleteButtons.forEach(button => {
     button.addEventListener('click', function() {
       const row = this.closest('tr');
       const gameId = row.cells[0].textContent;
       row.style.display = 'none';
-      deleteGame(gameId);
+
+      if (isHidden !== 'true' && deleteGameInitCount <= 50) {
+        deleteGame(gameId);
+      } else {
+        deleteGameConfirm(gameId)
+      }
+      
     });
   });
+  localStorage.setItem('deleteGameInitCount', deleteGameInitCount);
 }
 deleteGameInit();
+
+async function deleteGameConfirm(gameIdInfo) {
+  fetch(`${deleteGameOnServer}${gameIdInfo}`, {
+    method: 'DELETE'
+  })
+  .then(response => {
+    if (response.ok) {
+      // Уведомление "Игра успешно удалена"
+    } else {
+      // Уведомление "Ошибка удаления игры"
+    }
+  })
+  .catch(error => {
+    console.error('Произошла ошибка:', error);
+  });
+}
 
 async function deleteGame(gameIdInfo) {
   const deleteConfirmation = document.getElementById('deleteConfirmation');
@@ -119,9 +156,9 @@ async function deleteGame(gameIdInfo) {
   const deleteConfirmationButtonCancel = document.getElementById('deleteConfirmationButtonCancel');
   const deleteConfirmationButtonDelete = document.getElementById('deleteConfirmationButtonDelete');
 
-  deleteConfirmationData.innerHTML = `Игра ${gameIdInfo} будет удалена`;
-
   deleteConfirmation.style.display = 'block';
+
+  deleteConfirmationData.innerHTML = `Игра ${gameIdInfo} будет удалена`;
 
   deleteConfirmationButtonCancel.addEventListener('click', () => {
     const rows = document.querySelectorAll('#gameListId tr');
@@ -134,21 +171,13 @@ async function deleteGame(gameIdInfo) {
   });
 
   deleteConfirmationButtonDelete.addEventListener('click', () => {
+    if (deleteConfirmationRememberChoice.checked) {
+      localStorage.setItem('deleteConfirmationRememberChoice', 'true');
+    } else {
+      localStorage.removeItem('deleteConfirmationRememberChoice');
+    }
     deleteConfirmation.style.display = 'none';
-    
-    fetch(`${deleteGameOnServer}${gameIdInfo}`, {
-      method: 'DELETE'
-    })
-      .then(response => {
-        if (response.ok) {
-          // Уведомление "Игра успешно удалена"
-        } else {
-          // Уведомление "Ошибка удаления игры"
-        }
-      })
-      .catch(error => {
-        console.error('Произошла ошибка:', error);
-      });
+    deleteGameConfirm(gameIdInfo);
   });
 }
 
