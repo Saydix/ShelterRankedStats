@@ -1,6 +1,6 @@
 console.log('Version: 2.0');
 console.log('Добавлено: ');
-console.log('Исправлено: Работоспособность чек бокса не показывать');
+console.log('Исправлено: Неверный подсчет баллов. Работоспособность чек бокса "Не показывать"');
 
 // При отмене любой другой игры возвращаются все удаленные игры
 // Неверный подсчет баллов
@@ -215,11 +215,14 @@ async function fetchData() {
 
       players = gameData.players.map(player => {
         const achievementsSum = player.achievements.reduce((sum, achievement) => {
-          if (typeof achievement.sum === 'number') {
-            return sum + achievement.sum;
+          if (typeof achievement.sum === 'string') {
+            const sumNumber = parseFloat(achievement.sum);
+            if (!isNaN(sumNumber)) {
+              return sum + sumNumber
+            }
           }
           return sum;
-          }, 0);
+        }, 0);
     
       return {
         ID: gameData.id,
