@@ -215,11 +215,8 @@ async function fetchData() {
 
       players = gameData.players.map(player => {
         const achievementsSum = player.achievements.reduce((sum, achievement) => {
-          if (typeof achievement.sum === 'string') {
-            const sumNumber = parseFloat(achievement.sum);
-            if (!isNaN(sumNumber)) {
-              return sum + sumNumber
-            }
+          if (typeof achievement.sum === 'number') {
+            return sum + achievement.sum;
           }
           return sum;
         }, 0);
@@ -228,7 +225,7 @@ async function fetchData() {
         ID: gameData.id,
         username: player.username,
         role: player.role.title,
-        points: achievementsSum.toFixed(2), 
+        points: parseFloat(achievementsSum.toFixed(2)), 
         victory: player.w_l === "win" ? "Победа" : "Поражение",
         winnerCode: gameData.winnerCode === 1 ? "Победа Мирных" : "Победа Мафии"
         };
