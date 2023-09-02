@@ -100,10 +100,11 @@ async function getData() {
   }
 }
 
+let isHidden;
 window.addEventListener('load', () => {
-  const isHidden = localStorage.getItem('deleteConfirmationRememberChoice');
+  isHidden = localStorage.getItem('deleteConfirmationRememberChoice');
   if (isHidden === 'true') {
-    deleteConfirmationRememberChoice.checked = true;
+    deleteConfirmationRememberChoice.checked = 'true';
   }
 });
 
@@ -114,7 +115,7 @@ async function deleteGameInit() {
   if (!deleteGameInitCount) {
     deleteGameInitCount = 0;
   }
-  deleteGameInitCount++;
+  
 
   const deleteButtons = document.querySelectorAll('.deleteButton');
   deleteButtons.forEach(button => {
@@ -123,18 +124,19 @@ async function deleteGameInit() {
       const gameId = row.cells[0].textContent;
       row.style.display = 'none';
 
-      const isHidden = localStorage.getItem('deleteConfirmationRememberChoice');
-      const deleteGameCountIsOk = parseInt(localStorage.getItem('deleteGameInitCount'));
-      if (isHidden !== 'true' && deleteGameCountIsOk <= 50) {
+      deleteGameInitCount++;
+
+      if (isHidden === 'true' && deleteGameInitCount <= 10) { // Изменить 10 на 50 
+        deleteGameConfirm(gameId);
+        localStorage.setItem('deleteGameInitCount', deleteGameInitCount);
+      } else {
         deleteGame(gameId);
         localStorage.setItem('deleteGameInitCount', 0);
-      } else {
-        deleteGameConfirm(gameId)
       }
       
     });
   });
-  localStorage.setItem('deleteGameInitCount', deleteGameInitCount);
+  
 }
 deleteGameInit();
 
@@ -234,6 +236,7 @@ async function fetchData() {
     return [];
   }
 }
+
 
 async function saveGame(){
   playersJson = JSON.stringify(players);
