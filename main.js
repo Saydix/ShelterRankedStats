@@ -1,12 +1,16 @@
 console.log('Version: 2.0');
 console.log('Добавлено: ');
-console.log('Исправлено: ');
+console.log('Исправлено: Работоспособность чек бокса не показывать');
 
 // При отмене любой другой игры возвращаются все удаленные игры
+// Неверный подсчет баллов
+// Обновление ДОМ после загрузки игры
 
 // Игра уже добавлена (Уведомление что игра уже есть (БЕЗ ЗАПРОСА НА СЕРВЕР))
 // После загрузки данных добавить - "успешно" всплывающим небольшим окном
 // Плавность анимаций
+// Автоочистка поле ввода ссылки для добавления игр
+
 
 // Инфобокс: "Почему я?!" - Наибольшый луз-стрик
 // Резульат интересных опросников из тг
@@ -126,12 +130,13 @@ async function deleteGameInit() {
 
       deleteGameInitCount++;
 
-      if (isHidden === 'true' && deleteGameInitCount <= 10) { // Изменить 10 на 50 
+      if (isHidden === 'true' && deleteGameInitCount <= 50) { 
         deleteGameConfirm(gameId);
         localStorage.setItem('deleteGameInitCount', deleteGameInitCount);
       } else {
-        deleteGame(gameId);
+        localStorage.setItem('deleteConfirmationRememberChoice', 'false');
         localStorage.setItem('deleteGameInitCount', 0);
+        deleteGame(gameId);
       }
       
     });
