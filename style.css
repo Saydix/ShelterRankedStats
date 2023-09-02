@@ -398,7 +398,7 @@ table th {
 
 .deleteConfirmationCheckBoxPath {
   fill: none;
-  stroke: white;
+  stroke: rgb(0, 0, 0);
   stroke-width: 6;
   stroke-linecap: round;
   stroke-linejoin: round;
