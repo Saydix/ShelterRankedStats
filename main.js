@@ -2,6 +2,7 @@ console.log('Version: 2.0');
 console.log('Добавлено: ');
 console.log('Исправлено: ');
 
+// При отмене любой другой игры возвращаются все удаленные игры
 
 // Игра уже добавлена (Уведомление что игра уже есть (БЕЗ ЗАПРОСА НА СЕРВЕР))
 // После загрузки данных добавить - "успешно" всплывающим небольшим окном
@@ -99,8 +100,8 @@ async function getData() {
   }
 }
 
-let isHidden = localStorage.getItem('deleteConfirmationRememberChoice');
 window.addEventListener('load', () => {
+  const isHidden = localStorage.getItem('deleteConfirmationRememberChoice');
   if (isHidden === 'true') {
     deleteConfirmationRememberChoice.checked = true;
   }
@@ -122,6 +123,7 @@ async function deleteGameInit() {
       const gameId = row.cells[0].textContent;
       row.style.display = 'none';
 
+      const isHidden = localStorage.getItem('deleteConfirmationRememberChoice');
       if (isHidden !== 'true' && deleteGameInitCount <= 50) {
         deleteGame(gameId);
       } else {
