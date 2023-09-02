@@ -124,7 +124,7 @@ async function deleteGameInit() {
       row.style.display = 'none';
 
       const isHidden = localStorage.getItem('deleteConfirmationRememberChoice');
-      const deleteGameCountIsOk = localStorage.getItem('deleteGameInitCount')
+      const deleteGameCountIsOk = parseInt(localStorage.getItem('deleteGameInitCount'));
       if (isHidden !== 'true' && deleteGameCountIsOk <= 50) {
         deleteGame(gameId);
         localStorage.setItem('deleteGameInitCount', 0);
