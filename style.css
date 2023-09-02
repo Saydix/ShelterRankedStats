@@ -360,7 +360,7 @@ table th {
 
 
 .deleteConfirmationButtons {
-  margin-top: 115px;
+  margin-top: 105px;
 }
 
 .deleteConfirmation button {
@@ -377,13 +377,23 @@ table th {
 }
 
 .deleteConfirmationCheckBoxContainer {
+  position: relative;
+  display: block;
   cursor: pointer;
+  top: 90px;
 }
 .deleteConfirmationCheckBoxContainer input {
   display: none;
 }
 .deleteConfirmationCheckBoxContainer svg {
   overflow: visible;
+  width: 15px;
+}
+
+.deleteConfirmationCheckBoxSpan {
+  position: relative;
+  top: -8px;
+  left: 4px;
 }
 
 .deleteConfirmationCheckBoxPath {
