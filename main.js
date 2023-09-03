@@ -123,6 +123,33 @@ async function getData() {
       row.insertCell(4).textContent = (player.points / player.games).toFixed(2);
     });
 
+    // Диаграмма
+    const mafiaWins = totalGamesList.filter(id => data.some(game => game.winnerCode === 'Победа Мафии' && game.ID === id)).length;
+    const civilianWins = totalGamesList.length - mafiaWins;
+
+    const winRatio = ((mafiaWins / totalGamesList.length) * 100).toFixed(2);
+
+    
+    const winRatioElement = document.getElementById('infoBoxWinRatio').querySelector('span');
+    winRatioElement.textContent = `${winRatio}%`;
+
+    
+    const pieChartElement = document.getElementById('pieChart');
+    const ctx = pieChartElement.getContext('2d');
+
+    new Chart(ctx, {
+      type: 'pie',
+      data: {
+        labels: ['Победа Мафии', 'Победа Мирных'],
+        datasets: [
+          {
+            data: [mafiaWins, civilianWins],
+            backgroundColor: ['#FF5733', '#33FF57'], // Цвета
+          },
+        ],
+      },
+    });
+
     loadingGamesIndicator.style.display = 'none';
     loadingGamesIndicator2.style.display = 'none';
   } catch (error) {
