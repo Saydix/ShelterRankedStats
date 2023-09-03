@@ -127,12 +127,12 @@ async function getData() {
     
     // Диаграмма
     const allGames = data.flatMap(game => game.allGames);
-    const mafiaWins = allGames.filter(player => player.winnerCode === 'Победа Мафии').length;
-    const civilianWins = allGames.filter(player => player.winnerCode !== 'Победа Мафии').length;
+    const mafiaWins = allGames.filter(player => player.winnerCode === 'Победа Мафии').length / 10;
+    const civilianWins = allGames.filter(player => player.winnerCode !== 'Победа Мафии').length / 10;
 
     console.log(mafiaWins, civilianWins);
 
-    const totalGamesCount = allGames.length / 10;
+    const totalGamesCount = allGames.length;
     const winRatio = ((mafiaWins / totalGamesCount) * 100).toFixed(2);
 
     const winRatioElement = document.getElementById('winRatio');
