@@ -29,6 +29,19 @@ body {
   width: 50px;
 }
 
+.gameTableStyle th:nth-child(2) {
+  width: 115px;
+}
+.gameTableStyle th:nth-child(3) {
+  width: 90px;
+}
+.gameTableStyle th:nth-child(4) {
+  width: 90px;
+}
+.gameTableStyle th:nth-child(5) {
+  width: 90px;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
