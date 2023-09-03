@@ -123,6 +123,8 @@ async function getData() {
       row.insertCell(4).textContent = (player.points / player.games).toFixed(2);
     });
 
+    console.log(data);
+    
     // Диаграмма
     const mafiaWins = totalGamesList.filter(id => data.some(game => game.winnerCode === 'Победа Мафии' && game.ID === id)).length;
     const civilianWins = totalGamesList.length - mafiaWins;
