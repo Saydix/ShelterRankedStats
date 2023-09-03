@@ -29,7 +29,6 @@ body {
 .gameTableStyle th:first-child {
   width: 50px;
 }
-
 .gameTableStyle th:nth-child(2) {
   width: 115px;
 }
@@ -345,7 +344,6 @@ table th {
   z-index: 10;
   border-top: 10px solid #f00;
 }
-
 .deleteConfirmationSvgContainer {
   margin-bottom: -55px;
   background-color: red;
@@ -362,25 +360,18 @@ table th {
   fill: #fff;
   margin-top: 10px;
 }
-
-
 .deleteConfirmation h1 {
   font-size: 24px;
   margin-bottom: 25px;
   margin-top: 25px;
 }
-
-
 #deleteConfirmationData {
   font-size: 18px;
   margin-top: 10px;
 }
-
-
 .deleteConfirmationButtons {
   margin-top: 105px;
 }
-
 .deleteConfirmation button {
   padding: 10px 20px;
   font-size: 16px;
@@ -388,12 +379,10 @@ table th {
   cursor: pointer;
   border-radius: 5%;
 }
-
 #deleteConfirmationButtonDelete {
   background-color: #ff4a5c;
   color:white;
 }
-
 .deleteConfirmationCheckBoxContainer {
   position: relative;
   display: block;
@@ -407,13 +396,11 @@ table th {
   overflow: visible;
   width: 15px;
 }
-
 .deleteConfirmationCheckBoxSpan {
   position: relative;
   top: -8px;
   left: 4px;
 }
-
 .deleteConfirmationCheckBoxPath {
   fill: none;
   stroke: rgb(0, 0, 0);
@@ -439,6 +426,9 @@ table th {
   background-color: #fff;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
   border-radius: 16px;
+  position: relative;
+}
+.infoBoxWinRatioCheese {
   position: relative;
 }
 
