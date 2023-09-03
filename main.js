@@ -151,6 +151,9 @@ async function getData() {
             }],
         },
     });
+    const canvas = document.getElementById('infoBoxWinRatioCheese');
+    canvas.width = 160;
+    canvas.height = 160;
 
     loadingGamesIndicator.style.display = 'none';
     loadingGamesIndicator2.style.display = 'none';
