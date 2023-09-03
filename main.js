@@ -144,7 +144,7 @@ async function getData() {
         datasets: [
           {
             data: [mafiaWins, civilianWins],
-            backgroundColor: ['#FF5733', '#33FF57'], // Цвета
+            backgroundColor: ['#000', '#ff0000'], // Цвета ff0000
           },
         ],
       },
