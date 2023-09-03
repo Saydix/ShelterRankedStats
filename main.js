@@ -127,8 +127,8 @@ async function getData() {
     
     // Диаграмма
     const allGames = data.flatMap(game => game.allGames);
-    const mafiaWins = allGames.filter(player => player.winnerCode === 'Победа Мафии').length / 10;
-    const civilianWins = allGames.filter(player => player.winnerCode !== 'Победа Мафии').length / 10;
+    const mafiaWins = allGames.filter(player => player.winnerCode === 'Победа Мафии').length;
+    const civilianWins = allGames.filter(player => player.winnerCode !== 'Победа Мафии').length;
 
     console.log(mafiaWins, civilianWins);
 
@@ -146,7 +146,7 @@ async function getData() {
         data: {
             labels: ['Побед Мафии', 'Побед Мирных'],
             datasets: [{
-                data: [mafiaWins, civilianWins],
+                data: [(mafiaWins / 10), (civilianWins / 10)],
                 backgroundColor: ['#000', '#ff0000'], 
             }],
         },
