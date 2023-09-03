@@ -152,11 +152,6 @@ async function getData() {
         },
     });
 
-    let normalSize = document.getElementById('infoBoxWinRatioCheese');
-    normalSize.width = 320;
-    normalSize.height = 320;
-    
-
     loadingGamesIndicator.style.display = 'none';
     loadingGamesIndicator2.style.display = 'none';
   } catch (error) {
