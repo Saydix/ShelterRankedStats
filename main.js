@@ -132,7 +132,7 @@ async function getData() {
 
     console.log(mafiaWins, civilianWins);
 
-    const totalGamesCount = allGames.length;
+    const totalGamesCount = allGames.length / 10;
     const winRatio = ((mafiaWins / totalGamesCount) * 100).toFixed(2);
 
     const winRatioElement = document.getElementById('winRatio');
