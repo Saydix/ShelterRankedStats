@@ -20,7 +20,7 @@ body {
 }
 
 /* Стили для таблицы */
-.gameTableStyle {
+.gameTableStyle th {
   font-size: 15px;
   background-color: #8080804d;
 }
