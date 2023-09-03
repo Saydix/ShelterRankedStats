@@ -19,13 +19,16 @@ body {
   flex-direction: row;
 }
 
-.gameTable {
-  background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
-  font-size: 18px;
-}
 /* Стили для таблицы */
+.gameTableStyle {
+  font-size: 15px;
+  background-color: #8080804d;
+}
+
+.gameTableStyle th:first-child {
+  width: 50px;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
@@ -226,7 +229,8 @@ table th {
   transition: opacity 2s ease, max-height 2s ease;
   transform-origin: center top;
   font-size: 13px;
-  overflow-y: auto; 
+  overflow-y: auto;
+  top: -50px;
 }
 .gameList.opened {
   opacity: 1;
