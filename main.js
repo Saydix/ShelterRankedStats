@@ -2,7 +2,10 @@ console.log('Version: 2.0');
 console.log('Добавлено: ');
 console.log('Исправлено: Неверный подсчет баллов. Работоспособность чек бокса "Не показывать"');
 
-// Разные ники, один игрок
+// Разные ники, один игрок (Расм:Rasm готов)
+
+// Сортировка по id во всех играх
+
 // При отмене любой другой игры возвращаются все удаленные игры
 // Обновление ДОМ после загрузки игры
 // Дата добавления игры
@@ -22,7 +25,7 @@ console.log('Исправлено: Неверный подсчет баллов.
 // Отправка ссылки для добавления игр по энтеру
 // Информация о игре, которую удаляешь
 // При ошибке поиска игры убирать блок с добавлением, сделать другое окно с ошибкой
-// Сортировка по id во всех играх
+
 
 // ВИЗУАЛ:
 // Разделение игроков По 20
@@ -86,6 +89,7 @@ async function getData() {
 
     const nickOrigins = {
       'Расм': 'Rasm',
+
     };
 
     data.forEach(game => {
@@ -286,6 +290,22 @@ async function saveGame(){
   });
 }
 
+function sortGamesById() {
+  const tableBody = document.getElementById('gameListId');
+  const rows = Array.from(tableBody.getElementsByTagName('tr'));
+
+  rows.sort((a, b) => {
+    const idA = parseInt(a.querySelector('td:first-child').textContent);
+    const idB = parseInt(b.querySelector('td:first-child').textContent);
+    return idB - idA;
+  });
+
+  rows.forEach(row => tableBody.removeChild(row));
+
+  rows.forEach(row => tableBody.appendChild(row));
+}
+
+
 
 document.addEventListener('DOMContentLoaded', function () {
   const infoBoxTotalGames = document.getElementById('infoBoxTotalGames');
@@ -300,6 +320,8 @@ document.addEventListener('DOMContentLoaded', function () {
           gameList.style.display = 'block';
           gameList.classList.add('opened');
           arrowIcon.classList.add('opened');
+
+          sortGamesById();
       } else {
           gameList.style.display = 'none';
           gameList.classList.remove('opened');
