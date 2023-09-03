@@ -134,7 +134,7 @@ async function getData() {
     winRatioElement.textContent = `${winRatio}%`;
 
     
-    const pieChartElement = document.getElementById('pieChart');
+    const pieChartElement = document.getElementById('infoBoxWinRatioCheese');
     const ctx = pieChartElement.getContext('2d');
 
     new Chart(ctx, {
