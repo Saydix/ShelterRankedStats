@@ -427,16 +427,21 @@ table th {
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
   border-radius: 16px;
   position: relative;
+  overflow: hidden;
 }
 .infoBoxWinRatioCheese {
   position: relative;
-  top: -50px;
+  top: -35px;
 }
 .infoBoxWinRatio span {
-
+  position: relative;
+  top: -28px;
 }
 .infoBoxWinRatio h3 {
-
+  position: relative;
+  top: -177px;
+  background-color: white;
+  font-size: 14px;
 }
 
 .infoBoxBestDuo {

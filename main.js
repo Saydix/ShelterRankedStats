@@ -150,11 +150,6 @@ async function getData() {
                 backgroundColor: ['#000000', '#ec1c24'], 
             }],
         },
-        options: {
-          legend: {
-            display: false,
-          },
-        },
     });
 
     loadingGamesIndicator.style.display = 'none';
