@@ -142,12 +142,12 @@ async function getData() {
     const ctx = pieChartElement.getContext('2d');
 
     new Chart(ctx, {
-        type: 'doughnut',
+        type: 'pie',
         data: {
             labels: ['Побед Мафии', 'Побед Мирных'],
             datasets: [{
                 data: [mafiaWins, civilianWins],
-                backgroundColor: ['#000', '#ff0000'], // Цвета для Мафии и Мирных
+                backgroundColor: ['#000', '#ff0000'], 
             }],
         },
     });
