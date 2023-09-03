@@ -126,33 +126,28 @@ async function getData() {
     console.log(data);
     
     // Диаграмма
-    const mafiaWins = data.reduce((total, game) => {
-      return total + game.allGames.filter(player => player.winnerCode === 'Победа Мафии').length;
-    }, 0);
-  
-    const civilianWins = data.reduce((total, game) => {
-      return total + game.allGames.filter(player => player.winnerCode !== 'Победа Мафии').length;
-    }, 0);
-    
+    const allGames = data.flatMap(game => game.allGames);
+    const mafiaWins = allGames.filter(player => player.winnerCode === 'Победа Мафии').length;
+    const civilianWins = allGames.filter(player => player.winnerCode !== 'Победа Мафии').length;
+
     console.log(mafiaWins, civilianWins);
-    
-    const totalGamesCount = data.reduce((total, game) => total + game.allGames.length, 0);
+
+    const totalGamesCount = allGames.length;
     const winRatio = ((mafiaWins / totalGamesCount) * 100).toFixed(2);
 
     const winRatioElement = document.getElementById('winRatio');
     winRatioElement.textContent = `${winRatio}%`;
-  
-   
+
     const pieChartElement = document.getElementById('infoBoxWinRatioCheese');
     const ctx = pieChartElement.getContext('2d');
-  
+
     new Chart(ctx, {
         type: 'doughnut',
         data: {
-            labels: ['Победа Мафии', 'Победа Мирных'],
+            labels: ['Побед Мафии', 'Побед Мирных'],
             datasets: [{
                 data: [mafiaWins, civilianWins],
-                backgroundColor: ['#000', '#ff0000'], // Цвета 
+                backgroundColor: ['#000', '#ff0000'], // Цвета для Мафии и Мирных
             }],
         },
     });
