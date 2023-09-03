@@ -4,16 +4,16 @@ console.log('Исправлено: Неверный подсчет баллов.
 
 // Разные ники, один игрок
 // При отмене любой другой игры возвращаются все удаленные игры
-// Неверный подсчет баллов
 // Обновление ДОМ после загрузки игры
 // Дата добавления игры
-// Сортировка в таблице
+// Сортировка в таблице по разным столбцам
 // Надбавка кол-во игр / 1000
-// Разделение игроков 
 
+
+
+// СИМТЕМЫ ПОДСЧЕТОВ:
 // Продумать и предложить разные системы игр
-
-// Делить на 20, тех у кого меньше 20 игр
+// Делить на 20, тех у кого меньше 20 игр?
 
 // Игра уже добавлена (Уведомление что игра уже есть (БЕЗ ЗАПРОСА НА СЕРВЕР))
 // После загрузки данных добавить - "успешно" всплывающим небольшим окном
@@ -23,6 +23,10 @@ console.log('Исправлено: Неверный подсчет баллов.
 // Информация о игре, которую удаляешь
 // При ошибке поиска игры убирать блок с добавлением, сделать другое окно с ошибкой
 // Сортировка по id во всех играх
+
+// ВИЗУАЛ:
+// Разделение игроков По 20
+// Игры за сегодня (Отображение сезона и выбор дня добавления. Сортировка по колву баллов)
 
 // Сумма минусов за игру(Бессценный игрок)
 // Лучший дуэт 
@@ -80,20 +84,23 @@ async function getData() {
       cell3.innerHTML = '<div class="deleteButtonBlock"> <button class="deleteButton"> <svg viewBox="0 0 448 512" class="deleteButtonSvg"><path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"></path></svg> </button> </div>';
     });
 
-    
+    const nickOrigins = {
+      'Расм': 'Rasm',
+    };
 
     data.forEach(game => {
       game.allGames.forEach(player => {
-        const username = player.username;
-        if (!playerStats[username]) {
-          playerStats[username] = {
-            username,
+        const originalUsername = player.username;
+        const sortUsername = nickOrigins[originalUsername] || originalUsername;
+        if (!playerStats[sortUsername]) {
+          playerStats[sortUsername] = {
+            username: sortUsername,
             games: 0,
             points: 0,
           };
         }
-        playerStats[username].games++;
-        playerStats[username].points += player.points;
+        playerStats[sortUsername].games++;
+        playerStats[sortUsername].points += player.points;
       });
     });
 
