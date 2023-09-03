@@ -147,7 +147,7 @@ async function getData() {
             labels: ['Побед Мафии', 'Побед Мирных'],
             datasets: [{
                 data: [(mafiaWins / 10), (civilianWins / 10)],
-                backgroundColor: ['#000', '#ff0000'], 
+                backgroundColor: ['#000000', '#ec1c24'], 
             }],
         },
     });

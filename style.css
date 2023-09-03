@@ -430,6 +430,7 @@ table th {
 }
 .infoBoxWinRatioCheese {
   position: relative;
+  top: -60px;
 }
 
 .infoBoxBestDuo {
