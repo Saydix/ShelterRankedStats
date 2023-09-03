@@ -126,30 +126,35 @@ async function getData() {
     console.log(data);
     
     // Диаграмма
-    const mafiaWins = totalGamesList.filter(id => data.some(game => game.winnerCode === 'Победа Мафии' && game.ID === id)).length;
-    const civilianWins = totalGamesList.length - mafiaWins;
-
-    const winRatio = ((mafiaWins / totalGamesList.length) * 100).toFixed(2);
-
+    const mafiaWins = data.reduce((total, game) => {
+      return total + game.allGames.filter(player => player.winnerCode === 'Победа Мафии').length;
+    }, 0);
+  
+    const civilianWins = data.reduce((total, game) => {
+      return total + game.allGames.filter(player => player.winnerCode !== 'Победа Мафии').length;
+    }, 0);
     
-    const winRatioElement = document.getElementById('infoBoxWinRatio').querySelector('span');
+    console.log(mafiaWins, civilianWins);
+    
+    const totalGamesCount = data.reduce((total, game) => total + game.allGames.length, 0);
+    const winRatio = ((mafiaWins / totalGamesCount) * 100).toFixed(2);
+
+    const winRatioElement = document.getElementById('winRatio');
     winRatioElement.textContent = `${winRatio}%`;
-
-    
+  
+   
     const pieChartElement = document.getElementById('infoBoxWinRatioCheese');
     const ctx = pieChartElement.getContext('2d');
-
+  
     new Chart(ctx, {
-      type: 'pie',
-      data: {
-        labels: ['Победа Мафии', 'Победа Мирных'],
-        datasets: [
-          {
-            data: [mafiaWins, civilianWins],
-            backgroundColor: ['#000', '#ff0000'], // Цвета ff0000
-          },
-        ],
-      },
+        type: 'doughnut',
+        data: {
+            labels: ['Победа Мафии', 'Победа Мирных'],
+            datasets: [{
+                data: [mafiaWins, civilianWins],
+                backgroundColor: ['#000', '#ff0000'], // Цвета 
+            }],
+        },
     });
 
     loadingGamesIndicator.style.display = 'none';
