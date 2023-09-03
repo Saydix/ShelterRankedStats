@@ -432,6 +432,12 @@ table th {
   position: relative;
   top: -60px;
 }
+.infoBoxWinRatio span {
+
+}
+.infoBoxWinRatio h3 {
+  
+}
 
 .infoBoxBestDuo {
   width: 150px;
