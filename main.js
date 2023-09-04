@@ -352,13 +352,15 @@ function makeScreenShot(screenToShot) {
   const img = new Image(); 
   img.onload = function() {
     context.drawImage(img, 0, 0); 
-    const screenShot = canvas.toDataURL('image/png');
-
-    navigator.clipboard.writeText(screenShot).then(function() {
-      console.log('Скриншот скопирован');
-    }).catch(function(err) {
+    try {
+      if (document.execCommand('copy')) {
+        console.log('Скриншот скопирован в буфер обмена.');
+      } else {
+        console.error('Не удалось скопировать скриншот в буфер обмена.');
+      }
+    } catch (err) {
       console.error('Произошла ошибка при копировании скриншота в буфер обмена:', err);
-    });
+    }
   };
 
   img.src = 'data:image/svg+xml,' + encodeURIComponent(screenContainer.innerHTML);
