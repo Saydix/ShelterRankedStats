@@ -498,13 +498,15 @@ table th {
   width: 90px;
 }
 
+/*
 .makeScreenShot{
   position: absolute;
   bottom: 10px;
   left: 0px;
-  /* width: 40px; */
-  /* height: 40px; */
+  width: 40px;
+  height: 40px; 
 }
+*/
 .makeScreenShot {
   --button-bg: #353434;
   --button-hover-bg: #464646;
