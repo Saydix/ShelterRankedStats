@@ -343,15 +343,30 @@ document.getElementById('makeScreenShot').addEventListener('click', function() {
 function makeScreenShot(screenToShot) {
   const screenContainer = document.getElementById(screenToShot);
 
-  html2canvas(screenContainer).then(function(canvas) {
-    const screenShot = canvas.toDataURL('image/png');
+  
+  const svgData = new XMLSerializer().serializeToString(screenContainer.querySelector('svg'));
+  const img = new Image();
+  img.src = 'data:image/svg+xml,' + encodeURIComponent(svgData);
 
-    navigator.clipboard.writeText(screenShot).then(function() {
-      console.log('Скриншот в буфере обмена.');
-    }).catch(function(err) {
-      console.error('Ошибка при копировании скриншота в буфер обмена:', err);
+  img.onload = function() {
+    const canvas = document.createElement('canvas');
+    canvas.width = img.width;
+    canvas.height = img.height;
+    const context = canvas.getContext('2d');
+
+    
+    context.drawImage(img, 0, 0);
+
+    html2canvas(canvas).then(function(canvas) {
+      const screenShot = canvas.toDataURL('image/png');
+
+      navigator.clipboard.writeText(screenShot).then(function() {
+        console.log('Скриншот скопирован в буфер обмена.');
+      }).catch(function(err) {
+        console.error('Произошла ошибка при копировании скриншота в буфер обмена:', err);
+      });
     });
-  });
+  };
 }
 
 
