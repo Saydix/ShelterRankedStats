@@ -510,8 +510,8 @@ table th {
 
 .makeScreenShot {
   position: absolute;
-  left: 70px;
-  bottom: 10px;
+  left: 5px;
+  bottom: 0px;
 }
 .makeScreenShot {
   --button-bg: #d0d0d0;
@@ -568,10 +568,10 @@ table th {
   bottom: calc(var(--tooltip-padding-y) / 2 * -1);
   width: var(--tooltip-padding-y);
   height: var(--tooltip-padding-y);
-  background: inherit;
-  left: 50%;
-  transform: translateX(-50%) rotate(45deg);
-  z-index: -999;
+  background: inherit; 
+  left: -1.9px; 
+  transform: translateY(-65%) rotate(-64deg);  /* Поворот указателя */
+  z-index: 10;
   pointer-events: none;
 }
 .makeScreenShot svg {
