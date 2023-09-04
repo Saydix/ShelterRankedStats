@@ -343,13 +343,23 @@ document.getElementById('makeScreenShot').addEventListener('click', function() {
 function makeScreenShot(screenToShot) {
   const screenContainer = document.getElementById(screenToShot);
 
-  const originalMaxWidth = screenContainer.style.maxWidth;
+  const originalMaxWidth = window.getComputedStyle(screenContainer).maxWidth;
 
-  screenContainer.style.maxWidth = 'none';
+  const containerWidth = screenContainer.offsetWidth;
+  const containerHeight = screenContainer.offsetHeight;
 
-  domtoimage.toBlob(screenContainer)
+  const tempContainer = document.createElement('div');
+  tempContainer.style.width = containerWidth + 'px';
+  tempContainer.style.height = containerHeight + 'px';
+  tempContainer.style.overflow = 'hidden';
+
+  tempContainer.innerHTML = screenContainer.innerHTML;
+
+  document.body.appendChild(tempContainer);
+
+  domtoimage.toBlob(tempContainer)
     .then(function(blob) {
-      screenContainer.style.maxWidth = originalMaxWidth;
+      document.body.removeChild(tempContainer);
 
       const imageBlob = new Blob([blob], { type: 'image/png' });
 
