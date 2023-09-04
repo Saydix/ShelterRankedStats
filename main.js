@@ -344,15 +344,16 @@ function makeScreenShot(screenToShot) {
   const screenContainer = document.getElementById(screenToShot);
   const marginLeft = window.getComputedStyle(screenContainer).marginLeft;
   const marginLeftValue = parseFloat(marginLeft);
+  const containerWidth = screenContainer.offsetWidth;
   const canvas = document.createElement('canvas');
-  canvas.width = screenContainer.offsetWidth;
+  canvas.width = containerWidth;
   canvas.height = screenContainer.offsetHeight;
   const context = canvas.getContext('2d');
-  context.drawImage(screenContainer, -marginLeftValue, 0);
+  context.translate(-marginLeftValue, 0);
+  context.drawImage(screenContainer, 0, 0, containerWidth, screenContainer.offsetHeight);
   const screenShot = canvas.toDataURL('image/png');
   const imageBlob = canvas.toBlob(function(blob) {
     const item = new ClipboardItem({ 'image/png': blob });
-
     navigator.clipboard.write([item])
       .then(function() {
         console.log('Скриншот скопирован в буфер обмена.');
