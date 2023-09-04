@@ -458,6 +458,7 @@ table th {
 .infoBoxBestDuo span {
   position: relative;
   top: 17px;
+  color: #969494;
 }
 
 .infoBoxMvp {
@@ -474,6 +475,7 @@ table th {
 .infoBoxMvp span {
   position: relative;
   top: 17px;
+  color: #969494;
 }
 .infoBoxBestStreak {
   width: 180px;
@@ -489,6 +491,7 @@ table th {
 .infoBoxBestStreak span {
   position: relative;
   top: 17px;
+  color: #969494;
 }
 
 /*Лого*/
