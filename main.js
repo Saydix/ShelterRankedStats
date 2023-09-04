@@ -343,24 +343,29 @@ document.getElementById('makeScreenShot').addEventListener('click', function() {
 function makeScreenShot(screenToShot) {
   const screenContainer = document.getElementById(screenToShot);
 
- 
-  domtoimage.toBlob(screenContainer)
-  .then(function(blob) {
-    const imageBlob = new Blob([blob], { type: 'image/png' });
+  const originalMaxWidth = screenContainer.style.maxWidth;
 
-    navigator.clipboard.write([
-      new ClipboardItem({ 'image/png': imageBlob })
-    ])
-      .then(function() {
-        console.log('Скриншот скопирован в буфер обмена.');
-      })
-      .catch(function(err) {
-        console.error('Произошла ошибка при копировании скриншота в буфер обмена:', err);
-      });
-  })
-  .catch(function(error) {
-    console.error('Произошла ошибка при создании скриншота:', error);
-  });
+  screenContainer.style.maxWidth = 'none';
+
+  domtoimage.toBlob(screenContainer)
+    .then(function(blob) {
+      screenContainer.style.maxWidth = originalMaxWidth;
+
+      const imageBlob = new Blob([blob], { type: 'image/png' });
+
+      navigator.clipboard.write([
+        new ClipboardItem({ 'image/png': imageBlob })
+      ])
+        .then(function() {
+          console.log('Скриншот скопирован в буфер обмена.');
+        })
+        .catch(function(err) {
+          console.error('Произошла ошибка при копировании скриншота в буфер обмена:', err);
+        });
+    })
+    .catch(function(error) {
+      console.error('Произошла ошибка при создании скриншота:', error);
+    });
 }
 
 
