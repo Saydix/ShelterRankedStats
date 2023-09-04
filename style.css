@@ -507,6 +507,12 @@ table th {
   height: 40px; 
 }
 */
+
+.makeScreenShot {
+  position: absolute;
+  left: 70px;
+  bottom: 10px;
+}
 .makeScreenShot {
   --button-bg: #d0d0d0;
   --button-hover-bg: #dfdfdf;
@@ -517,7 +523,7 @@ table th {
   --button-outline-width: 1px;
   --button-outline-color: rgb(141, 141, 141);
 
-  --tooltip-bg: #f4f3f3;
+  --tooltip-bg: #d0d0d0;
   --toolptip-border-radius: 4px;
   --tooltip-font-family: Menlo, Roboto Mono, monospace;
   --tooltip-font-size: 12px;
@@ -525,8 +531,6 @@ table th {
   --tooltip-padding-x: 7px;
   --tooltip-padding-y: 7px;
   --tooltip-offset: 8px;
-
-  
 }
 .makeScreenShot {
   box-sizing: border-box;
@@ -544,8 +548,8 @@ table th {
   opacity: 0;
   visibility: 0;
   top: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 100%;
+  transform: translate(5px, 120%);
   white-space: nowrap;
   font: var(--tooltip-font-size) var(--tooltip-font-family);
   color: var(--tootip-text-color);
