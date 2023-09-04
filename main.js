@@ -356,13 +356,13 @@ function makeScreenShot(screenToShot) {
     .then(function(blob) {
       const imageBlob = new Blob([blob], { type: 'image/png' });
 
-      navigator.clipboard.writeText(screenShot)
-        .then(function() {
-          console.log('Скриншот скопирован в буфер обмена.');
-        })
-        .catch(function(err) {
-          console.error('Произошла ошибка при копировании скриншота в буфер обмена:', err);
-        });
+      navigator.clipboard.writeText(imageBlob)
+      .then(function() {
+        console.log('Скриншот скопирован в буфер обмена.');
+      })
+      .catch(function(err) {
+        console.error('Произошла ошибка при копировании скриншота в буфер обмена:', err);
+      });
     })
     .catch(function(error) {
       console.error('Произошла ошибка при создании скриншота:', error);
