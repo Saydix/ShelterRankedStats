@@ -416,7 +416,6 @@ table th {
   stroke-dashoffset: -262.2723388671875;
 }
 
-
 .infoBoxWinRatio {
   width: 180px;
   height: 165px;
@@ -445,34 +444,37 @@ table th {
 }
 
 .infoBoxBestDuo {
-  width: 150px;
-  height: 70px;
+  width: 180px;
+  height: 85px;
   text-align: center;
   padding: 10px;
   margin-bottom: 10px;
   background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  position: relative;
 }
 .infoBoxMvp {
-  width: 150px;
-  height: 70px;
+  width: 180px;
+  height: 85px;
   text-align: center;
   padding: 10px;
   margin-bottom: 10px;
   background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  position: relative;
 }
 .infoBoxBestStreak {
-  width: 150px;
-  height: 70px;
+  width: 180px;
+  height: 85px;
   text-align: center;
   padding: 10px;
   margin-bottom: 10px;
   background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  position: relative;
 }
 
 /*Лого*/
@@ -509,9 +511,9 @@ table th {
 */
 
 .makeScreenShotContainer {
-  position: absolute;
-  left: 5px;
-  bottom: 0px;
+  position: fixed;
+  left: 10px;
+  bottom: 5px;
 }
 .makeScreenShot {
   --button-bg: #d0d0d0;
