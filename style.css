@@ -438,7 +438,7 @@ table th {
 }
 .infoBoxWinRatio h3 {
   position: relative;
-  top: -177px;
+  top: -178px;
   background-color: white;
   font-size: 14px;
 }
@@ -454,6 +454,12 @@ table th {
   border-radius: 16px;
   position: relative;
 }
+
+.infoBoxBestDuo span {
+  position: relative;
+  margin-top: 15px;
+}
+
 .infoBoxMvp {
   width: 180px;
   height: 85px;
