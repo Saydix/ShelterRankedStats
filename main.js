@@ -345,11 +345,11 @@ function makeScreenShot(screenToShot) {
   const screenContainer = document.getElementById(screenToShot);
 
   const canvas = document.createElement('canvas');
-  canvas.width = screenContainer.innerWidth;
-  canvas.height = screenContainer.innerHeight;
-  let context = canvas.getContext('2d');
+  canvas.width = screenContainer.clientWidth;
+  canvas.height = screenContainer.clientHeight;
+  const context = canvas.getContext('2d');
 
-  context.drawWindow(window, containerRect.left, containerRect.top, containerRect.width, containerRect.height, 'rgb(255, 255, 255)');
+  context.drawImage(screenContainer, 0, 0);
   const screenShot = canvas.toDataURL('image/png');
 
   navigator.clipboard.writeText(screenShot).then(function() {
