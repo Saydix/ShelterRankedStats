@@ -508,7 +508,7 @@ table th {
 }
 */
 
-.makeScreenShot {
+.makeScreenShotContainer {
   position: absolute;
   left: 5px;
   bottom: 0px;
