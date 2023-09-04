@@ -342,31 +342,25 @@ document.getElementById('makeScreenShot').addEventListener('click', function() {
 
 function makeScreenShot(screenToShot) {
   const screenContainer = document.getElementById(screenToShot);
-
   const marginLeft = window.getComputedStyle(screenContainer).marginLeft;
-
   const marginLeftValue = parseFloat(marginLeft);
+  const canvas = document.createElement('canvas');
+  canvas.width = screenContainer.offsetWidth;
+  canvas.height = screenContainer.offsetHeight;
+  const context = canvas.getContext('2d');
+  context.drawImage(screenContainer, -marginLeftValue, 0);
+  const screenShot = canvas.toDataURL('image/png');
+  const imageBlob = canvas.toBlob(function(blob) {
+    const item = new ClipboardItem({ 'image/png': blob });
 
-  const options = {
-    width: screenContainer.offsetWidth + marginLeftValue, 
-    height: screenContainer.offsetHeight
-  };
-
-  domtoimage.toBlob(screenContainer, options)
-    .then(function(blob) {
-      const item = new ClipboardItem({ 'image/png': blob });
-
-      navigator.clipboard.write([item])
-        .then(function() {
-          console.log('Скриншот скопирован в буфер обмена.');
-        })
-        .catch(function(err) {
-          console.error('Произошла ошибка при копировании скриншота в буфер обмена:', err);
-        });
-    })
-    .catch(function(error) {
-      console.error('Произошла ошибка при создании скриншота:', error);
-    });
+    navigator.clipboard.write([item])
+      .then(function() {
+        console.log('Скриншот скопирован в буфер обмена.');
+      })
+      .catch(function(err) {
+        console.error('Произошла ошибка при копировании скриншота в буфер обмена:', err);
+      });
+  }, 'image/png');
 }
 
 
