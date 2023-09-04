@@ -338,6 +338,7 @@ function sortGamesById() {
 
 const makeScreenShotButton = document.getElementById('makeScreenShot');
 makeScreenShotButton.addEventListener('click', function() {
+  console.log('Кнопка нажата');
   makeScreenShot('container');
 });
 
