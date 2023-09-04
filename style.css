@@ -498,6 +498,12 @@ table th {
   width: 90px;
 }
 
+.makeScreenShot{
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
 /* Стили для заголовка */
 h1 {
   font-size: 24px;
@@ -738,4 +744,5 @@ button.yesButton:hover, button.noButton:hover {
   75% {
    transform: translateY(-100%);
   }
- }
+}
+

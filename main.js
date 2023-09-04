@@ -1,8 +1,8 @@
 console.log('Version: 2.0');
-console.log('Добавлено: ');
+console.log('Добавлено: Кнопка скрин области');
 console.log('Исправлено: ');
 
-// Разные ники, один игрок (Расм:Rasm готов)
+// Разные ники, добавлять в nickOrigins. 91
 
 
 
@@ -334,6 +334,27 @@ function sortGamesById() {
   rows.forEach(row => tableBody.removeChild(row));
 
   rows.forEach(row => tableBody.appendChild(row));
+}
+
+const makeScreenShotButton = document.getElementById('makeScreenShot');
+makeScreenShotButton.addEventListener('click', function() {
+  makeScreenShot('container');
+});
+
+function makeScreenShot(screenToShot) {
+  const screenContainer = document.getElementById(screenToShot);
+
+  const canvas = document.createElement('canvas');
+  canvas.width = screenContainer.innerWidth;
+  canvas.height = screenContainer.innerHeight;
+  let context = canvas.getContext('2d');
+
+  context.drawWindow(window, containerRect.left, containerRect.top, containerRect.width, containerRect.height, 'rgb(255, 255, 255)');
+  const screenShot = canvas.toDataURL('image/png');
+
+  navigator.clipboard.writeText(screenShot).then(function() {
+    console.log('Скрин скопирован');
+  });
 }
 
 
