@@ -457,7 +457,7 @@ table th {
 
 .infoBoxBestDuo span {
   position: relative;
-  margin-top: 15px;
+  top: 17px;
 }
 
 .infoBoxMvp {
@@ -471,6 +471,10 @@ table th {
   border-radius: 16px;
   position: relative;
 }
+.infoBoxMvp span {
+  position: relative;
+  top: 17px;
+}
 .infoBoxBestStreak {
   width: 180px;
   height: 85px;
@@ -481,6 +485,10 @@ table th {
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
   border-radius: 16px;
   position: relative;
+}
+.infoBoxBestStreak span {
+  position: relative;
+  top: 17px;
 }
 
 /*Лого*/
