@@ -342,26 +342,31 @@ document.getElementById('makeScreenShot').addEventListener('click', function() {
 
 function makeScreenShot(screenToShot) {
   const screenContainer = document.getElementById(screenToShot);
+
   const marginLeft = window.getComputedStyle(screenContainer).marginLeft;
+
   const marginLeftValue = parseFloat(marginLeft);
-  const containerWidth = screenContainer.offsetWidth;
-  const canvas = document.createElement('canvas');
-  canvas.width = containerWidth;
-  canvas.height = screenContainer.offsetHeight;
-  const context = canvas.getContext('2d');
-  context.translate(-marginLeftValue, 0);
-  context.drawImage(screenContainer, 0, 0, containerWidth, screenContainer.offsetHeight);
-  const screenShot = canvas.toDataURL('image/png');
-  const imageBlob = canvas.toBlob(function(blob) {
-    const item = new ClipboardItem({ 'image/png': blob });
-    navigator.clipboard.write([item])
-      .then(function() {
-        console.log('Скриншот скопирован в буфер обмена.');
-      })
-      .catch(function(err) {
-        console.error('Произошла ошибка при копировании скриншота в буфер обмена:', err);
-      });
-  }, 'image/png');
+
+  const options = {
+    width: screenContainer.offsetWidth + marginLeftValue, 
+    height: screenContainer.offsetHeight
+  };
+
+  domtoimage.toBlob(screenContainer, options)
+    .then(function(blob) {
+      const item = new ClipboardItem({ 'image/png': blob });
+
+      navigator.clipboard.write([item])
+        .then(function() {
+          console.log('Скриншот скопирован в буфер обмена.');
+        })
+        .catch(function(err) {
+          console.error('Произошла ошибка при копировании скриншота в буфер обмена:', err);
+        });
+    })
+    .catch(function(error) {
+      console.error('Произошла ошибка при создании скриншота:', error);
+    });
 }
 
 
