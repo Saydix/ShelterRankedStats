@@ -349,15 +349,18 @@ function makeScreenShot(screenToShot) {
   canvas.height = screenContainer.clientHeight;
   const context = canvas.getContext('2d');
 
-  const img = new Image();
+  const img = new Image(); 
   img.onload = function() {
-    context.drawImage(screenContainer, 0, 0);
+    context.drawImage(img, 0, 0); 
     const screenShot = canvas.toDataURL('image/png');
 
     navigator.clipboard.writeText(screenShot).then(function() {
-      console.log('Скрин скопирован');
+      console.log('Скриншот скопирован');
+    }).catch(function(err) {
+      console.error('Произошла ошибка при копировании скриншота в буфер обмена:', err);
     });
   };
+
   img.src = 'data:image/svg+xml,' + encodeURIComponent(screenContainer.innerHTML);
 }
 
