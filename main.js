@@ -344,11 +344,13 @@ function makeScreenShot(screenToShot) {
   const screenContainer = document.getElementById(screenToShot);
 
  
-  domtoimage.toPng(screenContainer, { width: screenContainer.clientWidth, height: screenContainer.clientHeight })
+  domtoimage.toBlob(screenContainer)
   .then(function(blob) {
-    const clipboardItem = new ClipboardItem({ 'image/png': blob });
+    const imageBlob = new Blob([blob], { type: 'image/png' });
 
-    navigator.clipboard.write([clipboardItem])
+    navigator.clipboard.write([
+      new ClipboardItem({ 'image/png': imageBlob })
+    ])
       .then(function() {
         console.log('Скриншот скопирован в буфер обмена.');
       })
