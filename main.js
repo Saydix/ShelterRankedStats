@@ -336,9 +336,7 @@ function sortGamesById() {
   rows.forEach(row => tableBody.appendChild(row));
 }
 
-const makeScreenShotButton = document.getElementById('makeScreenShot');
-makeScreenShotButton.addEventListener('click', function() {
-  console.log('Кнопка нажата');
+document.getElementById('makeScreenShot').addEventListener('click', function() {
   makeScreenShot('container');
 });
 
@@ -350,23 +348,24 @@ function makeScreenShot(screenToShot) {
   canvas.height = screenContainer.clientHeight;
   const context = canvas.getContext('2d');
 
-  const img = new Image(); 
+  const img = new Image();
   img.onload = function() {
-    context.drawImage(img, 0, 0); 
-    try {
-      if (document.execCommand('copy')) {
-        console.log('Скриншот скопирован в буфер обмена.');
-      } else {
-        console.error('Не удалось скопировать скриншот в буфер обмена.');
-      }
-    } catch (err) {
+    context.drawImage(img, 0, 0);
+
+    // Получаем данные изображения в формате data URL
+    const screenShot = canvas.toDataURL('image/png');
+
+    // Копируем изображение в буфер обмена
+    navigator.clipboard.writeText(screenShot).then(function() {
+      console.log('Скриншот скопирован в буфер обмена.');
+    }).catch(function(err) {
       console.error('Произошла ошибка при копировании скриншота в буфер обмена:', err);
-    }
+    });
   };
 
+  // Устанавливаем источник изображения на основе содержимого screenContainer
   img.src = 'data:image/svg+xml,' + encodeURIComponent(screenContainer.innerHTML);
 }
-
 
 
 document.addEventListener('DOMContentLoaded', function () {
