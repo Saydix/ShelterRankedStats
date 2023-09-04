@@ -508,8 +508,8 @@ table th {
 }
 */
 .makeScreenShot {
-  --button-bg: #353434;
-  --button-hover-bg: #464646;
+  --button-bg: #d0d0d0;
+  --button-hover-bg: #dfdfdf;
   --button-text-color: #CCCCCC;
   --button-hover-text-color: #8bb9fe;
   --button-border-radius: 10px;
@@ -525,7 +525,7 @@ table th {
   --tooltip-padding-x: 7px;
   --tooltip-padding-y: 7px;
   --tooltip-offset: 8px;
-  --tooltip-transition-duration: 0.05s;
+
   
 }
 .makeScreenShot {
@@ -533,7 +533,6 @@ table th {
   width: var(--button-diameter);
   height: var(--button-diameter);
   border-radius: var(--button-border-radius);
-  background-color: var(--button-bg);
   color: var(--button-text-color);
   border: none;
   cursor: pointer;
