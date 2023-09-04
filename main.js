@@ -343,28 +343,15 @@ document.getElementById('makeScreenShot').addEventListener('click', function() {
 function makeScreenShot(screenToShot) {
   const screenContainer = document.getElementById(screenToShot);
 
-  const canvas = document.createElement('canvas');
-  canvas.width = screenContainer.clientWidth;
-  canvas.height = screenContainer.clientHeight;
-  const context = canvas.getContext('2d');
-
-  const img = new Image();
-  img.onload = function() {
-    context.drawImage(img, 0, 0);
-
-    // Получаем данные изображения в формате data URL
+  html2canvas(screenContainer).then(function(canvas) {
     const screenShot = canvas.toDataURL('image/png');
 
-    // Копируем изображение в буфер обмена
     navigator.clipboard.writeText(screenShot).then(function() {
-      console.log('Скриншот скопирован в буфер обмена.');
+      console.log('Скриншот в буфере обмена.');
     }).catch(function(err) {
-      console.error('Произошла ошибка при копировании скриншота в буфер обмена:', err);
+      console.error('Ошибка при копировании скриншота в буфер обмена:', err);
     });
-  };
-
-  // Устанавливаем источник изображения на основе содержимого screenContainer
-  img.src = 'data:image/svg+xml,' + encodeURIComponent(screenContainer.innerHTML);
+  });
 }
 
 
