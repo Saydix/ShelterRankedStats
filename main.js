@@ -344,7 +344,7 @@ function makeScreenShot(screenToShot) {
   const screenContainer = document.getElementById(screenToShot);
 
  
-  domtoimage.toBlob(screenContainer)
+  domtoimage.toPng(screenContainer, { width: screenContainer.clientWidth, height: screenContainer.clientHeight })
     .then(function(blob) {
       
       navigator.clipboard.write([new ClipboardItem({'image/png': blob})])
