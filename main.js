@@ -354,7 +354,7 @@ function makeScreenShot(screenToShot) {
 
   domtoimage.toBlob(screenContainer, options)
     .then(function(blob) {
-      const item = new ClipboardItem({ 'image/bmp': blob });
+      const item = new ClipboardItem({ 'image/webp': blob });
 
       navigator.clipboard.write([item])
         .then(function() {
