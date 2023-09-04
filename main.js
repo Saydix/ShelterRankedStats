@@ -345,19 +345,20 @@ function makeScreenShot(screenToShot) {
 
  
   domtoimage.toPng(screenContainer, { width: screenContainer.clientWidth, height: screenContainer.clientHeight })
-    .then(function(blob) {
-      
-      navigator.clipboard.write([new ClipboardItem({'image/png': blob})])
-        .then(function() {
-          console.log('Скриншот скопирован в буфер обмена.');
-        })
-        .catch(function(err) {
-          console.error('Произошла ошибка при копировании скриншота в буфер обмена:', err);
-        });
-    })
-    .catch(function(error) {
-      console.error('Произошла ошибка при создании скриншота:', error);
-    });
+  .then(function(blob) {
+    const clipboardItem = new ClipboardItem({ 'image/png': blob });
+
+    navigator.clipboard.write([clipboardItem])
+      .then(function() {
+        console.log('Скриншот скопирован в буфер обмена.');
+      })
+      .catch(function(err) {
+        console.error('Произошла ошибка при копировании скриншота в буфер обмена:', err);
+      });
+  })
+  .catch(function(error) {
+    console.error('Произошла ошибка при создании скриншота:', error);
+  });
 }
 
 
