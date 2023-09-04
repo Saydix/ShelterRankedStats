@@ -500,8 +500,10 @@ table th {
 
 .makeScreenShot{
   position: absolute;
-  top: 0px;
+  bottom: 0px;
   left: 0px;
+  width: 40px;
+  height: 40px;
 }
 
 /* Стили для заголовка */
