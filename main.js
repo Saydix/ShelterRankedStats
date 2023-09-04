@@ -343,10 +343,10 @@ document.getElementById('makeScreenShot').addEventListener('click', function() {
 function makeScreenShot(screenToShot) {
   const screenContainer = document.getElementById(screenToShot);
 
-  // Используем dom-to-image для создания скриншота
+ 
   domtoimage.toBlob(screenContainer)
     .then(function(blob) {
-      // Копируем изображение в буфер обмена
+      
       navigator.clipboard.write([new ClipboardItem({'image/png': blob})])
         .then(function() {
           console.log('Скриншот скопирован в буфер обмена.');
