@@ -173,46 +173,46 @@ async function getData() {
   }
 }
 
-function findBestDuos(data) {
-  let bestCivilDuo = {
-    players: [],
-    winCount: 0,
-  };
-  
-  let bestMafiaDuo = {
-    players: [],
-    winCount: 0,
-  };
-  
-  for (const game of data) {
+function findBestDuo(data) {
+  let mafiaDuo = {};
+  let civilianDuo = {};
+
+  data.allGames.forEach((game) => {
     if (game.winnerCode === "Победа Мафии") {
-      const mafiaPlayers = game.allGames.filter(
-        (player) => player.role === "Мафия" || player.role === "Дон"
-      );
-      if (mafiaPlayers.length === 2) {
-        const duo = mafiaPlayers.map((player) => player.username);
-        bestMafiaDuo.winCount++;
-        if (bestMafiaDuo.winCount > bestCivilDuo.winCount) {
-          bestMafiaDuo.players = duo;
+      if (game.role === "Мафия" || game.role === "Дон") {
+        if (!mafiaDuo[game.username]) {
+          mafiaDuo[game.username] = game.points;
+        } else {
+          mafiaDuo[game.username] += game.points;
         }
       }
     } else {
-      const civilPlayers = game.allGames.filter(
-        (player) => player.role === "Мирный" || player.role === "Шериф"
-      );
-      if (civilPlayers.length === 2) {
-        const duo = civilPlayers.map((player) => player.username);
-        bestCivilDuo.winCount++;
-        if (bestCivilDuo.winCount > bestMafiaDuo.winCount) {
-          bestCivilDuo.players = duo;
+      if (game.role === "Мирный" || game.role === "Шериф") {
+        if (!civilianDuo[game.username]) {
+          civilianDuo[game.username] = game.points;
+        } else {
+          civilianDuo[game.username] += game.points;
         }
       }
     }
-  }
-  
+  });
+
+  // Найти лучший дуэт мафии
+  const bestMafiaDuo = Object.keys(mafiaDuo).reduce((a, b) =>
+    mafiaDuo[a] > mafiaDuo[b] ? a : b
+  );
+
+  // Найти лучший дуэт мирных
+  const bestCivilianDuo = Object.keys(civilianDuo).reduce((a, b) =>
+    civilianDuo[a] > civilianDuo[b] ? a : b
+  );
+
+  // Вывести результаты на страницу
   console.log("Лучший дуэт Мирных:", bestCivilDuo.players);
   console.log("Лучший дуэт Мафии:", bestMafiaDuo.players);
 }
+  
+
 
 
 let isHidden;
