@@ -181,7 +181,7 @@ function findBestDuo(data) {
   const civilianPlayers = data.flatMap(game => game.allGames.filter(player => player.role === 'Мирный' || player.role === 'Шериф'));
 
   const mafiaWinners = mafiaPlayers.filter(player => player.winnerCode === 'Победа Мафии');
-  const civilianWinners = civilianPlayers.filter(player => player.winnerCode !== 'Победа Мафии');
+  const civilianWinners = civilianPlayers.filter(player => player.winnerCode === 'Победа Мирных');
 
   const mafiaDuo = findBestDuoInGroup(mafiaWinners);
   const civilDuo = findBestDuoInGroup(civilianWinners);
@@ -201,6 +201,7 @@ function findBestDuoInGroup(players) {
     }
   }
   let bestDuo = [];
+  console.log(bestDuo);
   let bestWinCount = 0;
 
   for (const duo of playerCombinations) {
