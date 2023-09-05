@@ -162,10 +162,7 @@ async function getData() {
         },
     });
 
-    const allGamesForDuo = data[0].allGames;
-    const bestDuos = findBestDuos({ allGamesForDuo });
-    document.getElementById("civilDuo").textContent = `Лучший дуэт мирных: ${bestDuos.bestCivilDuo.players.join(", ")} (${bestDuos.bestCivilDuo.wins} побед)`;
-    document.getElementById("mafiaDuo").textContent = `Лучший дуэт мафии: ${bestDuos.bestMafiaDuo.players.join(", ")} (${bestDuos.bestMafiaDuo.wins} побед)`;
+    findBestDuos(data);
 
     loadingGamesIndicator.style.display = 'none';
     loadingGamesIndicator2.style.display = 'none';
@@ -177,46 +174,44 @@ async function getData() {
 }
 
 function findBestDuos(data) {
-  const civilDuos = {};
-  const mafiaDuos = {};
-
-  data.allGames.forEach((game) => {
-    if (game.winnerCode === "Победа") {
-      if (game.role === "Шериф" || game.role === "Мирный") {
-        if (!civilDuos[game.ID]) {
-          civilDuos[game.ID] = [];
+  let bestCivilDuo = {
+    players: [],
+    winCount: 0,
+  };
+  
+  let bestMafiaDuo = {
+    players: [],
+    winCount: 0,
+  };
+  
+  for (const game of data) {
+    if (game.winnerCode === "Победа Мафии") {
+      const mafiaPlayers = game.allGames.filter(
+        (player) => player.role === "Мафия" || player.role === "Дон"
+      );
+      if (mafiaPlayers.length === 2) {
+        const duo = mafiaPlayers.map((player) => player.username);
+        bestMafiaDuo.winCount++;
+        if (bestMafiaDuo.winCount > bestMafiaDuo.winCount) {
+          bestMafiaDuo.players = duo;
         }
-        civilDuos[game.ID].push(game.username);
-      } else if (game.role === "Мафия" || game.role === "Дон") {
-        if (!mafiaDuos[game.ID]) {
-          mafiaDuos[game.ID] = [];
+      }
+    } else {
+      const civilPlayers = game.allGames.filter(
+        (player) => player.role === "Мирный" || player.role === "Шериф"
+      );
+      if (civilPlayers.length === 2) {
+        const duo = civilPlayers.map((player) => player.username);
+        bestCivilDuo.winCount++;
+        if (bestCivilDuo.winCount > bestCivilDuo.winCount) {
+          bestCivilDuo.players = duo;
         }
-        mafiaDuos[game.ID].push(game.username);
       }
     }
-  });
-
-  let bestCivilDuo = { players: [], wins: 0 };
-  let bestMafiaDuo = { players: [], wins: 0 };
-
+  }
   
-  console.log(bestCivilDuo);
-  console.log(bestMafiaDuo);
-
-  for (const key in civilDuos) {
-    if (civilDuos[key].length > bestCivilDuo.wins) {
-      bestCivilDuo.players = civilDuos[key];
-      bestCivilDuo.wins = civilDuos[key].length;
-    }
-  }
-
-  for (const key in mafiaDuos) {
-    if (mafiaDuos[key].length > bestMafiaDuo.wins) {
-      bestMafiaDuo.players = mafiaDuos[key];
-      bestMafiaDuo.wins = mafiaDuos[key].length;
-    }
-  }
-  return { bestCivilDuo, bestMafiaDuo };
+  console.log("Лучший дуэт Мирных:", bestCivilDuo.players);
+  console.log("Лучший дуэт Мафии:", bestMafiaDuo.players);
 }
 
 
