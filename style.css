@@ -73,6 +73,11 @@ body {
   opacity:0.9;
 }
 
+.chooseSeason {
+  position: relative;
+  top: 10px;
+  right: 10px;
+}
 
 table {
   width: 100%;
