@@ -199,9 +199,10 @@ function findBestDuos(data) {
   let bestCivilDuo = { players: [], wins: 0 };
   let bestMafiaDuo = { players: [], wins: 0 };
 
+  
   console.log(bestCivilDuo);
   console.log(bestMafiaDuo);
-
+  
   for (const key in civilDuos) {
     if (civilDuos[key].length > bestCivilDuo.wins) {
       bestCivilDuo.players = civilDuos[key];
