@@ -5,7 +5,7 @@
 /* Общие стили для страницы */
 body {
   font-family: 'Oswald', sans-serif;
-  font-weight: 300;
+  font-weight: 400;
   background-color: #f2f2f2;
   margin: 0;
   padding: 0;
@@ -873,7 +873,6 @@ button.yesButton:hover, button.noButton:hover {
 
 .gameTableStyle tr:nth-child(-n+11) {
   background-color: #ffffff;
-  padding-bottom:20px;
 }
 
 /* Стили для остальных строк таблицы */
