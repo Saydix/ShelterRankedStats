@@ -162,7 +162,7 @@ async function getData() {
         },
     });
 
-    findBestDuo(data);
+    // findBestDuo(data);
 
     loadingGamesIndicator.style.display = 'none';
     loadingGamesIndicator2.style.display = 'none';
@@ -173,9 +173,9 @@ async function getData() {
   }
 }
 
-findBestDuo(data) {
-  
-}
+//findBestDuo(data) {
+
+//}
   
 
 
