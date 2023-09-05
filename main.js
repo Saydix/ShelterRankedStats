@@ -136,8 +136,7 @@ async function getData() {
       row.insertCell(4).textContent = (player.points / player.games).toFixed(2);
     });
 
-    
-    
+  
     // Диаграмма
     const allGames = data.flatMap(game => game.allGames);
     const mafiaWins = allGames.filter(player => player.winnerCode === 'Победа Мафии').length;
@@ -163,7 +162,8 @@ async function getData() {
         },
     });
 
-    const bestDuos = findBestDuos(data);
+    const allGamesForDuo = data[0].allGames;
+    const bestDuos = findBestDuos({ allGamesForDuo });
     document.getElementById("civilDuo").textContent = `Лучший дуэт мирных: ${bestDuos.bestCivilDuo.players.join(", ")} (${bestDuos.bestCivilDuo.wins} побед)`;
     document.getElementById("mafiaDuo").textContent = `Лучший дуэт мафии: ${bestDuos.bestMafiaDuo.players.join(", ")} (${bestDuos.bestMafiaDuo.wins} побед)`;
 
