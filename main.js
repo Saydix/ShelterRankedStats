@@ -192,7 +192,7 @@ function findBestDuos(data) {
       if (mafiaPlayers.length === 2) {
         const duo = mafiaPlayers.map((player) => player.username);
         bestMafiaDuo.winCount++;
-        if (bestMafiaDuo.winCount > bestMafiaDuo.winCount) {
+        if (bestMafiaDuo.winCount > bestCivilDuo.winCount) {
           bestMafiaDuo.players = duo;
         }
       }
@@ -203,7 +203,7 @@ function findBestDuos(data) {
       if (civilPlayers.length === 2) {
         const duo = civilPlayers.map((player) => player.username);
         bestCivilDuo.winCount++;
-        if (bestCivilDuo.winCount > bestCivilDuo.winCount) {
+        if (bestCivilDuo.winCount > bestMafiaDuo.winCount) {
           bestCivilDuo.players = duo;
         }
       }
