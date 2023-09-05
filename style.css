@@ -1,12 +1,11 @@
 /*Обнуление*/
 @import url("nullstyle.css");
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Days+One&family=Montserrat&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Alumni+Sans&family=Cabin&family=Exo+2&family=Oswald&family=Yanone+Kaffeesatz&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600&display=swap');
 
 /* Общие стили для страницы */
 body {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 600;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 300;
   background-color: #f2f2f2;
   margin: 0;
   padding: 0;
@@ -20,11 +19,12 @@ body {
   flex-direction: row;
 }
 
-
 /* Стили для таблицы */
 .gameTableStyle th {
   font-size: 15px;
   background-color: #8080804d;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 600;
 }
 
 .gameTableStyle th:first-child {
@@ -886,20 +886,4 @@ button.yesButton:hover, button.noButton:hover {
 }
 
 
-.Alumni {
-  font-family: 'Alumni Sans', sans-serif;
-}
-.Oswald {
-  font-family: 'Oswald', sans-serif;
 
-}
-.Yanone {
-  font-family: 'Yanone Kaffeesatz', sans-serif;
-}
-.Exo {
-  font-family: 'Exo 2', sans-serif;
-
-}
-.Cabin {
-  font-family: 'Cabin', sans-serif;
-}
