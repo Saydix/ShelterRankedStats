@@ -877,8 +877,9 @@ button.yesButton:hover, button.noButton:hover {
 
 /* Стили для остальных строк таблицы */
 .gameTableStyle tr:nth-child(n+12) {
-  background-color: #e9e9e9;f2f2f2
+  background-color: #e9e9e9;
 }
-.gameTableStyle td:nth-child(10) {
-  padding-bottom: 50px; /* Пример отступа для 10-й ячейки */
+
+#gameTable tr:nth-child(11) td {
+  margin-bottom: 50px; 
 }
