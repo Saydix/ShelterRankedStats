@@ -110,9 +110,25 @@ async function getData() {
       });
     });
 
-    const soertedPlayers = Object.values(playerStats).sort((a, b) => {
-      return b.points / b.games - a.points / a.games;
+    const playersWith20Games = [];
+    const playersWith10Games = [];
+    const playersWith10LessGames = [];
+
+    soertedPlayers.forEach(player => {
+      if (player.games === 20) {
+        playersWith20Games.push(player);
+      } else if (player.games === 10) {
+        playersWith10Games.push(player);
+      } else {
+        playersWith10LessGames.push(player);
+      }
     });
+
+    playersWith20Games.sort((a, b) => b.points / b.games - a.points / a.games);
+    playersWith10Games.sort((a, b) => b.points / b.games - a.points / a.games);
+    playersWith10LessGames.sort((a, b) => b.points / b.games - a.points / a.games);
+
+    const soertedPlayers = [...playersWith20Games, ...playersWith10Games, ...otherPlayers];
 
     soertedPlayers.forEach((player, index) => {
       const row = gameTable.insertRow();
