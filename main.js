@@ -173,47 +173,7 @@ async function getData() {
   }
 }
 
-function findBestDuo(data) {
-  // const mafiaDuoSpan = document.getElementById('mafiaDuo');
-  //const civilDuoSpan = document.getElementById('civilDuo');
 
-  const mafiaPlayers = data.flatMap(game => game.allGames.filter(player => player.role === 'Мафия' || player.role === 'Дон'));
-  const civilianPlayers = data.flatMap(game => game.allGames.filter(player => player.role === 'Мирный' || player.role === 'Шериф'));
-
-  const mafiaWinners = mafiaPlayers.filter(player => player.winnerCode === 'Победа Мафии');
-  const civilianWinners = civilianPlayers.filter(player => player.winnerCode === 'Победа Мирных');
-
-  const mafiaDuo = findBestDuoInGroup(mafiaWinners);
-  const civilDuo = findBestDuoInGroup(civilianWinners);
-
-  console.log(mafiaDuo);
-  console.log(civilDuo);
-  //mafiaDuoSpan.textContent = `Лучший дуэт Мафии: ${mafiaDuo.join(', ')}`;
-  //civilDuoSpan.textContent = `Лучший дуэт Мирных: ${civilDuo.join(', ')}`;
-}
-
-function findBestDuoInGroup(players) {
-  const playerCombinations = [];
-
-  for (let i = 0; i < players.length; i++) {
-    for (let j = i + 1; j < players.length; j++) {
-      playerCombinations.push([players[i].username, players[j].username]);
-    }
-  }
-  let bestDuo = [];
-  let bestWinCount = 0;
-
-  for (const duo of playerCombinations) {
-    const winCount = players.filter(player => duo.includes(player.username)).length;
-    if (winCount > bestWinCount) {
-      bestDuo = duo;
-      bestWinCount = winCount;
-    }
-  }
-  console.log(bestDuo);
-
-  return bestDuo;
-}
   
 
 
