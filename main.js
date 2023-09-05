@@ -66,6 +66,8 @@ async function getData() {
 
     const data = await response.json();
 
+    console.log(data);
+
     const playerStats = {};
     const totalGamesList = [];
 
@@ -112,8 +114,14 @@ async function getData() {
 
 
     const sortedPlayers = Object.values(playerStats).sort((a, b) => {
-      if (b.games !== a.games) {
-        return b.games - a.games;
+      if (a.games >= 20 && b.games >= 20) {
+        return b.points / b.games - a.points / a.games;
+      } else if (a.games >= 10 && b.games >= 10) {
+        return b.points / b.games - a.points / a.games;
+      } else if (a.games >= 10) {
+        return -1;
+      } else if (b.games >= 10) {
+        return 1;
       } else {
         return b.points / b.games - a.points / a.games;
       }
@@ -128,14 +136,12 @@ async function getData() {
       row.insertCell(4).textContent = (player.points / player.games).toFixed(2);
     });
 
-    console.log(data);
+    
     
     // Диаграмма
     const allGames = data.flatMap(game => game.allGames);
     const mafiaWins = allGames.filter(player => player.winnerCode === 'Победа Мафии').length;
     const civilianWins = allGames.filter(player => player.winnerCode !== 'Победа Мафии').length;
-
-    console.log(mafiaWins, civilianWins);
 
     const totalGamesCount = allGames.length;
     const winRatio = ((mafiaWins / totalGamesCount) * 100).toFixed(2);
