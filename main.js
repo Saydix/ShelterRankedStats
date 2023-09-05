@@ -112,12 +112,11 @@ async function getData() {
 
 
     const sortedPlayers = Object.values(playerStats).sort((a, b) => {
-      if (b.games === 20 && a.games !== 20) return 1;
-      if (b.games === 10 && a.games !== 20 && a.games !== 10) return 1;
-      if (a.games === 20 && b.games !== 20) return -1;
-      if (a.games === 10 && b.games !== 20 && b.games !== 10) return -1;
-      
-      return b.points / b.games - a.points / a.games;
+      if (b.games !== a.games) {
+        return b.games - a.games;
+      } else {
+        return b.points / b.games - a.points / a.games;
+      }
     });
 
     sortedPlayers.forEach((player, index) => {
