@@ -1,6 +1,7 @@
 /*Обнуление*/
 @import url("nullstyle.css");
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Days+One&family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alumni+Sans&family=Cabin&family=Exo+2&family=Oswald&family=Yanone+Kaffeesatz&display=swap');
 
 /* Общие стили для страницы */
 body {
@@ -882,4 +883,23 @@ button.yesButton:hover, button.noButton:hover {
 
 #gameTable tr:nth-child(11) td {
   margin-bottom: 50px; 
+}
+
+
+.Alumni {
+  font-family: 'Alumni Sans', sans-serif;
+}
+.Oswald {
+  font-family: 'Oswald', sans-serif;
+
+}
+.Yanone {
+  font-family: 'Yanone Kaffeesatz', sans-serif;
+}
+.Exo {
+  font-family: 'Exo 2', sans-serif;
+
+}
+.Cabin {
+  font-family: 'Cabin', sans-serif;
 }
