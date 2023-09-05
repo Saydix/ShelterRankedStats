@@ -202,7 +202,7 @@ function findBestDuos(data) {
   
   console.log(bestCivilDuo);
   console.log(bestMafiaDuo);
-  
+
   for (const key in civilDuos) {
     if (civilDuos[key].length > bestCivilDuo.wins) {
       bestCivilDuo.players = civilDuos[key];
@@ -216,11 +216,7 @@ function findBestDuos(data) {
       bestMafiaDuo.wins = mafiaDuos[key].length;
     }
   }
-
   return { bestCivilDuo, bestMafiaDuo };
-
-  document.getElementById("civilDuo").textContent = `Лучший дуэт мирных: ${bestDuos.bestCivilDuo.players.join(", ")} (${bestDuos.bestCivilDuo.wins} побед)`;
-  document.getElementById("mafiaDuo").textContent = `Лучший дуэт мафии и дона: ${bestDuos.bestMafiaDuo.players.join(", ")} (${bestDuos.bestMafiaDuo.wins} побед)`;
 }
 
 
