@@ -110,27 +110,17 @@ async function getData() {
       });
     });
 
-    const playersWith20Games = [];
-    const playersWith10Games = [];
-    const playersWith10LessGames = [];
 
-    soertedPlayers.forEach(player => {
-      if (player.games === 20) {
-        playersWith20Games.push(player);
-      } else if (player.games === 10) {
-        playersWith10Games.push(player);
-      } else {
-        playersWith10LessGames.push(player);
-      }
+    const sortedPlayers = Object.values(playerStats).sort((a, b) => {
+      if (b.games === 20 && a.games !== 20) return 1;
+      if (b.games === 10 && a.games !== 20 && a.games !== 10) return 1;
+      if (a.games === 20 && b.games !== 20) return -1;
+      if (a.games === 10 && b.games !== 20 && b.games !== 10) return -1;
+      
+      return b.points / b.games - a.points / a.games;
     });
 
-    playersWith20Games.sort((a, b) => b.points / b.games - a.points / a.games);
-    playersWith10Games.sort((a, b) => b.points / b.games - a.points / a.games);
-    playersWith10LessGames.sort((a, b) => b.points / b.games - a.points / a.games);
-
-    const soertedPlayers = [...playersWith20Games, ...playersWith10Games, ...otherPlayers];
-
-    soertedPlayers.forEach((player, index) => {
+    sortedPlayers.forEach((player, index) => {
       const row = gameTable.insertRow();
       row.insertCell(0).textContent = index + 1;
       row.insertCell(1).textContent = player.username;
