@@ -173,7 +173,9 @@ async function getData() {
   }
 }
 
-
+findBestDuo(data) {
+  
+}
   
 
 
