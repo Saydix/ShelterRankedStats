@@ -163,6 +163,10 @@ async function getData() {
         },
     });
 
+    const bestDuos = findBestDuos(data);
+    document.getElementById("civilDuo").textContent = `Лучший дуэт мирных: ${bestDuos.bestCivilDuo.players.join(", ")} (${bestDuos.bestCivilDuo.wins} побед)`;
+    document.getElementById("mafiaDuo").textContent = `Лучший дуэт мафии: ${bestDuos.bestMafiaDuo.players.join(", ")} (${bestDuos.bestMafiaDuo.wins} побед)`;
+
     loadingGamesIndicator.style.display = 'none';
     loadingGamesIndicator2.style.display = 'none';
   } catch (error) {
@@ -171,6 +175,53 @@ async function getData() {
     loadingGamesIndicator2.style.display = 'none';
   }
 }
+
+function findBestDuos(data) {
+  const civilDuos = {};
+  const mafiaDuos = {};
+
+  data.allGames.forEach((game) => {
+    if (game.winnerCode === "Победа") {
+      if (game.role === "Шериф" || game.role === "Мирный") {
+        if (!civilDuos[game.ID]) {
+          civilDuos[game.ID] = [];
+        }
+        civilDuos[game.ID].push(game.username);
+      } else if (game.role === "Мафия" || game.role === "Дон") {
+        if (!mafiaDuos[game.ID]) {
+          mafiaDuos[game.ID] = [];
+        }
+        mafiaDuos[game.ID].push(game.username);
+      }
+    }
+  });
+
+  let bestCivilDuo = { players: [], wins: 0 };
+  let bestMafiaDuo = { players: [], wins: 0 };
+
+  console.log(bestCivilDuo);
+  console.log(bestMafiaDuo);
+
+  for (const key in civilDuos) {
+    if (civilDuos[key].length > bestCivilDuo.wins) {
+      bestCivilDuo.players = civilDuos[key];
+      bestCivilDuo.wins = civilDuos[key].length;
+    }
+  }
+
+  for (const key in mafiaDuos) {
+    if (mafiaDuos[key].length > bestMafiaDuo.wins) {
+      bestMafiaDuo.players = mafiaDuos[key];
+      bestMafiaDuo.wins = mafiaDuos[key].length;
+    }
+  }
+
+  return { bestCivilDuo, bestMafiaDuo };
+
+  document.getElementById("civilDuo").textContent = `Лучший дуэт мирных: ${bestDuos.bestCivilDuo.players.join(", ")} (${bestDuos.bestCivilDuo.wins} побед)`;
+  document.getElementById("mafiaDuo").textContent = `Лучший дуэт мафии и дона: ${bestDuos.bestMafiaDuo.players.join(", ")} (${bestDuos.bestMafiaDuo.wins} побед)`;
+}
+
 
 let isHidden;
 window.addEventListener('load', () => {
