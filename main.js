@@ -162,7 +162,7 @@ async function getData() {
         },
     });
 
-    findBestDuos(data);
+    findBestDuo(data);
 
     loadingGamesIndicator.style.display = 'none';
     loadingGamesIndicator2.style.display = 'none';
@@ -197,17 +197,14 @@ function findBestDuo(data) {
     }
   });
 
-  // Найти лучший дуэт мафии
   const bestMafiaDuo = Object.keys(mafiaDuo).reduce((a, b) =>
     mafiaDuo[a] > mafiaDuo[b] ? a : b
   );
 
-  // Найти лучший дуэт мирных
-  const bestCivilianDuo = Object.keys(civilianDuo).reduce((a, b) =>
+  const bestCivilDuo = Object.keys(civilianDuo).reduce((a, b) =>
     civilianDuo[a] > civilianDuo[b] ? a : b
   );
 
-  // Вывести результаты на страницу
   console.log("Лучший дуэт Мирных:", bestCivilDuo.players);
   console.log("Лучший дуэт Мафии:", bestMafiaDuo.players);
 }
