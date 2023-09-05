@@ -201,7 +201,6 @@ function findBestDuoInGroup(players) {
     }
   }
   let bestDuo = [];
-  console.log(bestDuo);
   let bestWinCount = 0;
 
   for (const duo of playerCombinations) {
@@ -211,6 +210,7 @@ function findBestDuoInGroup(players) {
       bestWinCount = winCount;
     }
   }
+  console.log(bestDuo);
 
   return bestDuo;
 }
