@@ -501,13 +501,14 @@ table th {
 div#civilDuoSvgContainer {
   display: inline-block;
   position: relative;
-  left: -55px;
+  left: -44px;
   top: 1.5px;
 }
 span#civilDuo {
   display: block;
   position: relative;
-  top: 8px;
+  top: -16.5px;
+  left: 16px;
   color: #ff0000;
 }
 
