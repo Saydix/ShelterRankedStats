@@ -494,10 +494,17 @@ table th {
   position: relative;
 }
 
-.infoBoxBestDuo span {
+span#civilDuo {
+  display: block;
   position: relative;
-  top: 17px;
-  color: #969494;
+  top: 8px;
+  color: red;
+}
+span#mafiaDuo {
+  display: block;
+  position: relative;
+  top: 16px;
+  color: black;
 }
 
 .infoBoxMvp {

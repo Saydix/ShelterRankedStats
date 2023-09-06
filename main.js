@@ -220,7 +220,7 @@ async function findBestDuo(data) {
       const namePairsCountArray = Object.entries(namePairsCount);
       namePairsCountArray.sort((a, b) => b[1] - a[1]);
       const topPair = namePairsCountArray[0];
-      const topPairNames = topPair[0].split(',');
+      const topPairNames = topPair[0].split(' / ');
       return topPairNames;
   }
   const civilDuo = document.getElementById('civilDuo');
