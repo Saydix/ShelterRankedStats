@@ -164,7 +164,7 @@ async function getData() {
         },
     });
 
-    // findBestDuo(data);
+    findBestDuo(data);
 
     loadingGamesIndicator.style.display = 'none';
     loadingGamesIndicator2.style.display = 'none';
@@ -175,12 +175,62 @@ async function getData() {
   }
 }
 
-//findBestDuo(data) {
+async function findBestDuo(data) {
+  const allMafiaWinnersGroup = [];
+  const allCivilWinnersGroup = [];
+  for(const game of data) {
+      const winnerCode = game.allGames[0].winnerCode;
+      if(winnerCode === 'Победа Мафии'){
+          const mafiaWinnersGroup = [];
+          for (const player of game.allGames) {
+              if (player.role === 'Мафия' || player.role === 'Дон'){
+                  mafiaWinnersGroup.push(player.username);
+              }
+          }
+          allMafiaWinnersGroup.push(mafiaWinnersGroup);
+      }
+      else if(winnerCode === 'Победа Мирных') {
+          const civilWinnersGroup = [];
+          for (const player of game.allGames) {
+              if (player.role === 'Мирный' || player.role === 'Шериф'){
+                  civilWinnersGroup.push(player.username);
+              }
+          }
+          allCivilWinnersGroup.push(civilWinnersGroup);
+      }
+  }
+  console.log(allMafiaWinnersGroup);
+  console.log(allCivilWinnersGroup);
 
-//}
+  function findFrequentPairs(groupToFind) {
+      const namePairsCount = {};
+
+      for (const group of groupToFind) {
+          const namePairs = [];
+          for (let i = 0; i < group.length; i++) {
+              for (let j = i + 1; j < group.length; j++) {
+                  const cleanedName1 = group[i].replace(/[\(\)\s]/g, '');
+                  const cleanedName2 = group[j].replace(/[\(\)\s]/g, '');
+                  const sortedNames = [cleanedName1, cleanedName2].sort();
+                  const pairKey = sortedNames.join(',');
+                  namePairsCount[pairKey] = (namePairsCount[pairKey] || 0) + 1;
+              }
+          }
+      }
+      const namePairsCountArray = Object.entries(namePairsCount);
+      namePairsCountArray.sort((a, b) => b[1] - a[1]);
+      const topPair = namePairsCountArray[0];
+      const topPairNames = topPair[0].split(',');
+      return topPairNames;
+  }
+  const civilDuo = getElementById('civilDuo');
+  const bestCivilPair = findFrequentPairs(allCivilWinnersGroup);
+  civilDuo.textContent = bestCivilPair;
   
-
-
+  const mafiaDuo = getElementById('mafiaDuo');
+  const bestMafiaPair = findFrequentPairs(allMafiaWinnersGroup);
+  mafiaDuo.textContent = bestMafiaPair;
+}
 
 let isHidden;
 window.addEventListener('load', () => {
