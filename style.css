@@ -493,19 +493,37 @@ table th {
   border-radius: 16px;
   position: relative;
 }
+.infoBoxBestDuo h3 {
+  position: relative;
+  top: -4px;
+}
 
+div#civilDuoSvgContainer {
+  display: inline-block;
+  position: relative;
+  left: -55px;
+  top: 1.5px;
+}
 span#civilDuo {
   display: block;
   position: relative;
   top: 8px;
-  color: red;
+  color: #ff0000;
+}
+
+div#mafiaDuoSvgContainer {
+  display: inline-block;
+  position: relative;
+  top: -9px;
+  left: -53.5px;
 }
 span#mafiaDuo {
   display: block;
   position: relative;
-  top: 16px;
-  color: black;
+  top: -28px;
+  color: #000000;
 }
+
 
 .infoBoxMvp {
   width: 180px;

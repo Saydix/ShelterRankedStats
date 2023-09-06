@@ -212,7 +212,7 @@ async function findBestDuo(data) {
                   const cleanedName1 = group[i].replace(/[\(\)\s]/g, '');
                   const cleanedName2 = group[j].replace(/[\(\)\s]/g, '');
                   const sortedNames = [cleanedName1, cleanedName2].sort();
-                  const pairKey = sortedNames.join(',');
+                  const pairKey = sortedNames.join(' / ');
                   namePairsCount[pairKey] = (namePairsCount[pairKey] || 0) + 1;
               }
           }
@@ -220,7 +220,7 @@ async function findBestDuo(data) {
       const namePairsCountArray = Object.entries(namePairsCount);
       namePairsCountArray.sort((a, b) => b[1] - a[1]);
       const topPair = namePairsCountArray[0];
-      const topPairNames = topPair[0].split(' / ');
+      const topPairNames = topPair[0].split(',');
       return topPairNames;
   }
   const civilDuo = document.getElementById('civilDuo');
