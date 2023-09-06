@@ -502,12 +502,12 @@ div#civilDuoSvgContainer {
   display: inline-block;
   position: relative;
   left: -44px;
-  top: 1.5px;
+  top: 2.5px;
 }
 span#civilDuo {
   display: block;
   position: relative;
-  top: -16.5px;
+  top: -14.5px;
   left: 16px;
   color: #ff0000;
 }
@@ -515,13 +515,14 @@ span#civilDuo {
 div#mafiaDuoSvgContainer {
   display: inline-block;
   position: relative;
-  top: -9px;
-  left: -53.5px;
+  top: -6px;
+  left: -55.5px;
 }
 span#mafiaDuo {
   display: block;
   position: relative;
-  top: -28px;
+  top: -24px;
+  left: -1px;
   color: #000000;
 }
 
