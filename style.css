@@ -73,12 +73,21 @@ body {
   opacity:0.9;
 }
 
-.chooseSeason {
-  position: relative;
-  top: 10px;
-  right: 10px;
-  width: 40px;
-  height: 20px;
+#chooseSeason {
+  float: left;
+  margin-right:5px;
+  
+}
+#chooseSeason button {
+  width:67px;
+  height:45.5px;
+  border: 1px solid #000    
+}
+
+#chooseSeason span {
+  font-size:15px;
+  font-weight:600
+
 }
 
 table {
@@ -243,10 +252,10 @@ table th {
 */
 .totalGamesCount {
   font-family: 'Bebas Neue', sans-serif;
-  font-weight: 400;
+  font-weight: 600;
   font-size: 73px;
   position: relative;
-  top: 20%;
+  top: 16%;
   text-align: center;
   letter-spacing: 3px;
 }
@@ -501,7 +510,7 @@ table th {
 div#civilDuoSvgContainer {
   display: inline-block;
   position: relative;
-  left: -44px;
+  left: -45px;
   top: 2.5px;
 }
 span#civilDuo {
