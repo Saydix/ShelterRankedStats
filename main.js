@@ -223,11 +223,11 @@ async function findBestDuo(data) {
       const topPairNames = topPair[0].split(',');
       return topPairNames;
   }
-  const civilDuo = getElementById('civilDuo');
+  const civilDuo = document.getElementById('civilDuo');
   const bestCivilPair = findFrequentPairs(allCivilWinnersGroup);
   civilDuo.textContent = bestCivilPair;
   
-  const mafiaDuo = getElementById('mafiaDuo');
+  const mafiaDuo = document.getElementById('mafiaDuo');
   const bestMafiaPair = findFrequentPairs(allMafiaWinnersGroup);
   mafiaDuo.textContent = bestMafiaPair;
 }
