@@ -14,11 +14,12 @@ body {
 .menuContainer {
   top: 0;
   position: absolute;
+  left: 50%; 
+  transform: translateX(-50%);
   z-index: 15;
   background-color: rgba(0, 0, 0, 0.5);
   width: 1400px;
   height: 40px;
-  left: 260px;
   background-color: #fff;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
   border-bottom-left-radius: 16px;
