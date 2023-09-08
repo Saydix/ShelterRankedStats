@@ -11,9 +11,23 @@ body {
   padding: 0;
 }
 
+.menuContainer {
+  top: 0;
+  position: absolute;
+  z-index: 15;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 1400px;
+  height: 40px;
+  background-color: #fff;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+}
+
 .containerStyle {
   max-width: 1200px;
   margin: 0 auto;
+  margin-top: 25px;
   padding: 20px;
   display: flex;
   flex-direction: row;
