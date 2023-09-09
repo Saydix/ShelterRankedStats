@@ -1,5 +1,5 @@
 console.log('Version: 2.0');
-console.log('Добавлено: Кнопка скрин области');
+console.log('Добавлено: ');
 console.log('Исправлено: ');
 
 // Разные ники, добавлять в nickOrigins. 91
