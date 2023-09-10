@@ -12,6 +12,9 @@ body {
 }
 
 .menuContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   top: 0;
   position: absolute;
   left: 50%; 
@@ -19,17 +22,81 @@ body {
   z-index: 15;
   background-color: rgba(0, 0, 0, 0.5);
   width: 1400px;
-  height: 40px;
+  height: 45px;
   background-color: #fff;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
   border-bottom-left-radius: 16px;
   border-bottom-right-radius: 16px;
 }
 
+.logoShelterStatsContainer img {
+  position: relative;
+  width: 85px;
+}
+.switchThemeContainer {
+  display: flex;
+  align-items: center;
+  margin-right: 70px;
+}
+.switchTheme {
+  font-size: 17px;
+  position: relative;
+  display: inline-block;
+  width: 3.5em;
+  height: 2em;
+  margin-right: 20px;
+}
+.switchTheme input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.switchThemeSlider {
+  --background: #28096b;
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--background);
+  transition: .5s;
+  border-radius: 30px;
+}
+.switchThemeSlider::before {
+  position: absolute;
+  content: "";
+  height: 1.4em;
+  width: 1.4em;
+  border-radius: 50%;
+  left: 10%;
+  bottom: 15%;
+  box-shadow: inset 8px -4px 0px 0px #fff000;
+  background: var(--background);
+  transition: .5s;
+}
+input:checked + .switchThemeSlider {
+  background-color: #522ba7;
+}
+input:checked + .switchThemeSlider::before {
+  transform: translateX(100%);
+  box-shadow: inset 15px -4px 0px 15px #fff000;
+}
+
+.signInContainer {
+  position: absolute;
+  right: 30px;
+  top:55%;
+  transform: translateY(-50%);
+}
+.signInContainer button {
+  background-color: white;
+}
+
 .containerStyle {
   max-width: 1200px;
   margin: 0 auto;
-  margin-top: 25px;
+  margin-top: 30px;
   padding: 20px;
   display: flex;
   flex-direction: row;
@@ -533,7 +600,7 @@ span#civilDuo {
   display: block;
   position: relative;
   top: -14.5px;
-  left: 16px;
+  left: 5%;
   color: #ff0000;
 }
 
@@ -541,13 +608,13 @@ div#mafiaDuoSvgContainer {
   display: inline-block;
   position: relative;
   top: -6px;
-  left: -55.5px;
+  left: -45.5px;
 }
 span#mafiaDuo {
   display: block;
   position: relative;
   top: -24px;
-  left: -1px;
+  left: 7%;
   color: #000000;
 }
 
