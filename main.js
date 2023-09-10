@@ -219,7 +219,7 @@ async function findBestDuo(data) {
                   const pairKey = sortedNames.join(' / ');
                   namePairsCount[pairKey] = (namePairsCount[pairKey] || 0) + 1;
                   
-                  console.log(namePairsCount[pairKey]);
+                  console.log(namePairsCount);
 
               }
           }
