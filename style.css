@@ -553,6 +553,59 @@ table th {
   stroke-dashoffset: -262.2723388671875;
 }
 
+.editConfirmation {
+  display: none;
+  background-color: rgba(255, 255, 255, 0.95);
+  width: 310px;
+  height: 288px;
+  margin: 40px 20px;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  position: absolute;
+  z-index: 10;
+  border-top: 10px solid #f00;
+}
+.editConfirmationSvgContainer {
+  margin-bottom: -55px;
+  background-color: red;
+  border-radius: 50%;
+  position: relative;
+  width: 60px;
+  height: 60px;
+  top: -35px;
+  left: 125px;
+}
+.editConfirmationSvg {
+  width: 40px;
+  height: 40px;
+  fill: #fff;
+  margin-top: 10px;
+}
+.editConfirmation h1 {
+  font-size: 24px;
+  margin-bottom: 25px;
+  margin-top: 25px;
+}
+#editConfirmationData {
+  font-size: 18px;
+  margin-top: 10px;
+}
+.editConfirmationButtons {
+  margin-top: 105px;
+}
+.editConfirmation button {
+  padding: 10px 20px;
+  font-size: 16px;
+  margin: 0 10px;
+  cursor: pointer;
+  border-radius: 5%;
+}
+#editConfirmationButtonDelete {
+  background-color: #ff4a5c;
+  color:white;
+}
+
 .infoBoxWinRatio {
   width: 180px;
   height: 165px;

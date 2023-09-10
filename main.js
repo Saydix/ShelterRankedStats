@@ -374,6 +374,18 @@ async function fetchData() {
   }
 }
 
+const editButtons = document.getElementById('editButtonId');
+  editButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      const row = this.closest('tr');
+      const gameId = row.cell[0].textContent;
+      editGame(gameId);
+    })
+  })
+async function editGame(gameId) {
+  editConfirmation.style.display = 'block';
+}
+
 
 async function saveGame(){
   playersJson = JSON.stringify(players);
