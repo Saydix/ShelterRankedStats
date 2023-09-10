@@ -1,4 +1,4 @@
-console.log('Version: 2.0');
+console.log('Version: 2.5');
 console.log('Добавлено: ');
 console.log('Исправлено: ');
 
