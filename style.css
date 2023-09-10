@@ -383,6 +383,12 @@ table th {
 .gameListId{
   margin-top: 15px;
 }
+.editButtonContainer {
+  margin-top: 3px;
+}
+.editButtonContainer button {
+  background-color: white;
+}
 .gameListId td {
   padding: 4px 14px;
   text-align: center;
