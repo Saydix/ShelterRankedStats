@@ -97,7 +97,7 @@ async function getData() {
       cell4.innerHTML = '<div class="deleteButtonBlock"> <button class="deleteButton"> <svg viewBox="0 0 448 512" class="deleteButtonSvg"><path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"></path></svg> </button> </div>';
     });
 
-    const nickOrigins = {
+    const nickOrigins = { // Убрать, когда доделаю функци и ручной замены
       'Расм': 'Rasm',
       'Lissik': 'Carveryу',
       'Малавита': 'Ам0ндочка',
@@ -122,19 +122,26 @@ async function getData() {
 
 
     const sortedPlayers = Object.values(playerStats).sort((a, b) => {
-      if (a.games >= 20 && b.games >= 20) {
-        return b.points / b.games - a.points / a.games;
-      } else if (a.games >= 10 && b.games >= 10) {
-        return b.points / b.games - a.points / a.games;
-      } else if (a.games >= 10) {
+      const aGames = a.games;
+      const bGames = b.games;
+    
+      if (aGames >= 20 && bGames >= 20) {
+        return b.points / bGames - a.points / aGames;
+      } else if (aGames >= 20) {
         return -1;
-      } else if (b.games >= 10) {
+      } else if (bGames >= 20) {
+        return 1;
+      } else if (aGames >= 10 && bGames >= 10) {
+        return b.points / bGames - a.points / aGames;
+      } else if (aGames >= 10) {
+        return -1;
+      } else if (bGames >= 10) {
         return 1;
       } else {
-        return b.points / b.games - a.points / a.games;
+        return b.points / bGames - a.points / aGames;
       }
     });
-
+    
     sortedPlayers.forEach((player, index) => {
       const row = gameTable.insertRow();
       row.insertCell(0).textContent = index + 1;
