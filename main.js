@@ -99,6 +99,8 @@ async function getData() {
 
     const nickOrigins = {
       'Расм': 'Rasm',
+      'Lissik': 'Carveryу',
+      'Малавита': 'Ам0ндочка',
 
     };
 
