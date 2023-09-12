@@ -227,12 +227,14 @@ async function findBestDuo(data) {
                   const sortedNames = [cleanedName1, cleanedName2].sort();
                   const pairKey = sortedNames.join(' / ');
                   namePairsCount[pairKey] = (namePairsCount[pairKey] || 0) + 1;
+                  console.log(namePairsCount);
               }
           }
       }
       const namePairsCountArray = Object.entries(namePairsCount);
       namePairsCountArray.sort((a, b) => b[1] - a[1]);
       const topPair = namePairsCountArray[0];
+      console.log(topPair);
       const topPairNames = topPair[0].split(',');
       return topPairNames;
   }
