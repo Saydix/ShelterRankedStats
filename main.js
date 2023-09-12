@@ -356,13 +356,9 @@ async function findPricelessPlayer(data) {
     });
   });
 
-  console.log(playersScores);
-
   for (const username in playersScores) {
     playersScores[username] = Math.abs(playersScores[username]);
   }
-
-  console.log(playersScores);
 
   let maxScoreUser = null;
 
@@ -373,7 +369,7 @@ async function findPricelessPlayer(data) {
   }
 
   const pricelessPlayer = document.getElementById('pricelessPlayer');
-  pricelessPlayer.textContent = maxScoreUser;
+  pricelessPlayer.textContent = maxScoreUser;ф
 }
 
 async function fetchData() {
@@ -424,6 +420,11 @@ async function fetchData() {
     alert('Ошибка поиска игры'); // Сделать другой вывод ошибки
     return [];
   }
+}
+
+function switchTheme() {
+  const switchThemeCheckbox = document.getElementById('switchThemeCheckbox');
+  console.log(switchThemeCheckbox);
 }
 
 const editButtons = document.querySelectorAll('.editButton');
