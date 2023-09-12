@@ -369,7 +369,7 @@ async function findPricelessPlayer(data) {
   }
 
   const pricelessPlayer = document.getElementById('pricelessPlayer');
-  pricelessPlayer.textContent = maxScoreUser;ф
+  pricelessPlayer.textContent = maxScoreUser;
 }
 
 async function fetchData() {
@@ -426,6 +426,7 @@ function switchTheme() {
   const switchThemeCheckbox = document.getElementById('switchThemeCheckbox');
   console.log(switchThemeCheckbox);
 }
+switchTheme();
 
 const editButtons = document.querySelectorAll('.editButton');
   editButtons.forEach(button => { 
