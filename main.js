@@ -364,8 +364,16 @@ async function findPricelessPlayer(data) {
 
   console.log(playersScores);
 
-  // const pricelessPlayer = document.getElementById('pricelessPlayer');
-  // pricelessPlayer.textContent = playerWithMaxNegativePoints;
+  let maxScoreUser = null;
+
+  for (const username in playersScores) {
+    if (maxScoreUser === null || playersScores[username] > playersScores[maxScoreUser]) {
+      maxScoreUser = username;
+    }
+  }
+
+  const pricelessPlayer = document.getElementById('pricelessPlayer');
+  pricelessPlayer.textContent = maxScoreUser;
 }
 
 async function fetchData() {
