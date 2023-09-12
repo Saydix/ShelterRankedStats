@@ -424,7 +424,11 @@ async function fetchData() {
 
 function switchTheme() {
   const switchThemeCheckbox = document.getElementById('switchThemeCheckbox');
-  console.log(switchThemeCheckbox);
+  if (checkbox.checked) {
+    console.log('Чекнут');
+  } else {
+    console.log('Не чекнут');
+  }
 }
 switchTheme();
 
