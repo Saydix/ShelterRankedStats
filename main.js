@@ -352,6 +352,7 @@ async function findPricelessPlayer(data) {
           playersScores[username] = points;
         }
       }
+      console.log(`Игрок: ${username}, Сумма минусов: ${playersScores[username]}`);
     });
   });
 
