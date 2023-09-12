@@ -423,9 +423,9 @@ async function fetchData() {
 }
 
 function switchTheme() {
-  const switchThemeCheckbox = document.getElementById('switchThemeCheckbox');
+  let switchThemeCheckbox = document.getElementById('switchThemeCheckbox');
 
-  const checkThemeInStorage = localStorage.getItem('whiteTheme');
+  let checkThemeInStorage = localStorage.getItem('whiteTheme');
 
   if (checkThemeInStorage === 'yes') {
     switchThemeCheckbox = true;
