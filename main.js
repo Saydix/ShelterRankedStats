@@ -360,8 +360,9 @@ async function findPricelessPlayer(data) {
   let playerWithMaxNegativePoints = null;
 
   for (const username in playersScores) {
-    if (playersScores[username] > maxNegativePoints) {
-      maxNegativePoints = playersScores[username];
+    const score = parseFloat(playersScores[username]);
+    if (score > maxNegativePoints) {
+      maxNegativePoints = score;
       playerWithMaxNegativePoints = username;
     }
   }
@@ -370,7 +371,6 @@ async function findPricelessPlayer(data) {
   const pricelessPlayer = document.getElementById('pricelessPlayer');
   pricelessPlayer.textContent = playerWithMaxNegativePoints;
 }
-
 
 async function fetchData() {
   const loadingIndicator = document.getElementById('loadingPopup');
