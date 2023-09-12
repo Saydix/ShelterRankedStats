@@ -424,11 +424,25 @@ async function fetchData() {
 
 function switchTheme() {
   const switchThemeCheckbox = document.getElementById('switchThemeCheckbox');
-  if (switchThemeCheckbox.checked) {
-    console.log('Чекнут');
+
+  const checkThemeInStorage = localStorage.getItem('whiteTheme');
+
+  if (checkThemeInStorage === 'yes') {
+    switchThemeCheckbox = true;
+  } else if (checkThemeInStorage === 'no') {
+    switchThemeCheckbox = false;
   } else {
-    console.log('Не чекнут');
+    localStorage.setItem('whiteTheme', 'yes');
+    switchThemeCheckbox = true;
   }
+
+  switchThemeCheckbox.addEventListener('change', function() {
+    if (switchThemeCheckbox.checked) {
+      localStorage.setItem("whiteTheme", "yes");
+    } else {
+      localStorage.setItem("whiteTheme", "no");
+    }
+  });
 }
 switchTheme();
 
