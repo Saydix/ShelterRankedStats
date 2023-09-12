@@ -339,6 +339,8 @@ async function deleteGame(gameIdInfo) {
 
 async function findPricelessPlayer(data) {
   const playersScores = {};
+  let playerNameWithMostNegatives = "";
+  let maxNegatives = -Infinity;
 
   data.forEach(game => {
     game.allGames.forEach(playerGame => {
@@ -351,22 +353,17 @@ async function findPricelessPlayer(data) {
         } else {
           playersScores[username] = points;
         }
+
+        if (playersScores[username] > maxNegatives) {
+          maxNegatives = playersScores[username];
+          playerNameWithMostNegatives = username;
+        }
       }
       console.log(`Игрок: ${username}, Сумма минусов: ${playersScores[username]}`);
     });
   });
 
-  let maxNegativePoints = -Infinity;
-  let playerWithMaxNegativePoints = null;
-
-  for (const username in playersScores) {
-    if (playersScores[username] < maxNegativePoints) {
-      maxNegativePoints = playersScores[username];
-      playerWithMaxNegativePoints = username;
-    }
-  }
-
-  console.log(playerWithMaxNegativePoints);
+  console.log(`Игрок с наибольшим количеством минусов: ${playerNameWithMostNegatives}`);
   const pricelessPlayer = document.getElementById('pricelessPlayer');
   pricelessPlayer.textContent = playerWithMaxNegativePoints;
 }
