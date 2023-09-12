@@ -215,8 +215,8 @@ async function findBestDuo(data) {
           allCivilWinnersGroup.push(civilWinnersGroup);
       }
   }
-  console.log(allMafiaWinnersGroup);
-  console.log(allCivilWinnersGroup);
+  // console.log(allMafiaWinnersGroup);
+  // console.log(allCivilWinnersGroup);
 
   function findFrequentPairs(groupToFind) {
       const namePairsCount = {};
@@ -352,7 +352,7 @@ async function findPricelessPlayer(data) {
           playersScores[username] = points;
         }
       }
-      console.log(`Игрок: ${username}, Сумма минусов: ${playersScores[username]}`);
+      
     });
   });
 
