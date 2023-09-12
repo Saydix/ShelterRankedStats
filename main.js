@@ -434,11 +434,12 @@ switchThemeCheckbox.addEventListener('change', function() {
 
 function switchTheme() {
   const switchThemeCheckbox = document.getElementById('switchThemeCheckbox');
-
   const checkThemeInStorage = localStorage.getItem('whiteTheme');
 
+  body = document.body;
+
   if (checkThemeInStorage === 'yes') {
-    
+
     switchThemeCheckbox.checked = true;
     body.classList.remove("darkTheme");
   } else if (checkThemeInStorage === 'no') {
