@@ -338,21 +338,35 @@ async function deleteGame(gameIdInfo) {
 }
 
 async function findPricelessPlayer(data) {
-  let maxNegativePoints = Number.NEGATIVE_INFINITY;
+  let playerPointsMap = {};
+  
+  for (const game of data) {
+    const allGames = game.allGames;
+    for (const gameData of allGames) {
+      const username = gameData.username;
+      const points = gameData.points;
+
+      if (!playerPointsMap[username]) {
+        playerPointsMap[username] = 0;
+      }
+
+      if (points < 0) {
+        playerPointsMap[username] += points;
+      }
+    }
+  }
+
+  let maxNegativePoints = -Infinity;
   let playerWithMostNegativePoints = null;
 
-    for (const game of data) {
-        for (const player of game.allGames) {
-            const points = player.points;
-            if (points < maxNegativePoints) {
-                maxNegativePoints = points;
-                playerWithMostNegativePoints = player.username;
-            }
-        }
+  for (const username in playerPointsMap) {
+    if (playerPointsMap[username] < maxNegativePoints) {
+      maxNegativePoints = playerPointsMap[username];
+      playerWithMostNegativePoints = username;
     }
-
-    const pricelessPlayer = document.getElementById('pricelessPlayer');
-    pricelessPlayer.textContent = playerWithMostNegativePoints;
+  }
+  const pricelessPlayer = document.getElementById('pricelessPlayer');
+  pricelessPlayer.textContent = playerWithMostNegativePoints;
 }
 
 
