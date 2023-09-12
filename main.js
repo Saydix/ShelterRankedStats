@@ -339,7 +339,7 @@ async function deleteGame(gameIdInfo) {
 
 async function findPricelessPlayer(data) {
   let playerPointsMap = {};
-  
+
   for (const game of data) {
     const allGames = game.allGames;
     for (const gameData of allGames) {
@@ -365,6 +365,7 @@ async function findPricelessPlayer(data) {
       playerWithMostNegativePoints = username;
     }
   }
+  console.log(playerWithMostNegativePoints);
   const pricelessPlayer = document.getElementById('pricelessPlayer');
   pricelessPlayer.textContent = playerWithMostNegativePoints;
 }
