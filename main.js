@@ -356,11 +356,12 @@ async function findPricelessPlayer(data) {
     });
   });
 
-  for (const player in playersScores) {
-    if (players.hasOwnProperty(player)) {
-        players[player] = Math.abs(players[player]);
-    }
+  console.log(playersScores);
+
+  for (const username in playersScores) {
+    playersScores[username] = Math.abs(playersScores[username]);
   }
+
   console.log(playersScores);
 
   // const pricelessPlayer = document.getElementById('pricelessPlayer');
