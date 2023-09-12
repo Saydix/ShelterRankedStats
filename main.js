@@ -365,9 +365,9 @@ async function findPricelessPlayer(data) {
     }
   }
 
-  console.log(playerWithMostNegativePoints);
+  console.log(playerWithMaxNegativePoints);
   const pricelessPlayer = document.getElementById('pricelessPlayer');
-  pricelessPlayer.textContent = playerWithMostNegativePoints;
+  pricelessPlayer.textContent = playerWithMaxNegativePoints;
 }
 
 
