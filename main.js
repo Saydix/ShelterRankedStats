@@ -358,6 +358,9 @@ async function findPricelessPlayer(data) {
 
   console.log(playersScores);
 
+  Math.abs(playersScores);
+  console.log(playersScores);
+
 
   // const pricelessPlayer = document.getElementById('pricelessPlayer');
   // pricelessPlayer.textContent = playerWithMaxNegativePoints;
