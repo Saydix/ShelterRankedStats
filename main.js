@@ -5,6 +5,7 @@ console.log('Исправлено: ');
 // Разные ники, добавлять в nickOrigins. 91
 
 
+// починить, вернуть makeScreenshot
 
 // При отмене любой другой игры возвращаются все удаленные игры
 // Обновление ДОМ после загрузки игры
@@ -178,6 +179,8 @@ async function getData() {
     });
 
     findBestDuo(data);
+    findPricelessPlayer(data);
+    
 
     loadingGamesIndicator.style.display = 'none';
     loadingGamesIndicator2.style.display = 'none';
@@ -227,14 +230,13 @@ async function findBestDuo(data) {
                   const sortedNames = [cleanedName1, cleanedName2].sort();
                   const pairKey = sortedNames.join(' / ');
                   namePairsCount[pairKey] = (namePairsCount[pairKey] || 0) + 1;
-                  console.log(namePairsCount);
+                  // console.log(namePairsCount);
               }
           }
       }
       const namePairsCountArray = Object.entries(namePairsCount);
       namePairsCountArray.sort((a, b) => b[1] - a[1]);
       const topPair = namePairsCountArray[0];
-      console.log(topPair);
       const topPairNames = topPair[0].split(',');
       return topPairNames;
   }
@@ -334,6 +336,25 @@ async function deleteGame(gameIdInfo) {
     deleteGameConfirm(gameIdInfo);
   });
 }
+
+async function findPricelessPlayer(data) {
+  let maxNegativePoints = Number.NEGATIVE_INFINITY;
+  let playerWithMostNegativePoints = null;
+
+    for (const game of data) {
+        for (const player of game.allGames) {
+            const points = player.points;
+            if (points < maxNegativePoints) {
+                maxNegativePoints = points;
+                playerWithMostNegativePoints = player.username;
+            }
+        }
+    }
+
+    pricelessPlayer = document.getElementById('pricelessPlayer');
+    pricelessPlayer.textContent = playerWithMostNegativePoints;
+}
+
 
 async function fetchData() {
   const loadingIndicator = document.getElementById('loadingPopup');
