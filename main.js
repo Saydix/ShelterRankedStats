@@ -423,17 +423,17 @@ async function fetchData() {
 }
 
 function switchTheme() {
-  let switchThemeCheckbox = document.getElementById('switchThemeCheckbox');
+  const switchThemeCheckbox = document.getElementById('switchThemeCheckbox');
 
-  let checkThemeInStorage = localStorage.getItem('whiteTheme');
+  const checkThemeInStorage = localStorage.getItem('whiteTheme');
 
   if (checkThemeInStorage === 'yes') {
-    switchThemeCheckbox = true;
+    switchThemeCheckbox.checked = true;
   } else if (checkThemeInStorage === 'no') {
-    switchThemeCheckbox = false;
+    switchThemeCheckbox.checked = false;
   } else {
     localStorage.setItem('whiteTheme', 'yes');
-    switchThemeCheckbox = true;
+    switchThemeCheckbox.checked = true;
   }
 
   switchThemeCheckbox.addEventListener('change', function() {
