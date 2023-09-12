@@ -1098,7 +1098,7 @@ button.yesButton:hover, button.noButton:hover {
 
 
 /* Тёмная тема */
-body.dark-theme {
+.darkTheme {
   background-color: #0a192f;
   color: #afb9d9;
 }

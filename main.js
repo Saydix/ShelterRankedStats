@@ -422,27 +422,36 @@ async function fetchData() {
   }
 }
 
+switchThemeCheckbox.addEventListener('change', function() {
+  if (switchThemeCheckbox.checked) {
+    localStorage.setItem("whiteTheme", "yes");
+    switchTheme();
+  } else {
+    localStorage.setItem("whiteTheme", "no");
+    switchTheme();
+  }
+});
+
 function switchTheme() {
   const switchThemeCheckbox = document.getElementById('switchThemeCheckbox');
 
   const checkThemeInStorage = localStorage.getItem('whiteTheme');
 
   if (checkThemeInStorage === 'yes') {
+    
     switchThemeCheckbox.checked = true;
+    body.classList.remove("darkTheme");
   } else if (checkThemeInStorage === 'no') {
+
     switchThemeCheckbox.checked = false;
+    body.classList.add("darkTheme");
   } else {
+
     localStorage.setItem('whiteTheme', 'yes');
     switchThemeCheckbox.checked = true;
+    body.classList.remove("darkTheme");
   }
 
-  switchThemeCheckbox.addEventListener('change', function() {
-    if (switchThemeCheckbox.checked) {
-      localStorage.setItem("whiteTheme", "yes");
-    } else {
-      localStorage.setItem("whiteTheme", "no");
-    }
-  });
 }
 switchTheme();
 
