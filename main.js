@@ -360,7 +360,7 @@ async function findPricelessPlayer(data) {
   let playerWithMaxNegativePoints = null;
 
   for (const username in playersScores) {
-    if (playersScores[username] > maxNegativePoints) {
+    if (playersScores[username] < maxNegativePoints) {
       maxNegativePoints = playersScores[username];
       playerWithMaxNegativePoints = username;
     }
