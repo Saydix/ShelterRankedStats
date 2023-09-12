@@ -691,8 +691,8 @@ span#mafiaDuo {
 }
 .infoBoxMvp span {
   position: relative;
-  top: 17px;
-  color: #969494;
+  top: 14px;
+  font-size: 19px;
 }
 .infoBoxBestStreak {
   width: 180px;
