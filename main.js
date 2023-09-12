@@ -358,7 +358,7 @@ async function findPricelessPlayer(data) {
 
   console.log(playersScores);
 
-  Math.abs(playersScores);
+  playersScores = Math.abs(playersScores);
   console.log(playersScores);
 
 
