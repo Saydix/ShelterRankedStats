@@ -372,6 +372,41 @@ async function findPricelessPlayer(data) {
   pricelessPlayer.textContent = maxScoreUser;
 }
 
+async function findConsecutiveWinner(data) {
+  let maxConsecutiveWins = 0;
+  let currentPlayerName = null;
+  let currentConsecutiveWins = 0;
+
+  for (const game of data) {
+    const gameData = game.allGames;
+
+    for (const player of gameData) {
+      if (
+        player.winnerCode === "Победа Мирных" ||
+        player.winnerCode === "Победа Мафии" ||
+        player.role === "Дон" ||
+        player.role === "Мафия"
+      ) {
+        currentConsecutiveWins++;
+      } else {
+        currentConsecutiveWins = 0;
+      }
+
+      if (currentConsecutiveWins > maxConsecutiveWins) {
+        maxConsecutiveWins = currentConsecutiveWins;
+        currentPlayerName = player.username;
+      }
+    }
+    console.log(currentPlayerName, maxConsecutiveWins);
+  }
+
+  return {
+    playerName: currentPlayerName,
+    consecutiveWins: maxConsecutiveWins
+  };
+}
+findConsecutiveWinner(data);
+
 async function fetchData() {
   const loadingIndicator = document.getElementById('loadingPopup');
   addGamePopup1.style.display = 'none';
@@ -435,22 +470,21 @@ switchThemeCheckbox.addEventListener('change', function() {
 function switchTheme() {
   const switchThemeCheckbox = document.getElementById('switchThemeCheckbox');
   const checkThemeInStorage = localStorage.getItem('whiteTheme');
-
-  body = document.body;
+  const switchThemeStyle = document.getElementById('switchThemeStyle');
 
   if (checkThemeInStorage === 'yes') {
 
     switchThemeCheckbox.checked = true;
-    body.classList.remove("darkTheme");
+    
   } else if (checkThemeInStorage === 'no') {
 
     switchThemeCheckbox.checked = false;
-    body.classList.add("darkTheme");
+    
   } else {
 
     localStorage.setItem('whiteTheme', 'yes');
     switchThemeCheckbox.checked = true;
-    body.classList.remove("darkTheme");
+    
   }
 
 }
