@@ -180,6 +180,7 @@ async function getData() {
 
     findBestDuo(data);
     findPricelessPlayer(data);
+    findConsecutiveWinner(data);
     
 
     loadingGamesIndicator.style.display = 'none';
@@ -405,7 +406,7 @@ async function findConsecutiveWinner(data) {
     consecutiveWins: maxConsecutiveWins
   };
 }
-findConsecutiveWinner(data);
+
 
 async function fetchData() {
   const loadingIndicator = document.getElementById('loadingPopup');
