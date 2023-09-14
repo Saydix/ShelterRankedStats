@@ -380,25 +380,25 @@ async function findConsecutiveWinner(data) {
       if (victory === 'Победа') {
         if (username === currentWinner) {
           consecutiveWins++;
+          if (!playerWins[username] || consecutiveWins > playerWins[username].countWins) {
+            playerWins[username] = {
+              playerNick: username,
+              countWins: consecutiveWins,
+            };
+          }
         } else {
           consecutiveWins = 1;
           currentWinner = username;
         }
       } else {
         consecutiveWins = 0;
-      }
-      if (!playerWins[username] || consecutiveWins > playerWins[username].countWins) {
-        playerWins[username] = {
-          playerNick: username,
-          countWins: consecutiveWins,
-        };
+        currentWinner = null;
       }
       console.log(playerWins[username]);
     }
   }
   console.log(playerWins);
-  return playerWins;
-  
+  return playerWins; 
 }
 
 
