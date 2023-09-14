@@ -373,31 +373,29 @@ async function findConsecutiveWinner(data) {
     const allGames = gameData.allGames;
     let currentWinner = null;
     let consecutiveWins = 0;
+    
     for (const game of allGames) {
       const username = game.username;
       const victory = game.victory;
 
-      if (victory === 'Победа') {
-        if (username === currentWinner) {
-          consecutiveWins++;
-          if (!playerWins[username] || consecutiveWins > playerWins[username].countWins) {
-            playerWins[username] = {
-              playerNick: username,
-              countWins: consecutiveWins,
-            };
-          }
-        } else {
-          consecutiveWins = 1;
-          currentWinner = username;
-        }
+      if (victory === 'Победа' && username === currentWinner) {
+        consecutiveWins++;
       } else {
-        consecutiveWins = 0;
-        currentWinner = null;
+        consecutiveWins = 1;
+        currentWinner = username;
       }
-      console.log(`Игрок: ${username}, Количество побед: ${consecutiveWins}`);
+      
+      if (!playerWins[username] || consecutiveWins > playerWins[username].countWins) {
+        playerWins[username] = {
+          playerNick: username,
+          countWins: consecutiveWins,
+        };
+      }
+      
+      console.log(`Игрок: ${username}, Количество побед подряд: ${consecutiveWins}`);
     }
   }
-  console.log(playerWins);
+
   return playerWins; 
 }
 
