@@ -166,11 +166,9 @@ input:checked + .switchThemeSlider::before {
   height:45.5px;
   border: 1px solid #000    
 }
-
 #chooseSeason span {
   font-size:15px;
   font-weight:600
-
 }
 
 table {
@@ -635,7 +633,8 @@ table th {
 
 .infoBoxBestDuo {
   width: 180px;
-  height: 85px;
+  height: 100px;
+  overflow: hidden;
   text-align: center;
   padding: 10px;
   margin-bottom: 10px;
@@ -648,32 +647,27 @@ table th {
   position: relative;
   top: -4px;
 }
-
-div#civilDuoSvgContainer {
-  display: inline-block;
-  position: relative;
-  left: -45px;
-  top: 2.5px;
+#infoBoxBestDuoId {
+  width: 180px; 
+  height: 100px; 
+  overflow: hidden; 
+}
+#infoBoxBestDuoId table td {
+  padding: 8px 0px 0px 10px; 
+}
+#infoBoxBestDuoId table {
+  table-layout: fixed;
+}
+#infoBoxBestDuoId table td:first-child {
+  width: 30px; 
+}
+#infoBoxBestDuoId table td:last-child {
+  width: 150px;
 }
 span#civilDuo {
-  display: block;
-  position: relative;
-  top: -14.5px;
-  left: 5%;
   color: #ff0000;
 }
-
-div#mafiaDuoSvgContainer {
-  display: inline-block;
-  position: relative;
-  top: -6px;
-  left: -45.5px;
-}
 span#mafiaDuo {
-  display: block;
-  position: relative;
-  top: -24px;
-  left: 7%;
   color: #000000;
 }
 
