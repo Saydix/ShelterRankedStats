@@ -373,6 +373,7 @@ async function findConsecutiveWinner(data) {
 
     let currentUsername = "";
     let currentConsecutiveWins = 0;
+    let maxConsecutiveWins = 0;
 
     for (const game of allGames) {
       if (game.username !== currentUsername) {
@@ -385,12 +386,17 @@ async function findConsecutiveWinner(data) {
         if (!consecutiveWins[currentUsername] || currentConsecutiveWins > consecutiveWins[currentUsername]) {
           consecutiveWins[currentUsername] = currentConsecutiveWins;
         }
+
+        if (currentConsecutiveWins > maxConsecutiveWins) {
+          maxConsecutiveWins = currentConsecutiveWins;
+        }
       } else {
         currentConsecutiveWins = 0;
       }
 
       console.log(`Игрок ${game.username}: ${consecutiveWins[currentUsername] || 0}`);
     }
+    console.log(`Максимальное количество побед подряд для игрока ${currentUsername}: ${maxConsecutiveWins}`);
   }
 }
 
