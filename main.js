@@ -224,7 +224,7 @@ async function findBestDuo(data) {
                   const sortedNames = [cleanedName1, cleanedName2].sort();
                   const pairKey = sortedNames.join(' / ');
                   namePairsCount[pairKey] = (namePairsCount[pairKey] || 0) + 1;
-                  console.log(namePairsCount);
+                  // console.log(namePairsCount);
               }
           }
       }
@@ -396,6 +396,7 @@ async function findConsecutiveWinner(data) {
               playerData[username].winStreak
             );
           }
+          console.log(`${username}, ${currentStreak}`);
         } else {
           currentStreak = 0;
           currentWinner = null;
