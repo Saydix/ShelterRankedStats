@@ -1,10 +1,10 @@
-console.log('Version: 2.5');
+console.log('Version: 2.6');
 console.log('Добавлено: ');
 console.log('Исправлено: ');
 
 // Разные ники, добавлять в nickOrigins. 91
 
-// Нажатие с дитальной инфой на каждую плитку
+// Нажатие с интересной инфой на каждую плитку
 
 // починить, вернуть makeScreenshot
 
@@ -17,11 +17,6 @@ console.log('Исправлено: ');
 // Луз-стрик и Вин-Стрик: Сортировка изсходя из сортирвоанных игры. Чтыб не верный порядок добавляения игр не ломал стрики
 
 
-
-// СИМТЕМЫ ПОДСЧЕТОВ:
-// Продумать и предложить разные системы игр
-// Делить на 20, тех у кого меньше 20 игр?
-
 // Игра уже добавлена (Уведомление что игра уже есть (БЕЗ ЗАПРОСА НА СЕРВЕР))
 // После загрузки данных добавить - "успешно" всплывающим небольшим окном
 // Плавность анимаций
@@ -30,14 +25,11 @@ console.log('Исправлено: ');
 // Информация о игре, которую удаляешь
 // При ошибке поиска игры убирать блок с добавлением, сделать другое окно с ошибкой
 
-
-// ВИЗУАЛ:
 // Разделение игроков По 20
 // Игры за сегодня (Отображение сезона и выбор дня добавления. Сортировка по колву баллов)
 
 // Лучший красный/Черный игрок
 
-// Сумма минусов за все игры Бессценный
 // Лучший дуэт 
 // Инфобокс: "Почему я?!" - Наибольшый луз-стрик
 // Резульат интересных опросников из тг
@@ -375,44 +367,58 @@ async function findPricelessPlayer(data) {
 }
 
 async function findConsecutiveWinner(data) {
-  let currentPlayer = null;
-  let currentPlayerWinCounter = 0;
+  const playerData = {};
+  for (const gameId in data) {
+    if (data.hasOwnProperty(gameId)) {
+      const game = data[gameId];
+      const allGames = game.allGames;
 
-  for(const game of data) {
-    
+      let currentStreak = 0;
+      let currentWinner = null;
+
+      allGames.forEach(game => {
+        const username = game.username;
+        const victory = game.victory;
+
+        if (victory === "Победа") {
+          if (username !== currentWinner) {
+            currentStreak = 1;
+            currentWinner = username;
+          } else {
+            currentStreak++;
+          }
+
+          if (!playerData.hasOwnProperty(username)) {
+            playerData[username] = { winStreak: currentStreak };
+          } else {
+            playerData[username].winStreak = Math.max(
+              currentStreak,
+              playerData[username].winStreak
+            );
+          }
+        } else {
+          currentStreak = 0;
+          currentWinner = null;
+        }
+      });
+    }
   }
 
-  let maxConsecutiveWins = 0;
-  
-  let currentConsecutiveWins = 0;
+  // Игрок с наибольшим числом побед подряд
+  let maxStreak = 0;
+  let currentPlayer = null;
 
-  for (const game of data) {
-    const gameData = game.allGames;
-
-    for (const player of gameData) {
-      if (
-        player.winnerCode === "Победа Мирных" ||
-        player.winnerCode === "Победа Мафии" ||
-        player.role === "Дон" ||
-        player.role === "Мафия"
-      ) {
-        currentConsecutiveWins++;
-      } else {
-        currentConsecutiveWins = 0;
-      }
-
-      if (currentConsecutiveWins > maxConsecutiveWins) {
-        maxConsecutiveWins = currentConsecutiveWins;
-        currentPlayerName = player.username;
+  for (const username in playerData) {
+    if (playerData.hasOwnProperty(username)) {
+      const player = playerData[username];
+      if (player.winStreak > maxStreak) {
+        maxStreak = player.winStreak;
+        currentPlayer = username;
       }
     }
-    console.log(currentPlayerName, maxConsecutiveWins);
   }
-
-  return {
-    playerName: currentPlayerName,
-    consecutiveWins: maxConsecutiveWins
-  };
+  console.log(currentPlayer);
+  return currentPlayer;
 }
 
 
