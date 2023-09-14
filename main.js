@@ -4,6 +4,7 @@ console.log('Исправлено: ');
 
 // Разные ники, добавлять в nickOrigins. 91
 
+// Нажатие с дитальной инфой на каждую плитку
 
 // починить, вернуть makeScreenshot
 
@@ -231,7 +232,7 @@ async function findBestDuo(data) {
                   const sortedNames = [cleanedName1, cleanedName2].sort();
                   const pairKey = sortedNames.join(' / ');
                   namePairsCount[pairKey] = (namePairsCount[pairKey] || 0) + 1;
-                  // console.log(namePairsCount);
+                  console.log(namePairsCount);
               }
           }
       }
@@ -374,8 +375,15 @@ async function findPricelessPlayer(data) {
 }
 
 async function findConsecutiveWinner(data) {
+  let currentPlayer = null;
+  let currentPlayerWinCounter = 0;
+
+  for(const game of data) {
+    
+  }
+
   let maxConsecutiveWins = 0;
-  let currentPlayerName = null;
+  
   let currentConsecutiveWins = 0;
 
   for (const game of data) {
