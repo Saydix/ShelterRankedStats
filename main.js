@@ -367,59 +367,38 @@ async function findPricelessPlayer(data) {
 }
 
 async function findConsecutiveWinner(data) {
-  const playerData = {};
-  for (const gameId in data) {
-    if (data.hasOwnProperty(gameId)) {
-      const game = data[gameId];
-      const allGames = game.allGames;
+  const playerWins = {};
 
-      let currentStreak = 0;
-      let currentWinner = null;
+  for (const gameData of data) {
+    const allGames = gameData.allGames;
+    let currentWinner = null;
+    let consecutiveWins = 0;
+    for (const game of allGames) {
+      const username = game.username;
+      const victory = game.victory;
 
-      allGames.forEach(game => {
-        const username = game.username;
-        const victory = game.victory;
-
-        if (victory === "Победа") {
-          if (username !== currentWinner) {
-            currentStreak = 1;
-            currentWinner = username;
-          } else {
-            currentStreak++;
-          }
-
-          if (!playerData.hasOwnProperty(username)) {
-            playerData[username] = { winStreak: currentStreak };
-          } else {
-            playerData[username].winStreak = Math.max(
-              currentStreak,
-              playerData[username].winStreak
-            );
-          }
-          console.log(`${username}, ${currentStreak}`);
+      if (victory === 'Победа') {
+        if (username === currentWinner) {
+          consecutiveWins++;
         } else {
-          currentStreak = 0;
-          currentWinner = null;
+          consecutiveWins = 1;
+          currentWinner = username;
         }
-      });
-    }
-  }
-
-  // Игрок с наибольшим числом побед подряд
-  let maxStreak = 0;
-  let currentPlayer = null;
-
-  for (const username in playerData) {
-    if (playerData.hasOwnProperty(username)) {
-      const player = playerData[username];
-      if (player.winStreak > maxStreak) {
-        maxStreak = player.winStreak;
-        currentPlayer = username;
+      } else {
+        consecutiveWins = 0;
       }
+      if (!playerWins[username] || consecutiveWins > playerWins[username].countWins) {
+        playerWins[username] = {
+          playerNick: username,
+          countWins: consecutiveWins,
+        };
+      }
+      console.log(playerWins[username]);
     }
   }
-  console.log(currentPlayer);
-  return currentPlayer;
+  console.log(playerWins);
+  return playerWins;
+  
 }
 
 
