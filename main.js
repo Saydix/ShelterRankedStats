@@ -394,13 +394,12 @@ async function findConsecutiveWinner(data) {
         consecutiveWins = 0;
         currentWinner = null;
       }
-      console.log(playerWins[username]);
     }
+    console.log(playerWins[username]);
   }
   console.log(playerWins);
   return playerWins; 
 }
-
 
 async function fetchData() {
   const loadingIndicator = document.getElementById('loadingPopup');
