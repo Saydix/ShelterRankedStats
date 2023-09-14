@@ -394,8 +394,8 @@ async function findConsecutiveWinner(data) {
         consecutiveWins = 0;
         currentWinner = null;
       }
+      console.log(`Игрок: ${username}, Количество побед: ${consecutiveWins}`);
     }
-    console.log(playerWins);
   }
   console.log(playerWins);
   return playerWins; 
