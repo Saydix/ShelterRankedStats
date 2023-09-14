@@ -394,8 +394,6 @@ async function findConsecutiveWinner(data) {
   }
 }
 
-  return playerWins; 
-}
 
 async function fetchData() {
   const loadingIndicator = document.getElementById('loadingPopup');
