@@ -367,34 +367,32 @@ async function findPricelessPlayer(data) {
 }
 
 async function findConsecutiveWinner(data) {
-  const playerWins = {};
-
   for (const gameData of data) {
     const allGames = gameData.allGames;
-    let currentWinner = null;
-    let consecutiveWins = 0;
-    
-    for (const game of allGames) {
-      const username = game.username;
-      const victory = game.victory;
+    const consecutiveWins = {};
 
-      if (victory === 'Победа' && username === currentWinner) {
-        consecutiveWins++;
+    let currentUsername = "";
+    let currentConsecutiveWins = 0;
+
+    for (const game of allGames) {
+      if (game.username !== currentUsername) {
+        currentUsername = game.username;
+        currentConsecutiveWins = 0;
+      }
+
+      if (game.victory === "Победа") {
+        currentConsecutiveWins++;
+        if (!consecutiveWins[currentUsername] || currentConsecutiveWins > consecutiveWins[currentUsername]) {
+          consecutiveWins[currentUsername] = currentConsecutiveWins;
+        }
       } else {
-        consecutiveWins = 1;
-        currentWinner = username;
+        currentConsecutiveWins = 0;
       }
-      
-      if (!playerWins[username] || consecutiveWins > playerWins[username].countWins) {
-        playerWins[username] = {
-          playerNick: username,
-          countWins: consecutiveWins,
-        };
-      }
-      
-      console.log(`Игрок: ${username}, Количество побед подряд: ${consecutiveWins}`);
+
+      console.log(`Игрок ${game.username}: ${consecutiveWins[currentUsername] || 0}`);
     }
   }
+}
 
   return playerWins; 
 }
