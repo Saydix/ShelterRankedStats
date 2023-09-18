@@ -377,7 +377,40 @@ async function findConsecutiveWinner(data) {
       });
   });
 
-  console.log(data);
+  let results = {};
+
+  data.forEach(function (game){
+    game.allGames.forEach(function (playerGame) {
+      let username = playerGame.username;
+      let role = playerGame.role;
+      let victory = playerGame.victory;
+
+      if (!results[username]) {
+        results[username] = { mafiaStreak: 0, mafiaMaxStreak: 0, civilianStreak: 0, civilianMaxStreak: 0 };
+      }
+
+      if ((role === "Мафия" || role === "Дон") && victory === "Победа") {
+        results[username].mafiaStreak++;
+        if (results[username].mafiaStreak > results[username].mafiaMaxStreak) {
+            results[username].mafiaMaxStreak = results[username].mafiaStreak;
+        }
+      } else if ((role === "Мафия" || role === "Дон") && victory === "Поражение") {
+        results[username].mafiaStreak = 0;
+      } else if ((role === "Мирный" || role === "Шериф") && victory === "Победа") {
+        results[username].civilianStreak++;
+        if (results[username].civilianStreak > results[username].civilianMaxStreak) {
+            results[username].civilianMaxStreak = results[username].civilianStreak;
+        }
+      } else if ((role === "Мирный" || role === "Шериф") && victory === "Поражение") {
+        results[username].civilianStreak = 0;
+      }
+      console.log(results);
+    });
+  });
+
+  console.log(results);
+
+
 }
 
 
