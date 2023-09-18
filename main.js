@@ -62,12 +62,14 @@ async function getData() {
 
     const data = await response.json();
 
+    /*
     data.forEach(item => {
       console.log(`_id: ${item._id}, addGameDate: ${item.addGameDate}`);
       console.table(item.allGames);
       console.log('---------------------------------------------');
     });
-    console.table(data);
+    */
+    console.log(data);
 
     const playerStats = {};
     const totalGamesList = [];
