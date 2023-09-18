@@ -407,10 +407,7 @@ async function findConsecutiveWinner(data) {
       console.log(results);
     });
   });
-
-  console.log(results);
-
-
+  console.table(results);
 }
 
 
