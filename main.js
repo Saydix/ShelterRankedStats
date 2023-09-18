@@ -62,7 +62,7 @@ async function getData() {
 
     const data = await response.json();
 
-    console.log(data);
+    console.table(data);
 
     const playerStats = {};
     const totalGamesList = [];
