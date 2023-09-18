@@ -62,7 +62,7 @@ async function getData() {
 
     const data = await response.json();
 
-    /*
+    /* Лагает окно из-за перегруженности консоли :) 
     data.forEach(item => {
       console.log(`_id: ${item._id}, addGameDate: ${item.addGameDate}`);
       console.table(item.allGames);
@@ -338,6 +338,20 @@ async function deleteGame(gameIdInfo) {
   });
 }
 
+const editButtons = document.querySelectorAll('.editButton');
+  editButtons.forEach(button => { 
+    button.addEventListener('click', function() {
+      const row = this.closest('tr');
+      const gameId = row.cell[0].textContent;
+      editGame(gameId);
+    })
+  })
+async function editGame(gameId) {
+  editConfirmation.style.display = 'block';
+}
+
+
+
 async function findPricelessPlayer(data) {
   const playersScores = {};
 
@@ -499,18 +513,6 @@ function switchTheme() {
 
 }
 switchTheme();
-
-const editButtons = document.querySelectorAll('.editButton');
-  editButtons.forEach(button => { 
-    button.addEventListener('click', function() {
-      const row = this.closest('tr');
-      const gameId = row.cell[0].textContent;
-      editGame(gameId);
-    })
-  })
-async function editGame(gameId) {
-  editConfirmation.style.display = 'block';
-}
 
 
 async function saveGame(){
