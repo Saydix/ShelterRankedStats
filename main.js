@@ -404,7 +404,6 @@ async function findConsecutiveWinner(data) {
       } else if ((role === "Мирный" || role === "Шериф") && victory === "Поражение") {
         results[username].civilianStreak = 0;
       }
-      console.log(results);
     });
   });
   console.table(results);
