@@ -367,37 +367,17 @@ async function findPricelessPlayer(data) {
 }
 
 async function findConsecutiveWinner(data) {
-  for (const gameData of data) {
-    const allGames = gameData.allGames;
-    const consecutiveWins = {};
+  data.sort(function (a, b) {
+    return parseInt(a._id) - parseInt(b._id);
+  });
 
-    let currentUsername = "";
-    let currentConsecutiveWins = 0;
-    let maxConsecutiveWins = 0;
+  data.forEach(function (game) {
+      game.allGames.sort(function (gameA, gameB) {
+          return parseInt(gameA.ID) - parseInt(gameB.ID);
+      });
+  });
 
-    for (const game of allGames) {
-      if (game.username !== currentUsername) {
-        currentUsername = game.username;
-        currentConsecutiveWins = 0;
-      }
-
-      if (game.victory === "Победа") {
-        currentConsecutiveWins++;
-        if (!consecutiveWins[currentUsername] || currentConsecutiveWins > consecutiveWins[currentUsername]) {
-          consecutiveWins[currentUsername] = currentConsecutiveWins;
-        }
-
-        if (currentConsecutiveWins > maxConsecutiveWins) {
-          maxConsecutiveWins = currentConsecutiveWins;
-        }
-      } else {
-        currentConsecutiveWins = 0;
-      }
-
-      console.log(`Игрок ${game.username}: ${consecutiveWins[currentUsername] || 0}`);
-    }
-    console.log(`Максимальное количество побед подряд для игрока ${currentUsername}: ${maxConsecutiveWins}`);
-  }
+  console.log(data);
 }
 
 
@@ -638,3 +618,5 @@ document.addEventListener('DOMContentLoaded', function () {
     players = null;
   });
 });
+
+
