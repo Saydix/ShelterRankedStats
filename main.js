@@ -452,8 +452,8 @@ async function findConsecutiveWinner(data) {
 
   civilBestStreakElement.textContent = maxCivilStreakUsername;
   civilBestStreakCounterElement.textContent = maxCivilStreak;
-  mafiaBestStreakElement.textContent = maxMafiaStreak;
-  mafiaBestStreakCounterElement.textContent = maxMafiaStreakUsername;
+  mafiaBestStreakElement.textContent = maxMafiaStreakUsername;
+  mafiaBestStreakCounterElement.textContent = maxMafiaStreak;
 }
 
 
