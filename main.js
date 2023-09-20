@@ -435,8 +435,8 @@ async function findConsecutiveWinner(data) {
   let maxCivilStreak = 0;
   let maxCivilStreakUsername = '';
 
-  const civilBestStreakFireSvgContainer = document.getElementById('civilBestStreakFireSvgContainer');
-  const mafiaBestStreakFireSvgContainer = document.getElementById('mafiaBestStreakFireSvgContainer');
+  const civilBestStreakFirePngContainer = document.getElementById('civilBestStreakFirePngContainer');
+  const mafiaBestStreakFirePngContainer = document.getElementById('mafiaBestStreakFirePngContainer');
   
   for (const username in results) {
     const userData = results[username];
@@ -445,7 +445,7 @@ async function findConsecutiveWinner(data) {
       maxMafiaStreak = userData.mafiaMaxStreak;
       maxMafiaStreakUsername = username;
       if (userData.mafiaMaxStreak == userData.mafiaStreak) {
-        mafiaBestStreakFireSvgContainer.style.display = 'block';
+        mafiaBestStreakFirePngContainer.style.display = 'block';
         console.log('Огонь должен гореть мафия');
       }
     }
@@ -453,7 +453,7 @@ async function findConsecutiveWinner(data) {
       maxCivilStreak = userData.civilianMaxStreak;
       maxCivilStreakUsername = username;
       if (userData.civilianMaxStreak == userData.civilianStreak) {
-        civilBestStreakFireSvgContainer.style.display = 'block';
+        civilBestStreakFirePngContainer.style.display = 'block';
         console.log('Огонь должен гореть цивилы');
       }
     }
