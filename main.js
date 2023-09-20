@@ -433,8 +433,8 @@ async function findConsecutiveWinner(data) {
   let maxCivilStreak = 0;
   let maxCivilStreakUsername = '';
 
-  for (const username in result) {
-    const userData = result[username];
+  for (const username in results) {
+    const userData = results[username];
 
     if (userData.mafiaMaxStreak > maxMafiaStreak) {
       maxMafiaStreak = userData.mafiaMaxStreak;
