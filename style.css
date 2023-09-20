@@ -685,7 +685,8 @@ span#mafiaDuo {
 }
 .infoBoxBestStreak {
   width: 180px;
-  height: 85px;
+  height: 100px;
+  overflow: hidden;
   text-align: center;
   padding: 10px;
   margin-bottom: 10px;
@@ -694,11 +695,7 @@ span#mafiaDuo {
   border-radius: 16px;
   position: relative;
 }
-.infoBoxBestStreak span {
-  position: relative;
-  top: 17px;
-  color: #969494;
-}
+
 
 /*Лого*/
 .logoIcon { 

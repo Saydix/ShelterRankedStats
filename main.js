@@ -428,6 +428,32 @@ async function findConsecutiveWinner(data) {
     });
   });
   console.table(results);
+  let maxMafiaStreak = 0;
+  let maxMafiaStreakUsername = '';
+  let maxCivilStreak = 0;
+  let maxCivilStreakUsername = '';
+
+  for (const username in result) {
+    const userData = result[username];
+
+    if (userData.mafiaMaxStreak > maxMafiaStreak) {
+      maxMafiaStreak = userData.mafiaMaxStreak;
+      maxMafiaStreakUsername = username;
+    }
+    if (userData.civilianMaxStreak > maxCivilStreak) {
+      maxCivilStreak = userData.civilianMaxStreak;
+      maxCivilStreakUsername = username;
+    }
+  }
+  const civilBestStreakElement = document.getElementById('civilBestStreak');
+  const civilBestStreakCounterElement = document.getElementById('civilBestStreakCounter')
+  const mafiaBestStreakElement = document.getElementById('mafiaBestStreak');
+  const mafiaBestStreakCounterElement = document.getElementById('mafiaBestStreakCounter');
+
+  civilBestStreakElement.textContent = maxCivilStreakUsername;
+  civilBestStreakCounterElement.textContent = maxCivilStreak;
+  mafiaBestStreakElement.textContent = maxMafiaStreak;
+  mafiaBestStreakCounterElement.textContent = maxMafiaStreakUsername;
 }
 
 
