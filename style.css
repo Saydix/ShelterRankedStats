@@ -739,6 +739,7 @@ span#mafiaBestStreak {
   top: 57px;
   left: 113px;
   z-index: 8;
+  opacity: 0.9;
 }
 #mafiaBestStreakCounter {
   position: relative;
@@ -749,7 +750,8 @@ span#mafiaBestStreak {
   position:absolute;
   top: 26.8px;
   left: 119.5px;
-  z-index:8
+  z-index:8;
+  opacity: 0.9;
 }
 #civilBestStreakCounter {
   position:relative;
