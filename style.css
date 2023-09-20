@@ -725,16 +725,36 @@ span#mafiaDuo {
 #infoBoxBestStreakId table tr:nth-child(2) td:nth-child(2) {
   padding-left: 0px;
 }
-
 #infoBoxBestStreakId table {
   table-layout: fixed;
 }
-
 span#civilBestStreak {
   color: #ff0000;
 }
 span#mafiaBestStreak {
   color: #000000;
+}
+#mafiaBestStreakFirePngContainer {
+  position: absolute;
+  top: 56px;
+  left: 111px;
+  z-index: 8;
+}
+#mafiaBestStreakCounter {
+  position: relative;
+  z-index: 9;
+}
+
+#civilBestStreakFirePngContainer {
+  position:absolute;
+  top: 26.8px;
+  left: 117.5px;
+  z-index:8
+}
+#civilBestStreakCounter {
+  position:relative;
+  z-index: 9;
+  padding-left: 13px;
 }
 
 
