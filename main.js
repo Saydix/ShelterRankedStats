@@ -453,6 +453,7 @@ async function findConsecutiveWinner(data) {
       maxCivilStreakUsername = username;
       if (userData.civilianMaxStreak === userData.civilianStreak) {
         civilBestStreakFireSvgContainer.style.display = 'block';
+        console.log('Огонь должен гореть');
       }
     }
   }
@@ -465,7 +466,6 @@ async function findConsecutiveWinner(data) {
   civilBestStreakCounterElement.textContent = maxCivilStreak;
   mafiaBestStreakElement.textContent = maxMafiaStreakUsername;
   mafiaBestStreakCounterElement.textContent = maxMafiaStreak;
-
 }
 
 
