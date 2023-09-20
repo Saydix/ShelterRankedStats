@@ -450,10 +450,25 @@ async function findConsecutiveWinner(data) {
   const mafiaBestStreakElement = document.getElementById('mafiaBestStreak');
   const mafiaBestStreakCounterElement = document.getElementById('mafiaBestStreakCounter');
 
+  const civilBestStreakFireSvgContainer = document.getElementById('civilBestStreakFireSvgContainer');
+  const mafiaBestStreakFireSvgContainer = document.getElementById('mafiaBestStreakFireSvgContainer');
+  
   civilBestStreakElement.textContent = maxCivilStreakUsername;
   civilBestStreakCounterElement.textContent = maxCivilStreak;
   mafiaBestStreakElement.textContent = maxMafiaStreakUsername;
   mafiaBestStreakCounterElement.textContent = maxMafiaStreak;
+
+  if (userData.mafiaStreak === maxMafiaStreak) {
+    mafiaBestStreakFireSvgContainer.style.display = 'block';
+  } else {
+    mafiaBestStreakFireSvgContainer.style.display = 'none';
+  }
+
+  if (userData.civilianStreak === maxCivilStreak) {
+    civilBestStreakFireSvgContainer.style.display = 'block';
+  } else {
+    civilBestStreakFireSvgContainer.style.display = 'none';
+  }
 }
 
 
