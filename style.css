@@ -650,6 +650,16 @@ input:checked + .switchThemeSlider::before {
 #infoBoxBestDuoId table td {
   padding: 8px 0px 0px 10px; 
 }
+#infoBoxBestDuoId table tr:first-child td:first-child {
+  padding-left: 23px;
+}
+#infoBoxBestDuoId table tr:nth-child(2) td:nth-child(2) {
+  padding-left: 0px;
+}
+#infoBoxBestDuoId table tr:first-child td:nth-child(2) {
+  position:relative;
+  left: -10px;
+}
 #infoBoxBestDuoId table {
   table-layout: fixed;
 }
@@ -683,6 +693,8 @@ span#mafiaDuo {
   top: 14px;
   font-size: 19px;
 }
+
+
 .infoBoxBestStreak {
   width: 180px;
   height: 100px;
@@ -694,6 +706,43 @@ span#mafiaDuo {
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
   border-radius: 16px;
   position: relative;
+}
+.infoBoxBestStreak h3 {
+  position: relative;
+  top: -4px;
+}
+#infoBoxBestStreakId {
+  width: 180px; 
+  height: 100px; 
+  overflow: hidden; 
+}
+#infoBoxBestStreakId table td {
+  padding: 8px 0px 0px 10px; 
+}
+#infoBoxBestStreakId table tr:first-child td:first-child {
+  padding-left: 23px;
+}
+#infoBoxBestStreakId table tr:nth-child(2) td:nth-child(2) {
+  padding-left: 0px;
+}
+#infoBoxBestStreakId table tr:first-child td:nth-child(2) {
+  position:relative;
+  left: -10px;
+}
+#infoBoxBestStreakId table {
+  table-layout: fixed;
+}
+#infoBoxBestStreakId table td:first-child {
+  width: 30px; 
+}
+#infoBoxBestStreakId table td:last-child {
+  width: 150px;
+}
+span#civilBestStreak {
+  color: #ff0000;
+}
+span#mafiaBestStreak {
+  color: #000000;
 }
 
 
