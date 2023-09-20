@@ -427,22 +427,33 @@ async function findConsecutiveWinner(data) {
       }
     });
   });
+
   console.table(results);
+
   let maxMafiaStreak = 0;
   let maxMafiaStreakUsername = '';
   let maxCivilStreak = 0;
   let maxCivilStreakUsername = '';
 
+  const civilBestStreakFireSvgContainer = document.getElementById('civilBestStreakFireSvgContainer');
+  const mafiaBestStreakFireSvgContainer = document.getElementById('mafiaBestStreakFireSvgContainer');
+  
   for (const username in results) {
     const userData = results[username];
 
     if (userData.mafiaMaxStreak > maxMafiaStreak) {
       maxMafiaStreak = userData.mafiaMaxStreak;
       maxMafiaStreakUsername = username;
+      if (userData.mafiaMaxStreak === userData.mafiaStreak) {
+        mafiaBestStreakFireSvgContainer.style.display = 'block';
+      }
     }
     if (userData.civilianMaxStreak > maxCivilStreak) {
       maxCivilStreak = userData.civilianMaxStreak;
       maxCivilStreakUsername = username;
+      if (userData.civilianMaxStreak === userData.civilianStreak) {
+        civilBestStreakFireSvgContainer.style.display = 'block';
+      }
     }
   }
   const civilBestStreakElement = document.getElementById('civilBestStreak');
@@ -450,25 +461,11 @@ async function findConsecutiveWinner(data) {
   const mafiaBestStreakElement = document.getElementById('mafiaBestStreak');
   const mafiaBestStreakCounterElement = document.getElementById('mafiaBestStreakCounter');
 
-  const civilBestStreakFireSvgContainer = document.getElementById('civilBestStreakFireSvgContainer');
-  const mafiaBestStreakFireSvgContainer = document.getElementById('mafiaBestStreakFireSvgContainer');
-  
   civilBestStreakElement.textContent = maxCivilStreakUsername;
   civilBestStreakCounterElement.textContent = maxCivilStreak;
   mafiaBestStreakElement.textContent = maxMafiaStreakUsername;
   mafiaBestStreakCounterElement.textContent = maxMafiaStreak;
 
-  if (userData.mafiaStreak === maxMafiaStreak) {
-    mafiaBestStreakFireSvgContainer.style.display = 'block';
-  } else {
-    mafiaBestStreakFireSvgContainer.style.display = 'none';
-  }
-
-  if (userData.civilianStreak === maxCivilStreak) {
-    civilBestStreakFireSvgContainer.style.display = 'block';
-  } else {
-    civilBestStreakFireSvgContainer.style.display = 'none';
-  }
 }
 
 
