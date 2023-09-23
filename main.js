@@ -184,7 +184,7 @@ async function getData() {
     
     deleteGameInit();
     editGameButton();
-    
+
     loadingGamesIndicator.style.display = 'none';
     loadingGamesIndicator2.style.display = 'none';
   } catch (error) {
@@ -341,7 +341,6 @@ async function deleteGame(gameIdInfo) {
 }
 
 async function editGameButton() {
-  console.log('Функция эдит работает');
   const editButtons = document.querySelectorAll('.editButton');
   editButtons.forEach(button => {
     button.addEventListener('click', function() {
