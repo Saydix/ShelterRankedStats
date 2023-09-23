@@ -342,7 +342,7 @@ const editButtons = document.querySelectorAll('.editButton');
   editButtons.forEach(button => { 
     button.addEventListener('click', function() {
       const row = this.closest('tr');
-      const gameId = row.cell[0].textContent;
+      const gameId = row.cells[0].textContent;
       console.log('Клик');
       editGame(gameId);
     })
