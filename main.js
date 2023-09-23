@@ -340,14 +340,14 @@ async function deleteGame(gameIdInfo) {
 
 function editGameButton() {
   const editButtons = document.querySelectorAll('.editButton');
-  editButtons.forEach(button => { 
+  editButtons.forEach(button => {
     button.addEventListener('click', function() {
       const row = this.closest('tr');
       const gameId = row.cells[0].textContent;
       console.log('Клик');
       editGame(gameId);
-    })
-  })
+    })  
+  })  
 }
 editGameButton();
 async function editGame(gameId) {
