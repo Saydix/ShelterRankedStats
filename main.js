@@ -151,39 +151,14 @@ async function getData() {
       row.insertCell(3).textContent = (player.points).toFixed(2);
       row.insertCell(4).textContent = (player.points / player.games).toFixed(2);
     });
-
-  
-    // Диаграмма
-    const allGames = data.flatMap(game => game.allGames);
-    const mafiaWins = allGames.filter(player => player.winnerCode === 'Победа Мафии').length;
-    const civilianWins = allGames.filter(player => player.winnerCode !== 'Победа Мафии').length;
-
-    const totalGamesCount = allGames.length;
-    const winRatio = ((mafiaWins / totalGamesCount) * 100).toFixed(2);
-
-    const winRatioElement = document.getElementById('winRatio');
-    winRatioElement.textContent = `${winRatio}%`;
-
-    const pieChartElement = document.getElementById('infoBoxWinRatioCheese');
-    const ctx = pieChartElement.getContext('2d');
-
-    new Chart(ctx, {
-        type: 'pie',
-        data: {
-            labels: ['Побед Мафии', 'Побед Мирных'],
-            datasets: [{
-                data: [(mafiaWins / 10), (civilianWins / 10)],
-                backgroundColor: ['#000000', '#ec1c24'], 
-            }],
-        },
-    });
-
+    
+    winRatioChart(data);
     findBestDuo(data);
     findPricelessPlayer(data);
     findConsecutiveWinner(data);
     
     deleteGameInit();
-    editGameButton();
+    editGameButton(data);
 
     loadingGamesIndicator.style.display = 'none';
     loadingGamesIndicator2.style.display = 'none';
@@ -195,6 +170,31 @@ async function getData() {
 }
 getData();
 
+async function winRatioChart(data) {
+  const allGames = data.flatMap(game => game.allGames);
+  const mafiaWins = allGames.filter(player => player.winnerCode === 'Победа Мафии').length;
+  const civilianWins = allGames.filter(player => player.winnerCode !== 'Победа Мафии').length;
+
+  const totalGamesCount = allGames.length;
+  const winRatio = ((mafiaWins / totalGamesCount) * 100).toFixed(2);
+
+  const winRatioElement = document.getElementById('winRatio');
+  winRatioElement.textContent = `${winRatio}%`;
+
+  const pieChartElement = document.getElementById('infoBoxWinRatioCheese');
+  const ctx = pieChartElement.getContext('2d');
+
+  new Chart(ctx, {
+      type: 'pie',
+      data: {
+          labels: ['Побед Мафии', 'Побед Мирных'],
+          datasets: [{
+              data: [(mafiaWins / 10), (civilianWins / 10)],
+              backgroundColor: ['#000000', '#ec1c24'], 
+          }],
+      },
+  });
+}
 async function findBestDuo(data) {
   const allMafiaWinnersGroup = [];
   const allCivilWinnersGroup = [];
@@ -340,21 +340,32 @@ async function deleteGame(gameIdInfo) {
   });
 }
 
-async function editGameButton() {
+async function editGameButton(data) {
   const editButtons = document.querySelectorAll('.editButton');
   editButtons.forEach(button => {
     button.addEventListener('click', function() {
       const row = this.closest('tr');
       const gameId = row.cells[0].textContent;
       console.log('Клик эдит');
-      editGame(gameId);
+      editGame(gameId, data);
     })  
   })  
 }
-editGameButton();
-async function editGame(gameId) {
+async function editGame(gameId, data) {
   const editConfirmation = document.getElementById('editConfirmation');
+  const gameDataId = document.getElementById('editConfirmationGameId');
+  const editConfirmationButtonCancel = document.getElementById('editConfirmationButtonCancel');
+  const editConfirmationButtonSaveEdit = document.getElementById('editConfirmationButtonSaveEdit');
+  const editConfirmationData = document.getElementById('editConfirmationData');
+
   editConfirmation.style.display = 'block';
+  gameDataId = `'Изменить игру' ${gameId}`;
+
+  console.log(data);
+
+  editConfirmationButtonCancel.addEventListener('click', () => {
+    editConfirmation.style.display = 'none';
+  });
 }
 
 

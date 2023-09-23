@@ -507,7 +507,10 @@ input:checked + .switchThemeSlider::before {
   font-size: 16px;
   margin: 0 10px;
   cursor: pointer;
-  border-radius: 5%;
+  border-top-left-radius: 15%;
+  border-top-right-radius: 0%;
+  border-bottom-right-radius: 15%;
+  border-bottom-left-radius: 0%;
 }
 #deleteConfirmationButtonDelete {
   background-color: #ff4a5c;
@@ -561,7 +564,7 @@ input:checked + .switchThemeSlider::before {
 }
 .editConfirmationSvgContainer {
   margin-bottom: -55px;
-  background-color: red;
+  background-color: #60ACE2;
   border-radius: 50%;
   position: relative;
   width: 60px;
@@ -575,28 +578,37 @@ input:checked + .switchThemeSlider::before {
   fill: #fff;
   margin-top: 10px;
 }
-.editConfirmation h1 {
-  font-size: 24px;
-  margin-bottom: 25px;
-  margin-top: 25px;
+#editConfirmationGameId {
+  position: relative;
+  font-size: 20px;
+  top: 20px;
 }
 #editConfirmationData {
   font-size: 18px;
   margin-top: 10px;
 }
 .editConfirmationButtons {
-  margin-top: 105px;
+  position: absolute;
+  bottom: 13px;
 }
 .editConfirmation button {
-  padding: 10px 20px;
-  font-size: 16px;
-  margin: 0 10px;
+  padding: 3px 7px;
+  font-size: 15px;
+  font-weight: 300;
+  margin: 0 13px;
   cursor: pointer;
-  border-radius: 5%;
+  border-top-left-radius: 15%;
+  border-top-right-radius: 0%;
+  border-bottom-right-radius: 15%;
+  border-bottom-left-radius: 0%;
 }
-#editConfirmationButtonDelete {
+#editConfirmationButtonSaveEdit {
   background-color: #ff4a5c;
   color:white;
+}
+#editConfirmationButtonCancel {
+  background-color: #f96b6b;
+  color: white;
 }
 
 .infoBoxWinRatio {
