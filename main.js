@@ -447,6 +447,8 @@ async function findConsecutiveWinner(data) {
       console.log('Первое Макс, второе просто', userData.mafiaMaxStreak, userData.mafiaStreak);
       if (userData.mafiaMaxStreak == userData.mafiaStreak) {
         mafiaBestStreakFirePngContainer.style.display = 'block';
+      } else {
+        mafiaBestStreakFirePngContainer.style.display = 'none';
       }
     }
     if (userData.civilianMaxStreak > maxCivilStreak) {
@@ -454,6 +456,8 @@ async function findConsecutiveWinner(data) {
       maxCivilStreakUsername = username;
       if (userData.civilianMaxStreak == userData.civilianStreak) {
         civilBestStreakFirePngContainer.style.display = 'block'; 
+      } else {
+        civilBestStreakFirePngContainer.style.display = 'none';
       }
     }
   }
