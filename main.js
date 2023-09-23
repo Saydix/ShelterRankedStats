@@ -182,7 +182,9 @@ async function getData() {
     findPricelessPlayer(data);
     findConsecutiveWinner(data);
     
-
+    deleteGameInit();
+    editGameButton();
+    
     loadingGamesIndicator.style.display = 'none';
     loadingGamesIndicator2.style.display = 'none';
   } catch (error) {
@@ -191,6 +193,7 @@ async function getData() {
     loadingGamesIndicator2.style.display = 'none';
   }
 }
+getData();
 
 async function findBestDuo(data) {
   const allMafiaWinnersGroup = [];
@@ -259,8 +262,6 @@ window.addEventListener('load', () => {
 });
 
 async function deleteGameInit() {
-  await getData();
- 
   let deleteGameInitCount = localStorage.getItem('deleteGameInitCount');
   if (!deleteGameInitCount) {
     deleteGameInitCount = 0;
@@ -272,6 +273,7 @@ async function deleteGameInit() {
     button.addEventListener('click', function() {
       const row = this.closest('tr');
       const gameId = row.cells[0].textContent;
+      console.log('Клик делит');
       row.style.display = 'none';
 
       deleteGameInitCount++;
@@ -289,7 +291,7 @@ async function deleteGameInit() {
   });
   
 }
-deleteGameInit();
+
 
 async function deleteGameConfirm(gameIdInfo) {
   fetch(`${deleteGameOnServer}${gameIdInfo}`, {
@@ -338,13 +340,14 @@ async function deleteGame(gameIdInfo) {
   });
 }
 
-function editGameButton() {
+async function editGameButton() {
+  console.log('Функция эдит работает');
   const editButtons = document.querySelectorAll('.editButton');
   editButtons.forEach(button => {
     button.addEventListener('click', function() {
       const row = this.closest('tr');
       const gameId = row.cells[0].textContent;
-      console.log('Клик');
+      console.log('Клик эдит');
       editGame(gameId);
     })  
   })  
