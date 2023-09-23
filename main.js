@@ -446,15 +446,13 @@ async function findConsecutiveWinner(data) {
       maxMafiaStreakUsername = username;
       if (userData.mafiaMaxStreak == userData.mafiaStreak) {
         mafiaBestStreakFirePngContainer.style.display = 'block';
-        console.log('Огонь должен гореть мафия');
       }
     }
     if (userData.civilianMaxStreak > maxCivilStreak) {
       maxCivilStreak = userData.civilianMaxStreak;
       maxCivilStreakUsername = username;
       if (userData.civilianMaxStreak == userData.civilianStreak) {
-        civilBestStreakFirePngContainer.style.display = 'block';
-        console.log('Огонь должен гореть цивилы');
+        civilBestStreakFirePngContainer.style.display = 'block'; 
       }
     }
   }
