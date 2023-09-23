@@ -347,6 +347,7 @@ const editButtons = document.querySelectorAll('.editButton');
     })
   })
 async function editGame(gameId) {
+  const editConfirmation = document.getElementById('editConfirmation');
   editConfirmation.style.display = 'block';
 }
 
