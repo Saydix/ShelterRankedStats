@@ -1,4 +1,4 @@
-console.log('Version: 2.6');
+console.log('Version: 2.7');
 console.log('Добавлено: ');
 console.log('Исправлено: ');
 
@@ -444,6 +444,7 @@ async function findConsecutiveWinner(data) {
     if (userData.mafiaMaxStreak > maxMafiaStreak) {
       maxMafiaStreak = userData.mafiaMaxStreak;
       maxMafiaStreakUsername = username;
+      console.log('Первое Макс, второе просто', userData.mafiaMaxStreak, userData.mafiaStreak);
       if (userData.mafiaMaxStreak == userData.mafiaStreak) {
         mafiaBestStreakFirePngContainer.style.display = 'block';
       }
