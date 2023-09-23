@@ -343,6 +343,7 @@ const editButtons = document.querySelectorAll('.editButton');
     button.addEventListener('click', function() {
       const row = this.closest('tr');
       const gameId = row.cell[0].textContent;
+      console.log('Клик');
       editGame(gameId);
     })
   })
@@ -445,7 +446,6 @@ async function findConsecutiveWinner(data) {
     if (userData.mafiaMaxStreak > maxMafiaStreak) {
       maxMafiaStreak = userData.mafiaMaxStreak;
       maxMafiaStreakUsername = username;
-      console.log('Первое Макс, второе просто', userData.mafiaMaxStreak, userData.mafiaStreak);
       if (userData.mafiaMaxStreak == userData.mafiaStreak) {
         mafiaBestStreakFirePngContainer.style.display = 'block';
       } else {
