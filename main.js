@@ -357,11 +357,12 @@ async function editGame(gameId, data) {
   const editConfirmationButtonCancel = document.getElementById('editConfirmationButtonCancel');
   const editConfirmationButtonSaveEdit = document.getElementById('editConfirmationButtonSaveEdit');
   const editDataTbody = document.getElementById('editDataTbody');
+  const editGameDate = document.getElementById('editGameDate');
 
   editConfirmation.style.display = 'block';
 
   const game = data.find(item => item._id === gameId);
-  gameDataId.innerHTML = `${gameId}`;
+  gameDataId.innerHTML = `Игра: ${gameId}`;
 
   editDataTbody.innerHTML = '';
 
@@ -379,6 +380,9 @@ async function editGame(gameId, data) {
     `;
     thead.appendChild(headerRow);
     table.appendChild(thead);
+
+    
+    editGameDate.innerHTML = game.addGameDate;
 
     const tbody = document.createElement('tbody');
     game.allGames.forEach(player => {
