@@ -35,11 +35,12 @@ console.log('Исправлено: ');
 // Резульат интересных опросников из тг
 // Добавление игры не только по ссылке, но и по id
 
-let gameUrl; // = prompt('Введите ссылку на игру:', 'https://polemicagame.com/game-statistics/197277');
+let gameUrl; 
 const getStatsFromPolemica = 'https://shelterstats.glitch.me';
 const sendStatsOnServer = 'https://baseshelter.glitch.me/save-game';
 const getStatsFromServer = 'https://baseshelter.glitch.me/get-games';
 const deleteGameOnServer = 'https://baseshelter.glitch.me/delete-game/';
+const editGameOnServer = 'https://baseshelter.glitch.me/edit-game';
 
 let players;
 let playersJson;
@@ -400,13 +401,53 @@ async function editGame(gameId, data) {
 
     editDataTbody.appendChild(table);
 
-  
-
   editConfirmationButtonCancel.addEventListener('click', () => {
     editConfirmation.style.display = 'none';
   });
+
+  editConfirmationButtonSaveEdit.addEventListener('click', () => {
+    const updatedGameData = {
+      addGameDate: edutGameDate.innerHTML,
+      allGames: []
+    };
+
+    const rows = editDataTbody.querySelectorAll('tbody tr');
+    rows.forEach(row => {
+      const cells = row.querySelectorAll('td');
+      const player = {
+        username: cells[0].textContent,
+        role: cells[1].textContent,
+        points: parseFloat(cells[2].textContent),
+        victory: cells[3].textContent,
+        winnerCode: cells[4].textContent
+      };
+      updatedGameData.allGames.push(player);
+    });
+    editGameConfirm(gameId, updatedGameData);
+    editConfirmation.style.display = 'none'
+  })
 }
 
+async function editGameConfirm(gameId, updatedGameData) {
+
+  fetch(`${editGameOnServer}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(updatedGameData)
+  })
+  .then(response => {
+    if (response.ok) {
+      // Уведомление
+    } else {
+      // Уведомление
+    }
+  })
+  .catch(error => {
+    console.error('Ошибка:', error);
+  });
+}
 
 
 async function findPricelessPlayer(data) {
