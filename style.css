@@ -578,12 +578,6 @@ input:checked + .switchThemeSlider::before {
   fill: #fff;
   margin-top: 10px;
 }
-#editConfirmationGameId {
-  position: relative;
-  font-size: 18px;
-  top: -4px;
-  left: 45px;
-}
 #editDataThead {
   display: flex;
   position: relative;
