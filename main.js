@@ -40,7 +40,7 @@ const getStatsFromPolemica = 'https://shelterstats.glitch.me';
 const sendStatsOnServer = 'https://baseshelter.glitch.me/save-game';
 const getStatsFromServer = 'https://baseshelter.glitch.me/get-games';
 const deleteGameOnServer = 'https://baseshelter.glitch.me/delete-game/';
-const editGameOnServer = 'https://baseshelter.glitch.me/edit-game';
+const editGameOnServer = 'https://baseshelter.glitch.me/edit-game/';
 
 let players;
 let playersJson;
@@ -430,7 +430,7 @@ async function editGame(gameId, data) {
 
 async function editGameConfirm(gameId, updatedGameData) {
 
-  fetch(`${editGameOnServer}`, {
+  fetch(`${editGameOnServer}${gameId}`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json'
