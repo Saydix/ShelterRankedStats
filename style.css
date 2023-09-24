@@ -580,8 +580,9 @@ input:checked + .switchThemeSlider::before {
 }
 #editConfirmationGameId {
   position: relative;
-  font-size: 20px;
-  top: 20px;
+  font-size: 18px;
+  top: -4px;
+  left: 45px;
 }
 #editDataThead {
   display: flex;
@@ -607,6 +608,29 @@ input:checked + .switchThemeSlider::before {
   border-bottom-right-radius: 15%;
   border-bottom-left-radius: 0%;
 }
+
+.editTable {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 10px;
+  font-size: 13px;
+}
+.editTable td {
+  padding:3.8px 1px 1px 1px;
+}
+#editGameSpan {
+position: relative;
+font-size: 18px;
+top: -4px;
+left: -60px;
+}
+#editConfirmationGameId {
+  position: relative;
+  font-size: 18px;
+  top: -4px;
+  left: 45px;
+}
+
 #editConfirmationButtonSaveEdit {
   background-color: #34d399;
   color:white;
@@ -615,6 +639,7 @@ input:checked + .switchThemeSlider::before {
   background-color: #f96b6b;
   color: white;
 }
+
 
 .infoBoxWinRatio {
   width: 180px;
