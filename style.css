@@ -583,10 +583,15 @@ input:checked + .switchThemeSlider::before {
   font-size: 20px;
   top: 20px;
 }
-#editConfirmationData {
-  font-size: 18px;
-  margin-top: 10px;
+#editDataThead {
+  display: flex;
+  position: relative;
+  top: 27x;
 }
+#editDataThead {
+  margin-left: 15px;
+}
+
 .editConfirmationButtons {
   position: absolute;
   bottom: 13px;

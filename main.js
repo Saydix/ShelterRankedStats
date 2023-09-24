@@ -356,10 +356,45 @@ async function editGame(gameId, data) {
   const gameDataId = document.getElementById('editConfirmationGameId');
   const editConfirmationButtonCancel = document.getElementById('editConfirmationButtonCancel');
   const editConfirmationButtonSaveEdit = document.getElementById('editConfirmationButtonSaveEdit');
-  const editConfirmationData = document.getElementById('editConfirmationData');
+  const editDataTbody = document.getElementById('editDataTbody');
 
   editConfirmation.style.display = 'block';
+
+  const game = data.find(item => item._id === gameId);
   gameDataId.innerHTML = `Изменить игру  ${gameId}`;
+
+  editDataTbody.innerHTML = '';
+
+  const table = document.createElement('table');
+    table.classList.add('editTable');
+
+    const thead = document.createElement('thead');
+    const headerRow = document.createElement('tr');
+    headerRow.innerHTML = `
+      <th>Игрок</th>
+      <th>Роль</th>
+      <th>Баллы</th>
+      <th>Победа</th>
+      <th>Победа команды</th>
+    `;
+    thead.appendChild(headerRow);
+    table.appendChild(thead);
+
+    const tbody = document.createElement('tbody');
+    game.allGames.forEach(player => {
+      const playerRow = document.createElement('tr');
+      playerRow.innerHTML = `
+        <td>${player.username}</td>
+        <td>${player.role}</td>
+        <td><input type="text" value="${player.points}" id="points-${player.username}"></td>
+        <td><input type="text" value="${player.victory}" id="victory-${player.username}"></td>
+        <td>${player.winnerCode}</td>
+      `;
+      tbody.appendChild(playerRow);
+    });
+    table.appendChild(tbody);
+
+    editDataTbody.appendChild(table);
 
   
 
