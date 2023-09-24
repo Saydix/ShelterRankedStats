@@ -1,6 +1,9 @@
-console.log('Version: 2.7');
+console.log('Version: 2.8');
 console.log('Добавлено: ');
 console.log('Исправлено: ');
+
+
+// Убрать id у каждого игрока
 
 // Разные ники, добавлять в nickOrigins. 91
 
@@ -656,6 +659,7 @@ switchTheme();
 
 async function saveGame(){
   playersJson = JSON.stringify(players);
+  console.log(playersJson);
   fetch(sendStatsOnServer, {
     method: 'POST',
     headers: {
