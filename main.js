@@ -361,7 +361,7 @@ async function editGame(gameId, data) {
   editConfirmation.style.display = 'block';
 
   const game = data.find(item => item._id === gameId);
-  gameDataId.innerHTML = `Изменить игру  ${gameId}`;
+  gameDataId.innerHTML = `${gameId}`;
 
   editDataTbody.innerHTML = '';
 
