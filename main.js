@@ -371,10 +371,10 @@ async function editGame(gameId, data) {
     const thead = document.createElement('thead');
     const headerRow = document.createElement('tr');
     headerRow.innerHTML = `
-      <th>Игрок</th>
+      <th>Ник</th>
       <th>Роль</th>
       <th>Баллы</th>
-      <th>Победа</th>
+      <th>Победа?</th>
       <th>Победа команды</th>
     `;
     thead.appendChild(headerRow);
@@ -384,11 +384,11 @@ async function editGame(gameId, data) {
     game.allGames.forEach(player => {
       const playerRow = document.createElement('tr');
       playerRow.innerHTML = `
-        <td>${player.username}</td>
-        <td>${player.role}</td>
-        <td><input type="text" value="${player.points}" id="points-${player.username}"></td>
-        <td><input type="text" value="${player.victory}" id="victory-${player.username}"></td>
-        <td>${player.winnerCode}</td>
+        <td contenteditable="true">${player.username}</td>
+        <td contenteditable="true">${player.role}</td>
+        <td contenteditable="true">${player.points}</td>
+        <td contenteditable="true">${player.victory}</td>
+        <td contenteditable="true">${player.winnerCode}</td>
       `;
       tbody.appendChild(playerRow);
     });
