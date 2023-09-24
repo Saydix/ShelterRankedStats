@@ -359,7 +359,7 @@ async function editGame(gameId, data) {
   const editConfirmationData = document.getElementById('editConfirmationData');
 
   editConfirmation.style.display = 'block';
-  gameDataId = `'Изменить игру' ${gameId}`;
+  gameDataId.innerHTML = `'Изменить игру' ${gameId}`;
 
   console.log(data);
 

@@ -560,7 +560,7 @@ input:checked + .switchThemeSlider::before {
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
   position: absolute;
   z-index: 10;
-  border-top: 10px solid #f00;
+  border-top: 10px solid #60ACE2;
 }
 .editConfirmationSvgContainer {
   margin-bottom: -55px;
@@ -603,7 +603,7 @@ input:checked + .switchThemeSlider::before {
   border-bottom-left-radius: 0%;
 }
 #editConfirmationButtonSaveEdit {
-  background-color: #ff4a5c;
+  background-color: #34d399;
   color:white;
 }
 #editConfirmationButtonCancel {
