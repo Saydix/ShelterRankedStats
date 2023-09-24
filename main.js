@@ -407,7 +407,7 @@ async function editGame(gameId, data) {
 
   editConfirmationButtonSaveEdit.addEventListener('click', () => {
     const updatedGameData = {
-      addGameDate: edutGameDate.innerHTML,
+      addGameDate: editGameDate.innerHTML,
       allGames: []
     };
 
