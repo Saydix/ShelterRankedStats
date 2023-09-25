@@ -431,8 +431,8 @@ async function editGame(gameId, data) {
 
 async function editGameConfirm(gameId, updatedGameData) {
   console.log(updatedGameData);
-  updatedGameData.allGames.forEach(player => {
-    player = { "ID": gameId, ...player };
+  const updatedAllGames = updatedGameData.allGames.map(player => {
+    return { "ID": gameId, ...player };
   });
 
   fetch(`${editGameOnServer}${gameId}`, {
