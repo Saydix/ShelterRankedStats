@@ -430,7 +430,7 @@ async function editGame(gameId, data) {
 }
 
 async function editGameConfirm(gameId, updatedGameData) {
-
+  console.log(updatedGameData);
   fetch(`${editGameOnServer}${gameId}`, {
     method: 'PATCH',
     headers: {
@@ -487,7 +487,16 @@ async function findPricelessPlayer(data) {
 }
 
 async function findConsecutiveWinner(data) {
-  
+  data.sort(function (a, b) {
+    return parseInt(a._id) - parseInt(b._id);
+  });
+
+  data.forEach(function (game) {
+      game.allGames.sort(function (gameA, gameB) {
+          return parseInt(gameA.ID) - parseInt(gameB.ID);
+      });
+  });
+
   let results = {};
 
   data.forEach(function (game){
