@@ -440,7 +440,7 @@ async function editGameConfirm(gameId, updatedGameData) {
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(updatedGameData)
+    body: JSON.stringify(updatedAllGames)
   })
   .then(response => {
     if (response.ok) {
