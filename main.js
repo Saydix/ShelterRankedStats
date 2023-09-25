@@ -293,24 +293,6 @@ async function deleteGameInit() {
   });
   
 }
-
-
-async function deleteGameConfirm(gameIdInfo) {
-  fetch(`${deleteGameOnServer}${gameIdInfo}`, {
-    method: 'DELETE'
-  })
-  .then(response => {
-    if (response.ok) {
-      // Уведомление "Игра успешно удалена"
-    } else {
-      // Уведомление "Ошибка удаления игры"
-    }
-  })
-  .catch(error => {
-    console.error('Произошла ошибка:', error);
-  });
-}
-
 async function deleteGame(gameIdInfo) {
   const deleteConfirmation = document.getElementById('deleteConfirmation');
   const deleteConfirmationData = document.getElementById('deleteConfirmationData');
@@ -339,6 +321,21 @@ async function deleteGame(gameIdInfo) {
     }
     deleteConfirmation.style.display = 'none';
     deleteGameConfirm(gameIdInfo);
+  });
+}
+async function deleteGameConfirm(gameIdInfo) {
+  fetch(`${deleteGameOnServer}${gameIdInfo}`, {
+    method: 'DELETE'
+  })
+  .then(response => {
+    if (response.ok) {
+      // Уведомление "Игра успешно удалена"
+    } else {
+      // Уведомление "Ошибка удаления игры"
+    }
+  })
+  .catch(error => {
+    console.error('Произошла ошибка:', error);
   });
 }
 
@@ -404,6 +401,9 @@ async function editGame(gameId, data) {
 
   editConfirmationButtonCancel.addEventListener('click', () => {
     editConfirmation.style.display = 'none';
+    addGameDate = null;
+    allGames = null;
+    editDataTbody = null;
   });
 
   editConfirmationButtonSaveEdit.addEventListener('click', () => {
