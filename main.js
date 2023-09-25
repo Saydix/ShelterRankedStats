@@ -104,9 +104,7 @@ async function getData() {
 
     const nickOrigins = { // Убрать, когда доделаю функци и ручной замены
       'Расм': 'Rasm',
-      'Lissik': 'Carveryу',
       'Малавита': 'Ам0ндочка',
-
     };
 
     data.forEach(game => {
@@ -489,16 +487,7 @@ async function findPricelessPlayer(data) {
 }
 
 async function findConsecutiveWinner(data) {
-  data.sort(function (a, b) {
-    return parseInt(a._id) - parseInt(b._id);
-  });
-
-  data.forEach(function (game) {
-      game.allGames.sort(function (gameA, gameB) {
-          return parseInt(gameA.ID) - parseInt(gameB.ID);
-      });
-  });
-
+  
   let results = {};
 
   data.forEach(function (game){
