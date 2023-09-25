@@ -432,9 +432,9 @@ async function editGame(gameId, data) {
 async function editGameConfirm(gameId, updatedGameData) {
   console.log(updatedGameData);
   updatedGameData.allGames.forEach(player => {
-    player.ID = gameId;
+    player = { "ID": gameId, ...player };
   });
-  
+
   fetch(`${editGameOnServer}${gameId}`, {
     method: 'PATCH',
     headers: {
