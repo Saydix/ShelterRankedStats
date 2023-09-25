@@ -411,11 +411,12 @@ async function editGame(gameId, data) {
       addGameDate: editGameDate.innerHTML,
       allGames: []
     };
-
+  
     const rows = editDataTbody.querySelectorAll('tbody tr');
     rows.forEach(row => {
       const cells = row.querySelectorAll('td');
       const player = {
+        ID: gameId, 
         username: cells[0].textContent,
         role: cells[1].textContent,
         points: parseFloat(cells[2].textContent),
@@ -424,19 +425,15 @@ async function editGame(gameId, data) {
       };
       updatedGameData.allGames.push(player);
     });
+    
     editGameConfirm(gameId, updatedGameData);
-    editConfirmation.style.display = 'none'
-  })
+    editConfirmation.style.display = 'none';
+  });
 }
 
 async function editGameConfirm(gameId, updatedGameData) {
   console.log(updatedGameData);
-  const updatedAllGames = updatedGameData.allGames.map(player => {
-    return { "ID": gameId, ...player };
-  });
-  console.log(updatedAllGames);
-
-  fetch(`${editGameOnServer}${gameId}`, {
+  fetch(`${updatedGameData}${gameId}`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json'
