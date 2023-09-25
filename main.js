@@ -433,7 +433,7 @@ async function editGame(gameId, data) {
 
 async function editGameConfirm(gameId, updatedGameData) {
   console.log(updatedGameData);
-  fetch(`${updatedGameData}${gameId}`, {
+  fetch(`${editGameOnServer}${gameId}`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json'
