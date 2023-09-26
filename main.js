@@ -432,6 +432,7 @@ async function editGame(gameId, data) {
       updatedGameData.allGames.push(player);
     });
     editGameConfirm(gameId, updatedGameData);
+    gameId = null;
     editConfirmation.style.display = 'none';
   }
 }
