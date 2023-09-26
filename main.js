@@ -430,6 +430,9 @@ async function editGame(gameId, data) {
     editConfirmation.style.display = 'none';
   }
   function onSaveClick() {
+    if(gameId === null) {
+      return
+    };
     editGameConfirm(gameId, updatedGameData);
     editConfirmation.style.display = 'none';
   }
