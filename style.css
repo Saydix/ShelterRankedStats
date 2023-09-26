@@ -654,6 +654,7 @@ left: 20px;
 .infoBoxWinRatio span {
   position: relative;
   top: -28px;
+  color: red;
 }
 .infoBoxWinRatio h3 {
   position: relative;
