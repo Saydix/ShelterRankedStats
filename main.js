@@ -366,69 +366,73 @@ async function editGame(gameId, data) {
   editDataTbody.innerHTML = '';
 
   const table = document.createElement('table');
-    table.classList.add('editTable');
+  table.classList.add('editTable');
 
-    const thead = document.createElement('thead');
-    const headerRow = document.createElement('tr');
-    headerRow.innerHTML = `
-      <th>Ник</th>
-      <th>Роль</th>
-      <th>Баллы</th>
-      <th>Победа?</th>
-      <th>Победа команды</th>
-    `;
-    thead.appendChild(headerRow);
-    table.appendChild(thead);
+  const thead = document.createElement('thead');
+  const headerRow = document.createElement('tr');
+  headerRow.innerHTML = `
+    <th>Ник</th>
+    <th>Роль</th>
+    <th>Баллы</th>
+    <th>Победа?</th>
+    <th>Победа команды</th>
+  `;
+  thead.appendChild(headerRow);
+  table.appendChild(thead);
 
     
-    editGameDate.innerHTML = game.addGameDate;
+  editGameDate.innerHTML = game.addGameDate;
 
-    const tbody = document.createElement('tbody');
-    game.allGames.forEach(player => {
-      const playerRow = document.createElement('tr');
-      playerRow.innerHTML = `
-        <td contenteditable="true">${player.username}</td>
-        <td contenteditable="true">${player.role}</td>
-        <td contenteditable="true">${player.points}</td>
-        <td contenteditable="true">${player.victory}</td>
-        <td contenteditable="true">${player.winnerCode}</td>
-      `;
-      tbody.appendChild(playerRow);
-    });
-    table.appendChild(tbody);
+  const tbody = document.createElement('tbody');
+  game.allGames.forEach(player => {
+    const playerRow = document.createElement('tr');
+    playerRow.innerHTML = `
+      <td contenteditable="true">${player.username}</td>
+      <td contenteditable="true">${player.role}</td>
+      <td contenteditable="true">${player.points}</td>
+      <td contenteditable="true">${player.victory}</td>
+      <td contenteditable="true">${player.winnerCode}</td>
+    `;
+    tbody.appendChild(playerRow);
+  });
+  table.appendChild(tbody);
 
-    editDataTbody.appendChild(table);
+  editDataTbody.appendChild(table);
 
-    const updatedGameData = {
-      addGameDate: editGameDate.innerHTML,
-      allGames: []
-    };
+  const updatedGameData = {
+    addGameDate: editGameDate.innerHTML,
+    allGames: []
+  };
   
-    const rows = editDataTbody.querySelectorAll('tbody tr');
-    rows.forEach(row => {
-      const cells = row.querySelectorAll('td');
-      const player = {
-        ID: gameId, 
-        username: cells[0].textContent,
-        role: cells[1].textContent,
-        points: parseFloat(cells[2].textContent),
-        victory: cells[3].textContent,
-        winnerCode: cells[4].textContent
-      };
-      updatedGameData.allGames.push(player);
-    });
+  const rows = editDataTbody.querySelectorAll('tbody tr');
+  rows.forEach(row => {
+    const cells = row.querySelectorAll('td');
+    const player = {
+      ID: gameId, 
+      username: cells[0].textContent,
+      role: cells[1].textContent,
+      points: parseFloat(cells[2].textContent),
+      victory: cells[3].textContent,
+      winnerCode: cells[4].textContent
+    };
+    updatedGameData.allGames.push(player);
+  });
 
-    editConfirmationButtonCancel.addEventListener('click', () => {
-      delete gameId;
-      delete updatedGameData;
-      editConfirmation.style.display = 'none';
-      editConfirmationButtonSaveEdit.removeEventListener('click', editGameConfirm);
-    });
+  editConfirmationButtonCancel.removeEventListener('click', onCancelClick);
+  editConfirmationButtonSaveEdit.removeEventListener('click', onSaveClick);
 
-  editConfirmationButtonSaveEdit.addEventListener('click', () => {
+  editConfirmationButtonCancel.addEventListener('click', onCancelClick);
+  editConfirmationButtonSaveEdit.addEventListener('click', onSaveClick);
+
+  function onCancelClick() {
+    gameId = null;
+    delete updatedGameData;
+    editConfirmation.style.display = 'none';
+  }
+  function onSaveClick() {
     editGameConfirm(gameId, updatedGameData);
     editConfirmation.style.display = 'none';
-  });
+  }
 }
 
 async function editGameConfirm(gameId, updatedGameData) {
