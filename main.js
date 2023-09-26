@@ -178,7 +178,7 @@ async function winRatioChart(data) {
   const civilianWins = allGames.filter(player => player.winnerCode !== 'Победа Мафии').length;
 
   const totalGamesCount = allGames.length;
-  const winRatio = ((mafiaWins / totalGamesCount) * 100).toFixed(2);
+  const winRatio = ((civilianWins / totalGamesCount) * 100).toFixed(2);
 
   const winRatioElement = document.getElementById('winRatio');
   winRatioElement.textContent = `${winRatio}%`;
