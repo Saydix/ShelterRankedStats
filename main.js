@@ -422,6 +422,7 @@ async function editGame(gameId, data) {
       gameId = null;
       delete updatedGameData;
       editConfirmation.style.display = 'none';
+      editConfirmationButtonSaveEdit.removeEventListener('click');
     });
 
   editConfirmationButtonSaveEdit.addEventListener('click', () => {
