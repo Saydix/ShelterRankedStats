@@ -414,8 +414,8 @@ async function editGame(gameId, data) {
       return
     }
     const updatedGameData = {
-      addGameDate: editGameDate.innerHTML,
-      allGames: []
+      allGames: [],
+      addGameDate: editGameDate.innerHTML
     };
     
     const rows = editDataTbody.querySelectorAll('tbody tr');
