@@ -419,10 +419,10 @@ async function editGame(gameId, data) {
     });
 
     editConfirmationButtonCancel.addEventListener('click', () => {
-      gameId = null;
+      delete gameId;
       delete updatedGameData;
       editConfirmation.style.display = 'none';
-      editConfirmationButtonSaveEdit.removeEventListener('click');
+      editConfirmationButtonSaveEdit.removeEventListener('click', editGameConfirm);
     });
 
   editConfirmationButtonSaveEdit.addEventListener('click', () => {
