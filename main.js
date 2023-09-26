@@ -399,25 +399,6 @@ async function editGame(gameId, data) {
 
   editDataTbody.appendChild(table);
 
-  const updatedGameData = {
-    addGameDate: editGameDate.innerHTML,
-    allGames: []
-  };
-  
-  const rows = editDataTbody.querySelectorAll('tbody tr');
-  rows.forEach(row => {
-    const cells = row.querySelectorAll('td');
-    const player = {
-      ID: gameId, 
-      username: cells[0].textContent,
-      role: cells[1].textContent,
-      points: parseFloat(cells[2].textContent),
-      victory: cells[3].textContent,
-      winnerCode: cells[4].textContent
-    };
-    updatedGameData.allGames.push(player);
-  });
-
   editConfirmationButtonCancel.removeEventListener('click', onCancelClick);
   editConfirmationButtonSaveEdit.removeEventListener('click', onSaveClick);
 
@@ -426,13 +407,30 @@ async function editGame(gameId, data) {
 
   function onCancelClick() {
     gameId = null;
-    delete updatedGameData;
     editConfirmation.style.display = 'none';
   }
   function onSaveClick() {
     if(gameId === null) {
       return
+    }
+    const updatedGameData = {
+      addGameDate: editGameDate.innerHTML,
+      allGames: []
     };
+    
+    const rows = editDataTbody.querySelectorAll('tbody tr');
+    rows.forEach(row => {
+      const cells = row.querySelectorAll('td');
+      const player = {
+        ID: gameId, 
+        username: cells[0].textContent,
+        role: cells[1].textContent,
+        points: parseFloat(cells[2].textContent),
+        victory: cells[3].textContent,
+        winnerCode: cells[4].textContent
+      };
+      updatedGameData.allGames.push(player);
+    });
     editGameConfirm(gameId, updatedGameData);
     editConfirmation.style.display = 'none';
   }
