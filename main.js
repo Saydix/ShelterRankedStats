@@ -437,6 +437,7 @@ async function editGame(gameId, data) {
   }
 }
 
+
 async function editGameConfirm(gameId, updatedGameData) {
   console.log(updatedGameData);
   fetch(`${editGameOnServer}${gameId}`, {
