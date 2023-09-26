@@ -399,26 +399,6 @@ async function editGame(gameId, data) {
 
     editDataTbody.appendChild(table);
 
-    editConfirmationButtonCancel.addEventListener('click', () => {
-      editConfirmation.style.display = 'none';
-    
-      editGameDate.innerHTML = game.addGameDate;
-      editDataTbody.innerHTML = '';
-    
-      game.allGames.forEach(player => {
-        const playerRow = document.createElement('tr');
-        playerRow.innerHTML = `
-          <td contenteditable="true">${player.username}</td>
-          <td contenteditable="true">${player.role}</td>
-          <td contenteditable="true">${player.points}</td>
-          <td contenteditable="true">${player.victory}</td>
-          <td contenteditable="true">${player.winnerCode}</td>
-        `;
-        editDataTbody.appendChild(playerRow);
-      });
-    });
-
-  editConfirmationButtonSaveEdit.addEventListener('click', () => {
     const updatedGameData = {
       addGameDate: editGameDate.innerHTML,
       allGames: []
@@ -437,7 +417,14 @@ async function editGame(gameId, data) {
       };
       updatedGameData.allGames.push(player);
     });
-    
+
+    editConfirmationButtonCancel.addEventListener('click', () => {
+      gameId = null;
+      updatedGameData = null;
+      editConfirmation.style.display = 'none';
+    });
+
+  editConfirmationButtonSaveEdit.addEventListener('click', () => {
     editGameConfirm(gameId, updatedGameData);
     editConfirmation.style.display = 'none';
   });
