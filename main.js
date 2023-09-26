@@ -66,13 +66,6 @@ async function getData() {
 
     const data = await response.json();
 
-    /* Лагает окно из-за перегруженности консоли :) 
-    data.forEach(item => {
-      console.log(`_id: ${item._id}, addGameDate: ${item.addGameDate}`);
-      console.table(item.allGames);
-      console.log('---------------------------------------------');
-    });
-    */
     console.log(data);
 
     const playerStats = {};
@@ -393,6 +386,9 @@ async function editGame(gameId, data) {
       <td contenteditable="true">${player.victory}</td>
       <td contenteditable="true">${player.winnerCode}</td>
     `;
+    const usernameCell = playerRow.querySelector('td:first-child');
+    usernameCell.textContent = player.username;
+    
     tbody.appendChild(playerRow);
   });
   table.appendChild(tbody);
