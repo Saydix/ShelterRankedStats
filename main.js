@@ -420,10 +420,7 @@ async function editGame(gameId, data) {
 
     editConfirmationButtonCancel.addEventListener('click', () => {
       gameId = null;
-      updatedGameData = {
-        addGameDate: null,
-        allGames: null,
-      };
+      delete updatedGameData;
       editConfirmation.style.display = 'none';
     });
 
