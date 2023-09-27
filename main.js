@@ -214,8 +214,8 @@ async function findBestDuo(data) {
           allCivilWinnersGroup.push(civilWinnersGroup);
       }
   }
-  console.table(allMafiaWinnersGroup);
-  console.table(allCivilWinnersGroup);
+  console.log(allMafiaWinnersGroup);
+  console.log(allCivilWinnersGroup);
 
   function findFrequentPairs(groupToFind) {
       const namePairsCount = {};
