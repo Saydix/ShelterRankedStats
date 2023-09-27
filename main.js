@@ -412,7 +412,7 @@ async function editGame(gameId, data) {
     gameId = null;
     editConfirmation.style.display = 'none';
     const gameList = document.getElementById('gameList');
-    gameList.style.overflow = 'hidden';
+    gameList.style.overflow = 'auto';
   }
   function onSaveClick() {
     if(gameId === null) {
