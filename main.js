@@ -864,7 +864,7 @@ async function getUpdatedRating(data) {
     vol: 0.06,
   };
 
-  const ranking = new Glicko2(settings);
+  const ranking = new glicko2.Glicko2(settings); 
 
   const allMatches = [];
 
@@ -873,7 +873,7 @@ async function getUpdatedRating(data) {
       return ranking.makePlayer();
     });
 
-    const race = Glicko2.makeRace(allPlayers.map((player) => [player]));
+    const race = glicko2.Glicko2.makeRace(allPlayers.map((player) => [player])); 
 
     const matches = race.getMatches();
 
@@ -893,6 +893,6 @@ async function getUpdatedRating(data) {
       };
     });
   });
-  console.log(updatedRatings);
+
   return updatedRatings;
 }
