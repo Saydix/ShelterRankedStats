@@ -411,6 +411,8 @@ async function editGame(gameId, data) {
   function onCancelClick() {
     gameId = null;
     editConfirmation.style.display = 'none';
+    const gameList = document.getElementById('gameList');
+    gameList.style.overflow = 'hidden';
   }
   function onSaveClick() {
     if(gameId === null) {
