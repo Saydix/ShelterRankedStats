@@ -340,6 +340,14 @@ async function editGameButton(data) {
       const gameId = row.cells[0].textContent;
       console.log('Клик эдит');
       editGame(gameId, data);
+
+      const gameList = document.getElementById('gameList');
+      const gameListTop = gameList.getBoundingClientRect().top;
+
+      const editConfirmation = document.getElementById('editConfirmation');
+      editConfirmation.style.top = `${gameListTop}px`
+      gameList.style.overflow = 'hidden';
+
     })  
   })  
 }
