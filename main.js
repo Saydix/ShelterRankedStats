@@ -487,7 +487,7 @@ async function findPricelessPlayer(data) {
   for (const username in playersScores) {
     playersScores[username] = Math.abs(playersScores[username]);
   }
-  console.log(playersScores);
+  console.table(playersScores);
   let maxScoreUser = null;
 
   for (const username in playersScores) {
