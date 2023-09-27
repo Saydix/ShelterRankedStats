@@ -351,8 +351,6 @@ async function editGame(gameId, data) {
   const editDataTbody = document.getElementById('editDataTbody');
   const editGameDate = document.getElementById('editGameDate');
 
-  onCancelClick();
-  
   editConfirmation.style.display = 'block';
 
   const game = data.find(item => item._id === gameId);
@@ -406,7 +404,6 @@ async function editGame(gameId, data) {
   function onCancelClick() {
     gameId = null;
     editConfirmation.style.display = 'none';
-    console.log('Окно закрылось!');
   }
   function onSaveClick() {
     if(gameId === null) {
