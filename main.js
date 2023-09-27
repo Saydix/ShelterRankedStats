@@ -229,8 +229,7 @@ async function findBestDuo(data) {
                   const sortedNames = [cleanedName1, cleanedName2].sort();
                   const pairKey = sortedNames.join(' / ');
                   namePairsCount[pairKey] = (namePairsCount[pairKey] || 0) + 1;
-                  console.log(namePairsCount);
-                  
+                  // console.log(namePairsCount);
               }
           }
       }
@@ -488,7 +487,7 @@ async function findPricelessPlayer(data) {
   for (const username in playersScores) {
     playersScores[username] = Math.abs(playersScores[username]);
   }
-
+  console.log(playersScores);
   let maxScoreUser = null;
 
   for (const username in playersScores) {
