@@ -814,7 +814,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
-
+/*
 async function getUpdatedRating(data) {
   const settings = {
     tau: 0.5,
@@ -853,5 +853,46 @@ async function getUpdatedRating(data) {
   });
 
   console.table(updatedRatings);
+  return updatedRatings;
+}
+*/
+async function getUpdatedRating(data) {
+  const settings = {
+    tau: 0.5,
+    rating: 1500,
+    rd: 200,
+    vol: 0.06,
+  };
+
+  const ranking = new Glicko2(settings);
+
+  const allMatches = [];
+
+  for (const game of data) {
+    const allPlayers = game.allGames.map((player) => {
+      return ranking.makePlayer();
+    });
+
+    const race = Glicko2.makeRace(allPlayers.map((player) => [player]));
+
+    const matches = race.getMatches();
+
+    allMatches.push(...matches);
+  }
+
+  ranking.updateRatings(allMatches);
+
+  const updatedRatings = data.map((game) => {
+    return game.allGames.map((player, index) => {
+      const glickoPlayer = allMatches[index].players[0];
+      return {
+        username: player.username,
+        newRating: glickoPlayer.getRating(),
+        newRD: glickoPlayer.getRd(),
+        newVolatility: glickoPlayer.getVol(),
+      };
+    });
+  });
+  console.log(updatedRatings);
   return updatedRatings;
 }
