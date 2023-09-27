@@ -342,10 +342,9 @@ async function editGameButton(data) {
       editGame(gameId, data);
 
       const gameList = document.getElementById('gameList');
-      const gameListTop = gameList.getBoundingClientRect().top;
-
       const editConfirmation = document.getElementById('editConfirmation');
-      editConfirmation.style.top = `${gameListTop}px`
+      const scrollPosition = gameList.scrollTop;
+      editConfirmation.style.top = `${scrollPosition}px`;
       gameList.style.overflow = 'hidden';
 
     })  
