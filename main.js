@@ -155,7 +155,7 @@ async function getData() {
     deleteGameInit();
     editGameButton(data);
 
-    getUpdatedRating(data);
+    calculateRolePercentages(data);
 
     loadingGamesIndicator.style.display = 'none';
     loadingGamesIndicator2.style.display = 'none';
@@ -814,85 +814,22 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
-/*
-async function getUpdatedRating(data) {
-  const settings = {
-    tau: 0.5,
-    rating: 1500,
-    rd: 200,
-    vol: 0.06,
-  };
-  const ranking = new glicko2.Glicko2(settings);
-
-  const allMatches = [];
-
-  for (const game of data) {
-    const allPlayers = game.allGames.map((player) => {
-      return ranking.makePlayer();
-    });
-
-    const race = glicko2.makeRace(allPlayers.map((player) => [player]));
-
-    const matches = race.getMatches();
-
-    allMatches.push(...matches);
-  }
-
-  ranking.updateRatings(allMatches);
-
-  const updatedRatings = data.map((game) => {
-    return game.allGames.map((player, index) => {
-      const glickoPlayer = allMatches[index].players[0];
-      return {
-        username: player.username,
-        newRating: glickoPlayer.getRating(),
-        newRD: glickoPlayer.getRd(),
-        newVolatility: glickoPlayer.getVol(),
-      };
-    });
-  });
-
-  console.table(updatedRatings);
-  return updatedRatings;
-}
-*/
-async function getUpdatedRating(data) {
-  const settings = {
-    tau: 0.5,
-    rating: 1500,
-    rd: 200,
-    vol: 0.06,
+function calculateRolePercentages(gameData) {
+  const roles = {
+    'Мирный': 0,
+    'Шериф': 0,
+    'Дон': 0,
+    'Мафия': 0,
   };
 
-  const ranking = new glicko2.Glicko2(settings); 
+  const totalPlayers = gameData.allGames.length;
 
-  const allMatches = [];
-
-  for (const game of data) {
-    const allPlayers = game.allGames.map((player) => {
-      return ranking.makePlayer();
-    });
-
-    const race = glicko2.Glicko2.makeRace(allPlayers.map((player) => [player])); 
-
-    const matches = race.getMatches();
-
-    allMatches.push(...matches);
-  }
-
-  ranking.updateRatings(allMatches);
-
-  const updatedRatings = data.map((game) => {
-    return game.allGames.map((player, index) => {
-      const glickoPlayer = allMatches[index].players[0];
-      return {
-        username: player.username,
-        newRating: glickoPlayer.getRating(),
-        newRD: glickoPlayer.getRd(),
-        newVolatility: glickoPlayer.getVol(),
-      };
-    });
+  gameData.allGames.forEach(player => {
+    roles[player.role]++;
   });
 
-  return updatedRatings;
+  for (const role in roles) {
+    roles[role] = ((roles[role] / totalPlayers) * 100).toFixed(2) + '%';
+  }
+  console.table(roles);
 }
