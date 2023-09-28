@@ -815,21 +815,31 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function calculateRolePercentages(gameData) {
-  const roles = {
-    'Мирный': 0,
-    'Шериф': 0,
-    'Дон': 0,
-    'Мафия': 0,
-  };
+  const playerRoleCounts = {}; 
+  const totalGames = gameData.length; 
 
-  const totalPlayers = gameData.allGames.length;
-
-  gameData.allGames.forEach(player => {
-    roles[player.role]++;
+  gameData.forEach(game => {
+      game.allGames.forEach(player => {
+          const playerName = player.username;
+          if (!playerRoleCounts[playerName]) {
+              playerRoleCounts[playerName] = {
+                  'Мирный': 0,
+                  'Шериф': 0,
+                  'Дон': 0,
+                  'Мафия': 0,
+              };
+          }
+          playerRoleCounts[playerName][player.role]++;
+      });
   });
 
-  for (const role in roles) {
-    roles[role] = ((roles[role] / totalPlayers) * 100).toFixed(2) + '%';
+ 
+  for (const playerName in playerRoleCounts) {
+      const playerRoles = playerRoleCounts[playerName];
+      for (const role in playerRoles) {
+          playerRoles[role] = ((playerRoles[role] / totalGames) * 100).toFixed(2) + '%';
+      }
   }
-  console.table(roles);
+
+  console.table(playerRoleCounts);
 }
