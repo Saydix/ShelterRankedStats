@@ -42,6 +42,7 @@ let gameUrl;
 const getStatsFromPolemica = 'https://shelterstats.glitch.me';
 const sendStatsOnServer = 'https://baseshelter.glitch.me/save-game';
 const getStatsFromServer = 'https://baseshelter.glitch.me/get-games';
+const getGlickoStatsFromSrever = 'https://baseshelter.glitch.me/get-glicko-stats';
 const deleteGameOnServer = 'https://baseshelter.glitch.me/delete-game/';
 const editGameOnServer = 'https://baseshelter.glitch.me/edit-game/';
 
@@ -63,7 +64,6 @@ async function getData() {
     if (!response.ok) {
       throw new Error('Ошибка при получении данных');
     }
-
     const data = await response.json();
 
     console.log(data);
@@ -95,15 +95,10 @@ async function getData() {
       cell4.innerHTML = '<div class="deleteButtonBlock"> <button class="deleteButton"> <svg viewBox="0 0 448 512" class="deleteButtonSvg"><path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"></path></svg> </button> </div>';
     });
 
-    const nickOrigins = { // Убрать, когда доделаю функци и ручной замены
-      'Расм': 'Rasm',
-      'Малавита': 'Ам0ндочка',
-    };
-
     data.forEach(game => {
       game.allGames.forEach(player => {
         const originalUsername = player.username;
-        const sortUsername = nickOrigins[originalUsername] || originalUsername;
+        const sortUsername =  originalUsername;
         if (!playerStats[sortUsername]) {
           playerStats[sortUsername] = {
             username: sortUsername,
@@ -138,6 +133,18 @@ async function getData() {
       }
     });
     
+    try {
+      const responseRating = await fetch(getGlickoStatsFromSrever);
+      if (!response.ok) {
+        throw new Error('Ошибка получения рейтинга');
+      }
+      const playerRating = await response.json();
+      console.table(playerRating);
+
+    } catch (error) {
+      console.error('Ошибка получения рейтинга:', error);
+    }
+
     sortedPlayers.forEach((player, index) => {
       const row = gameTable.insertRow();
       row.insertCell(0).textContent = index + 1;
