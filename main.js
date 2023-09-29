@@ -815,7 +815,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function calculateRolePercentages(gameData) {
-  const playerRoleCounts = {}; // Создаем объект для хранения количества ролей для каждого игрока
+  const playerRoleCounts = {}; 
 
   gameData.forEach(game => {
       game.allGames.forEach(player => {
@@ -832,7 +832,6 @@ function calculateRolePercentages(gameData) {
       });
   });
 
-  // Преобразуем количество ролей в проценты для каждого игрока
   for (const playerName in playerRoleCounts) {
       const playerRoles = playerRoleCounts[playerName];
       const totalPlayerGames = Object.values(playerRoles).reduce((acc, count) => acc + count, 0);
@@ -842,6 +841,5 @@ function calculateRolePercentages(gameData) {
       }
   }
 
-  // Выводим результат в виде таблицы
   console.table(playerRoleCounts);
 }
