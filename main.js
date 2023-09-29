@@ -132,18 +132,7 @@ async function getData() {
         return b.points / bGames - a.points / aGames;
       }
     });
-    
-    try {
-      const responseRating = await fetch(getGlickoStatsFromSrever);
-      if (!response.ok) {
-        throw new Error('Ошибка получения рейтинга');
-      }
-      const playerRating = await response.json();
-      console.table(playerRating);
 
-    } catch (error) {
-      console.error('Ошибка получения рейтинга:', error);
-    }
 
     sortedPlayers.forEach((player, index) => {
       const row = gameTable.insertRow();
@@ -154,6 +143,8 @@ async function getData() {
       row.insertCell(4).textContent = (player.points / player.games).toFixed(2);
     });
     
+    getGlickoRating();
+
     winRatioChart(data);
     findBestDuo(data);
     findPricelessPlayer(data);
@@ -173,6 +164,20 @@ async function getData() {
   }
 }
 getData();
+
+async function getGlickoRating() {
+  try {
+    const responseRating = await fetch(getGlickoStatsFromSrever);
+    if (!responseRating.ok) {
+      throw new Error('Ошибка получения рейтинга');
+    }
+    const playerRating = await response.json();
+    console.table(playerRating);
+
+  } catch (error) {
+    console.error('Ошибка получения рейтинга:', error);
+  }
+}
 
 async function winRatioChart(data) {
   const allGames = data.flatMap(game => game.allGames);
