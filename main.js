@@ -171,7 +171,7 @@ async function getGlickoRating() {
     if (!responseRating.ok) {
       throw new Error('Ошибка получения рейтинга');
     }
-    const playerRating = await response.json();
+    const playerRating = await responseRating.json();
     console.table(playerRating);
 
   } catch (error) {
