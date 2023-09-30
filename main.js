@@ -142,7 +142,7 @@ async function getData() {
         row.insertCell(2).textContent = player.games;
         row.insertCell(3).textContent = (player.points).toFixed(2);
         const realAvgPointSpan = document.createElement("span");
-        realAvgPointSpan.textContent = `${(player.points / player.games + (player.games / 1000)).toFixed(2)}`;
+        realAvgPointSpan.textContent = `${(player.points / player.games).toFixed(2)}`;
         realAvgPointSpan.style.color = "gray";
         realAvgPointSpan.style.fontSize = "12px";
         const cell4 = row.insertCell(4);
