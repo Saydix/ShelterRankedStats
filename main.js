@@ -118,19 +118,19 @@ async function getData() {
         const bGames = b.games;
       
         if (aGames >= 20 && bGames >= 20) {
-          return b.points / bGames - a.points / aGames;
+          return (b.points / bGames + b.games / 1000) - (a.points / aGames + a.games / 1000);
         } else if (aGames >= 20) {
           return -1;
         } else if (bGames >= 20) {
           return 1;
         } else if (aGames >= 10 && bGames >= 10) {
-          return b.points / bGames - a.points / aGames;
+          return (b.points / bGames + b.games / 1000) - (a.points / aGames + a.games / 1000);
         } else if (aGames >= 10) {
           return -1;
         } else if (bGames >= 10) {
           return 1;
         } else {
-          return b.points / bGames - a.points / aGames;
+          return (b.points / bGames + b.games / 1000) - (a.points / aGames + a.games / 1000);
         }
       });
 
@@ -860,3 +860,39 @@ function calculateRolePercentages(gameData) {
   console.table(playerRoleCounts);
 }
 
+// var chooseTodayButton = document.getElementById("chooseToday");
+// var chooseSeason5Button = document.getElementById("chooseSeason5");
+// var chooseSeason6Button = document.getElementById("chooseSeason6");
+
+// // Получаем элемент для отображения выбранного сезона
+// var selectedSeasonElement = document.getElementById("selectedSeason");
+
+// // Обработчики событий для кнопок
+// chooseTodayButton.addEventListener("click", function() {
+//     // Скрываем все сезоны, кроме выбранного
+//     selectedSeasonElement.innerText = "Сегодня";
+//     showSelectedSeason();
+// });
+
+// chooseSeason5Button.addEventListener("click", function() {
+//     // Скрываем все сезоны, кроме выбранного
+//     selectedSeasonElement.innerText = "Сезон 5";
+//     showSelectedSeason();
+// });
+
+// chooseSeason6Button.addEventListener("click", function() {
+//     // Скрываем все сезоны, кроме выбранного
+//     selectedSeasonElement.innerText = "Сезон 6";
+//     showSelectedSeason();
+// });
+
+// function showSelectedSeason() {
+//     // Получаем все кнопки сезонов
+//     var seasonButtons = document.querySelectorAll("#chooseSeason button");
+//     // Проходимся по каждой кнопке и скрываем их
+//     seasonButtons.forEach(function(button) {
+//         button.style.display = "none";
+//     });
+//     // Отображаем только выбранный сезон
+//     selectedSeasonElement.style.display = "inline";
+// }
