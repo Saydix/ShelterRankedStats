@@ -859,3 +859,4 @@ function calculateRolePercentages(gameData) {
 
   console.table(playerRoleCounts);
 }
+

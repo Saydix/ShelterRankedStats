@@ -156,28 +156,23 @@ input:checked + .switchThemeSlider::before {
   opacity:0.9;
 }
 
-#chooseSeason {
+#choosedSeason {
   float: left;
   margin-right:5px;
-  
 }
-#chooseSeason button {
+#choosedSeason button {
   width:100px;
   height:45.5px;
   border: 1px solid #000    
 }
-#chooseSeason span {
+#choosedSeason span {
   font-size:15px;
   font-weight:600
 }
-#chooseToday {
-  display: none;
-  transition: opacity 0.5s ease-in-out;
-}
-#chooseSeason6 {
-  display: none;
-}
 
+#chooseSeason {
+  display: none;
+}
 
 
 
