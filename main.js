@@ -145,7 +145,7 @@ async function getData() {
       });
 
     }
-    fillingTable(data);
+    await fillingTable(data);
     
     getGlickoRating();
 

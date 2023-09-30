@@ -174,7 +174,9 @@ input:checked + .switchThemeSlider::before {
   display: none;
   transition: opacity 0.5s ease-in-out;
 }
-#
+#chooseSeason6 {
+  display: none;
+}
 
 
 
