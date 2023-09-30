@@ -140,7 +140,7 @@ async function getData() {
       row.insertCell(1).textContent = player.username;
       row.insertCell(2).textContent = player.games;
       row.insertCell(3).textContent = (player.points).toFixed(2);
-      row.insertCell(4).textContent = (player.points / player.games).toFixed(2);
+      row.insertCell(4).textContent = (player.points / player.games + (player.games / 1000) ).toFixed(2);
     });
     
     getGlickoRating();
