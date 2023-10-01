@@ -52,16 +52,16 @@ let playersJson;
 const gameTable = document.getElementById('gameTable');
 const gameTableData = document.getElementById('gameTableData');
 
+let choosedSeason = localStorage.getItem('choosedSeason');
+if (choosedSeason === null) {
+  localStorage.setItem('choosedSeason', 'season5'); // Менять Сезон по дефолту
+}
+
 async function getData() {
   const loadingGamesIndicator = document.getElementById('loadingGamesAnimation');
   const loadingGamesIndicator2 = document.getElementById('loadingGamesAnimation2');
   loadingGamesIndicator.style.display = 'block';
   loadingGamesIndicator2.style.display = 'block';
-
-  let choosedSeason = localStorage.getItem('choosedSeason');
-  if (choosedSeason === null) {
-    localStorage.setItem('choosedSeason', 'season5'); // Менять Сезон по дефолту
-  }
 
   try {
     const response = await fetch(getStatsFromServer);
@@ -71,117 +71,130 @@ async function getData() {
     const responsedData = await response.json();
     console.log(responsedData);
 
-    //console.log(data);
-
-    async function fillingTable(data) {
-      const playerStats = {};
-      const totalGamesList = [];
-
-      data.forEach(item => {
-        if(item._id) {
-          totalGamesList.push(item._id);
-        }
-      });
-      const totalGamesCounter = document.getElementById('totalGames');
-      totalGamesCounter.textContent = totalGamesList.length;
-      
-      const gameListId = document.getElementById('gameListId');
-      totalGamesList.forEach(id => {
-        const row = gameListId.insertRow();
-        const cell1 = row.insertCell(0);
-        const cell2 = row.insertCell(1);
-        const cell3 = row.insertCell(2);
-        const cell4 = row.insertCell(3);
-
-        cell1.textContent = id;
-        cell2.innerHTML = '<div class="editButtonContainer"> <button class="editButton"> <svg fill="#000000" width="20px" height="20px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21,12a1,1,0,0,0-1,1v6a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V5A1,1,0,0,1,5,4h6a1,1,0,0,0,0-2H5A3,3,0,0,0,2,5V19a3,3,0,0,0,3,3H19a3,3,0,0,0,3-3V13A1,1,0,0,0,21,12ZM6,12.76V17a1,1,0,0,0,1,1h4.24a1,1,0,0,0,.71-.29l6.92-6.93h0L21.71,8a1,1,0,0,0,0-1.42L17.47,2.29a1,1,0,0,0-1.42,0L13.23,5.12h0L6.29,12.05A1,1,0,0,0,6,12.76ZM16.76,4.41l2.83,2.83L18.17,8.66,15.34,5.83ZM8,13.17l5.93-5.93,2.83,2.83L10.83,16H8Z"/></svg> </button> </div>';
-        const gameData = data.find(item => item._id === id);
-        const gameDate = gameData && gameData.addGameDate ? gameData.addGameDate : '??/??/????';
-        cell3.textContent = gameDate;
-        cell4.innerHTML = '<div class="deleteButtonBlock"> <button class="deleteButton"> <svg viewBox="0 0 448 512" class="deleteButtonSvg"><path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"></path></svg> </button> </div>';
-      });
-
-      data.forEach(game => {
-        game.allGames.forEach(player => {
-          const originalUsername = player.username;
-          const sortUsername =  originalUsername;
-          if (!playerStats[sortUsername]) {
-            playerStats[sortUsername] = {
-              username: sortUsername,
-              games: 0,
-              points: 0,
-            };
-          }
-          playerStats[sortUsername].games++;
-          playerStats[sortUsername].points += player.points;
-        });
-      });
-
-
-      const sortedPlayers = Object.values(playerStats).sort((a, b) => {
-        const aGames = a.games;
-        const bGames = b.games;
-      
-        if (aGames >= 20 && bGames >= 20) {
-          return (b.points / bGames + b.games / 1000) - (a.points / aGames + a.games / 1000);
-        } else if (aGames >= 20) {
-          return -1;
-        } else if (bGames >= 20) {
-          return 1;
-        } else if (aGames >= 10 && bGames >= 10) {
-          return (b.points / bGames + b.games / 1000) - (a.points / aGames + a.games / 1000);
-        } else if (aGames >= 10) {
-          return -1;
-        } else if (bGames >= 10) {
-          return 1;
-        } else {
-          return (b.points / bGames + b.games / 1000) - (a.points / aGames + a.games / 1000);
-        }
-      });
-
-
-      sortedPlayers.forEach((player, index) => {
-        const row = gameTable.insertRow();
-        row.insertCell(0).textContent = index + 1;
-        row.insertCell(1).textContent = player.username;
-        row.insertCell(2).textContent = player.games;
-        row.insertCell(3).textContent = (player.points).toFixed(2);
-        const realAvgPointSpan = document.createElement("span");
-        realAvgPointSpan.textContent = `${(player.points / player.games).toFixed(2)}`;
-        realAvgPointSpan.style.position = "relative";
-        realAvgPointSpan.style.top = "-5px";
-        realAvgPointSpan.style.color = "gray";
-        realAvgPointSpan.style.fontSize = "10px";
-        const cell4 = row.insertCell(4);
-        cell4.textContent = (player.points / player.games + (player.games / 1000)).toFixed(2);
-        cell4.appendChild(realAvgPointSpan);
-    });
-
-    }
-    await сhooseSeason(data)
-    
-    
-    getGlickoRating();
-
-    winRatioChart(data);
-    findBestDuo(data);
-    findPricelessPlayer(data);
-    findConsecutiveWinner(data);
-    
-    deleteGameInit();
-    editGameButton(data);
-
-    calculateRolePercentages(data);
+    dataHandling(responsedData);
 
     loadingGamesIndicator.style.display = 'none';
     loadingGamesIndicator2.style.display = 'none';
   } catch (error) {
-    console.error('Произошла ошибка:', error);
+    console.error('Произошла ошибка при получении данных:', error);
     loadingGamesIndicator.style.display = 'none';
     loadingGamesIndicator2.style.display = 'none';
   }
 }
 getData();
+dataHandling(responsedData) {
+  const localStoreSeason = localStorage.getItem('choosedSeason');
+  if (localStoreSeason === 'season5') {
+    const data = responsedData.season5;
+  } else if (localStoreSeason === 'season6') {
+    const data = responsedData.season6;
+  } else if (localStoreSeason === 'today'){
+    const data = responsedData.season5;
+  }
+
+  console.log(data);
+  
+
+  async function fillingTable(data) {
+    const playerStats = {};
+    const totalGamesList = [];
+
+    data.forEach(item => {
+      if(item._id) {
+        totalGamesList.push(item._id);
+      }
+    });
+    const totalGamesCounter = document.getElementById('totalGames');
+    totalGamesCounter.textContent = totalGamesList.length;
+    
+    const gameListId = document.getElementById('gameListId');
+    totalGamesList.forEach(id => {
+      const row = gameListId.insertRow();
+      const cell1 = row.insertCell(0);
+      const cell2 = row.insertCell(1);
+      const cell3 = row.insertCell(2);
+      const cell4 = row.insertCell(3);
+
+      cell1.textContent = id;
+      cell2.innerHTML = '<div class="editButtonContainer"> <button class="editButton"> <svg fill="#000000" width="20px" height="20px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21,12a1,1,0,0,0-1,1v6a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V5A1,1,0,0,1,5,4h6a1,1,0,0,0,0-2H5A3,3,0,0,0,2,5V19a3,3,0,0,0,3,3H19a3,3,0,0,0,3-3V13A1,1,0,0,0,21,12ZM6,12.76V17a1,1,0,0,0,1,1h4.24a1,1,0,0,0,.71-.29l6.92-6.93h0L21.71,8a1,1,0,0,0,0-1.42L17.47,2.29a1,1,0,0,0-1.42,0L13.23,5.12h0L6.29,12.05A1,1,0,0,0,6,12.76ZM16.76,4.41l2.83,2.83L18.17,8.66,15.34,5.83ZM8,13.17l5.93-5.93,2.83,2.83L10.83,16H8Z"/></svg> </button> </div>';
+      const gameData = data.find(item => item._id === id);
+      const gameDate = gameData && gameData.addGameDate ? gameData.addGameDate : '??/??/????';
+      cell3.textContent = gameDate;
+      cell4.innerHTML = '<div class="deleteButtonBlock"> <button class="deleteButton"> <svg viewBox="0 0 448 512" class="deleteButtonSvg"><path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"></path></svg> </button> </div>';
+    });
+
+    data.forEach(game => {
+      game.allGames.forEach(player => {
+        const originalUsername = player.username;
+        const sortUsername =  originalUsername;
+        if (!playerStats[sortUsername]) {
+          playerStats[sortUsername] = {
+            username: sortUsername,
+            games: 0,
+            points: 0,
+          };
+        }
+        playerStats[sortUsername].games++;
+        playerStats[sortUsername].points += player.points;
+      });
+    });
+
+
+    const sortedPlayers = Object.values(playerStats).sort((a, b) => {
+      const aGames = a.games;
+      const bGames = b.games;
+    
+      if (aGames >= 20 && bGames >= 20) {
+        return (b.points / bGames + b.games / 1000) - (a.points / aGames + a.games / 1000);
+      } else if (aGames >= 20) {
+        return -1;
+      } else if (bGames >= 20) {
+        return 1;
+      } else if (aGames >= 10 && bGames >= 10) {
+        return (b.points / bGames + b.games / 1000) - (a.points / aGames + a.games / 1000);
+      } else if (aGames >= 10) {
+        return -1;
+      } else if (bGames >= 10) {
+        return 1;
+      } else {
+        return (b.points / bGames + b.games / 1000) - (a.points / aGames + a.games / 1000);
+      }
+    });
+
+
+    sortedPlayers.forEach((player, index) => {
+      const row = gameTable.insertRow();
+      row.insertCell(0).textContent = index + 1;
+      row.insertCell(1).textContent = player.username;
+      row.insertCell(2).textContent = player.games;
+      row.insertCell(3).textContent = (player.points).toFixed(2);
+      const realAvgPointSpan = document.createElement("span");
+      realAvgPointSpan.textContent = `${(player.points / player.games).toFixed(2)}`;
+      realAvgPointSpan.style.position = "relative";
+      realAvgPointSpan.style.top = "-5px";
+      realAvgPointSpan.style.color = "gray";
+      realAvgPointSpan.style.fontSize = "10px";
+      const cell4 = row.insertCell(4);
+      cell4.textContent = (player.points / player.games + (player.games / 1000)).toFixed(2);
+      cell4.appendChild(realAvgPointSpan);
+  });
+
+  }
+  fillingTable(data);
+  
+  
+  getGlickoRating();
+
+  winRatioChart(data);
+  findBestDuo(data);
+  findPricelessPlayer(data);
+  findConsecutiveWinner(data);
+  
+  deleteGameInit();
+  editGameButton(data);
+
+  calculateRolePercentages(data);
+}
 
 async function getGlickoRating() {
   try {
