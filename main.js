@@ -82,7 +82,7 @@ async function getData() {
   }
 }
 getData();
-dataHandling(responsedData) {
+async function dataHandling(responsedData) {
   const localStoreSeason = localStorage.getItem('choosedSeason');
   if (localStoreSeason === 'season5') {
     const data = responsedData.season5;
