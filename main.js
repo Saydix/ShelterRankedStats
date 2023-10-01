@@ -72,7 +72,7 @@ async function getData() {
     console.log(responsedData);
 
     if 
-    const data = 
+    const data;
 
     console.log(data);
 
