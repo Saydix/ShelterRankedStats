@@ -158,24 +158,35 @@ input:checked + .switchThemeSlider::before {
 
 #choosedSeason {
   float: left;
-  margin-right:5px;
+  margin-right: 5px;
 }
 #choosedSeason button {
-  width:100px;
-  height:45.5px;
-  border: 1px solid #000    
+  width: 100px;
+  height: 45.5px;
+  border: 1px solid #000;
 }
 #choosedSeason span {
-  font-size:15px;
-  font-weight:600
+  font-size: 15px;
+  font-weight: 600;
 }
-
 #chooseSeason {
   display: none;
 }
+#chooseToday {
+  transform: translateX(-100%);
+  transition: transform 0.5s ease;
+}
+#chooseSeason button {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
 
 
 
+
+.gameTableStyle td:last-child {
+  transform: translateX(10px);
+}
 
 .gameTableStyle {
   width: 100%;

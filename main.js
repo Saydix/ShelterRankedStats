@@ -52,19 +52,39 @@ let playersJson;
 const gameTable = document.getElementById('gameTable');
 const gameTableData = document.getElementById('gameTableData');
 
-async function getData() {
+async function сhooseSeason(data) {
+  let choosedSeason = localStorage.getItem('choosedSeason');
+  if (choosedSeason === null) {
+    localStorage.setItem('choosedSeason', 'season5'); // Менять Сезон по дефолту
+    
+    await fillingTable(data);
+  } else if ()
 
+
+  console.log(choosedSeason);
+}
+
+async function getData() {
   const loadingGamesIndicator = document.getElementById('loadingGamesAnimation');
   const loadingGamesIndicator2 = document.getElementById('loadingGamesAnimation2');
   loadingGamesIndicator.style.display = 'block';
   loadingGamesIndicator2.style.display = 'block';
+
+  let choosedSeason = localStorage.getItem('choosedSeason');
+  if (choosedSeason === null) {
+    localStorage.setItem('choosedSeason', 'season5'); // Менять Сезон по дефолту
+  }
 
   try {
     const response = await fetch(getStatsFromServer);
     if (!response.ok) {
       throw new Error('Ошибка при получении данных');
     }
-    const data = await response.json();
+    const responsedData = await response.json();
+    console.log(responsedData);
+
+    if 
+    const data = 
 
     console.log(data);
 
@@ -153,7 +173,8 @@ async function getData() {
     });
 
     }
-    await fillingTable(data);
+    await сhooseSeason(data)
+    
     
     getGlickoRating();
 
@@ -868,39 +889,53 @@ function calculateRolePercentages(gameData) {
   console.table(playerRoleCounts);
 }
 
-// var chooseTodayButton = document.getElementById("chooseToday");
-// var chooseSeason5Button = document.getElementById("chooseSeason5");
-// var chooseSeason6Button = document.getElementById("chooseSeason6");
 
-// // Получаем элемент для отображения выбранного сезона
-// var selectedSeasonElement = document.getElementById("selectedSeason");
 
-// // Обработчики событий для кнопок
-// chooseTodayButton.addEventListener("click", function() {
-//     // Скрываем все сезоны, кроме выбранного
-//     selectedSeasonElement.innerText = "Сегодня";
-//     showSelectedSeason();
-// });
+// Выбор сезона
+document.addEventListener('DOMContentLoaded', function () {
+  
 
-// chooseSeason5Button.addEventListener("click", function() {
-//     // Скрываем все сезоны, кроме выбранного
-//     selectedSeasonElement.innerText = "Сезон 5";
-//     showSelectedSeason();
-// });
 
-// chooseSeason6Button.addEventListener("click", function() {
-//     // Скрываем все сезоны, кроме выбранного
-//     selectedSeasonElement.innerText = "Сезон 6";
-//     showSelectedSeason();
-// });
 
-// function showSelectedSeason() {
-//     // Получаем все кнопки сезонов
-//     var seasonButtons = document.querySelectorAll("#chooseSeason button");
-//     // Проходимся по каждой кнопке и скрываем их
-//     seasonButtons.forEach(function(button) {
-//         button.style.display = "none";
-//     });
-//     // Отображаем только выбранный сезон
-//     selectedSeasonElement.style.display = "inline";
-// }
+
+  // const selectedSeason = document.getElementById('selectedSeason');
+  // const chooseToday = document.getElementById('chooseToday');
+  // const chooseSeason = document.getElementById('chooseSeason');
+  // const chooseSeasonButtons = chooseSeason.querySelectorAll('button');
+
+  // // Получаем значение из localStorage или устанавливаем по умолчанию
+  // let choosedSeason = localStorage.getItem('choosedSeason')
+
+  // // Обновляем текст выбранного сезона
+  // selectedSeason.textContent = choosedSeason === 'today' ? 'Сегодня' : `Сезон ${choosedSeason}`;
+
+  // // Плавное появление сезонов при нажатии на кнопку
+  // function showSeasons() {
+  //   chooseToday.style.transform = 'translateX(0%)';
+  //   chooseSeasonButtons.forEach((button, index) => {
+  //     setTimeout(() => {
+  //       button.style.opacity = 1;
+  //     }, 100 * (index + 1));
+  //   });
+  // }
+
+  // // Обработчики событий для кнопок выбора сезона и "Сегодня"
+  // chooseToday.addEventListener('click', function () {
+  //   choosedSeason = 'today';
+  //   localStorage.setItem('choosedSeason', choosedSeason);
+  //   selectedSeason.textContent = 'Сегодня';
+  //   showSeasons();
+  // });
+
+  // chooseSeasonButtons.forEach((button, index) => {
+  //   button.addEventListener('click', function () {
+  //     choosedSeason = `season${index + 5}`;
+  //     localStorage.setItem('choosedSeason', choosedSeason);
+  //     selectedSeason.textContent = `Сезон ${index + 5}`;
+  //     showSeasons();
+  //   });
+  // });
+
+  // // Показываем сезоны при загрузке страницы
+  // showSeasons();
+});
