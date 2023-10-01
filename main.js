@@ -52,18 +52,6 @@ let playersJson;
 const gameTable = document.getElementById('gameTable');
 const gameTableData = document.getElementById('gameTableData');
 
-async function сhooseSeason(data) {
-  let choosedSeason = localStorage.getItem('choosedSeason');
-  if (choosedSeason === null) {
-    localStorage.setItem('choosedSeason', 'season5'); // Менять Сезон по дефолту
-    
-    await fillingTable(data);
-  } else if ()
-
-
-  console.log(choosedSeason);
-}
-
 async function getData() {
   const loadingGamesIndicator = document.getElementById('loadingGamesAnimation');
   const loadingGamesIndicator2 = document.getElementById('loadingGamesAnimation2');
