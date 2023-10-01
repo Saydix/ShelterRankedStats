@@ -71,10 +71,7 @@ async function getData() {
     const responsedData = await response.json();
     console.log(responsedData);
 
-    if 
-    const data;
-
-    console.log(data);
+    //console.log(data);
 
     async function fillingTable(data) {
       const playerStats = {};
