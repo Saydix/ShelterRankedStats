@@ -120,7 +120,6 @@ document.addEventListener('DOMContentLoaded', function() {
           button.id = season; 
           button.addEventListener('click', () => {
             localStorage.setItem('choosedSeason', season);
-            localStorage.setItem('pageReloadWithMethod', 'true');
             location.reload();
           });
           container.appendChild(button);
@@ -132,7 +131,6 @@ document.addEventListener('DOMContentLoaded', function() {
     if(todayButton) {
       todayButton.addEventListener('click', () => {
         localStorage.setItem('choosedSeason', 'today');
-        localStorage.setItem('pageReloadWithMethod', 'true');
         location.reload();
       });
     }
@@ -150,6 +148,7 @@ async function dataHandling(responsedData) {
       const num = parseInt(part);
       return num < 10 ? `0${num}` : `${num}`;
     }).join('/');
+    console.log(formattedCurrentDate);
     data  = data.filter(game => game.addGameDate === formattedCurrentDate);
   } else if (localStoreSeason === 'season5') {
     data = responsedData.season5;
