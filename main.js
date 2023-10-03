@@ -1,11 +1,7 @@
-console.log('Version: 2.8');
+console.log('Version: 3.1');
 console.log('Добавлено: ');
 console.log('Исправлено: ');
 
-
-// Убрать id у каждого игрока
-
-// Разные ники, добавлять в nickOrigins. 91
 
 // Нажатие с интересной инфой на каждую плитку
 
@@ -49,13 +45,9 @@ const editGameOnServer = 'https://baseshelter.glitch.me/edit-game/';
 let players;
 let playersJson;
 
-const gameTable = document.getElementById('gameTable');
-const gameTableData = document.getElementById('gameTableData');
+let responsedData;
 
-let choosedSeason = localStorage.getItem('choosedSeason');
-if (choosedSeason === null) {
-  localStorage.setItem('choosedSeason', 'season5'); // Менять Сезон по дефолту
-}
+const gameTable = document.getElementById('gameTable');
 
 async function getData() {
   const loadingGamesIndicator = document.getElementById('loadingGamesAnimation');
@@ -68,7 +60,8 @@ async function getData() {
     if (!response.ok) {
       throw new Error('Ошибка при получении данных');
     }
-    const responsedData = await response.json();
+    
+    //responsedData = await response.json();
     console.log(responsedData);
 
     dataHandling(responsedData);
@@ -82,19 +75,124 @@ async function getData() {
   }
 }
 getData();
+
+document.addEventListener('DOMContentLoaded', function() {
+  let choosedSeason = localStorage.getItem('choosedSeason');
+  if (choosedSeason === null) {
+    localStorage.setItem('choosedSeason', 'season5'); // Менять Сезон по дефолту
+  }
+  const choosedSeasonButton = document.getElementById('choosedSeasonButton');
+  if (choosedSeason === 'today') {
+    choosedSeasonButton.innerHTML = 'Сегодня';
+  } else if (choosedSeason === 'season5') {
+    choosedSeasonButton.innerHTML = 'Сезон 5';
+  } else if (choosedSeason === 'season6') {
+    choosedSeasonButton.innerHTML = 'Сезон 6';
+  }
+
+  const allSeasons = {
+    season5: 'Сезон 5',
+    season6: 'Сезон 6',
+  };
+
+  document.getElementById('choosedSeasonButton').addEventListener('click', (event) => {
+    const container = document.getElementById('seasonButtonContainer');
+    const todayButton = document.getElementById('todayButton');
+
+    const activeContainer = document.getElementById('seasonButtonContainer-active');
+    const activeTodayButton = document.getElementById('todayButton-active');
+
+    function clearActiveContainer() {
+      if (activeContainer) {
+        activeContainer.innerHTML = '';
+        activeContainer.id = 'seasonButtonContainer';
+        activeTodayButton.id = 'todayButton';
+      }
+    }
+
+    clearActiveContainer();
+
+    if (container && container.id === 'seasonButtonContainer') {
+      for (const season in allSeasons) {
+        if (allSeasons.hasOwnProperty(season)) {
+          const button = document.createElement('button');
+          button.textContent = allSeasons[season];
+          button.id = season; 
+          button.addEventListener('click', () => {
+            localStorage.setItem('choosedSeason', season);
+            location.reload();
+          });
+          container.appendChild(button);
+        }
+      }
+      container.id += '-active';
+      todayButton.id += '-active';
+    }
+    todayButton.addEventListener('click', () => {
+      localStorage.setItem('choosedSeason', 'today');
+      location.reload();
+    });
+  });
+
+});
+
 async function dataHandling(responsedData) {
   const localStoreSeason = localStorage.getItem('choosedSeason');
-  let data;
-  if (localStoreSeason === 'season5') {
+  let data = [];
+  if (localStoreSeason === 'today') {
+    const currentDateLosAngeles = new Date().toLocaleString("en-US", { timeZone: "America/Los_Angeles" });
+    const currentDateString = currentDateLosAngeles.split(',')[0].trim();
+    const formattedCurrentDate = currentDateString.split('/').map(part => {
+      const num = parseInt(part);
+      return num < 10 ? `0${num}` : `${num}`;
+    }).join('/');
+    data  = data.filter(game => game.addGameDate === formattedCurrentDate);
+  } else if (localStoreSeason === 'season5') {
     data = responsedData.season5;
   } else if (localStoreSeason === 'season6') {
     data = responsedData.season6;
-  } else if (localStoreSeason === 'today'){
-    data = responsedData.season5;
+  } else {
+    console.log('Сезон не найден');
   }
-
   console.log(data);
   
+  fillingTable(data);
+  
+
+  // Список всех игр и сортировка
+  document.addEventListener('DOMContentLoaded', function () {
+    const infoBoxTotalGames = document.getElementById('infoBoxTotalGames');
+    const gameList = document.getElementById('gameList');
+    const arrowIcon = document.getElementById('arrowIcon');
+
+    infoBoxTotalGames.addEventListener('click', function () {
+        if (event.target === gameList || gameList.contains(event.target)) {
+          return;
+        }
+        if (gameList.style.display === 'none') {
+          gameList.style.display = 'block';
+          gameList.classList.add('opened');
+          arrowIcon.classList.add('opened');
+
+          function sortGamesById() {
+            const tableBody = document.getElementById('gameListId');
+            const rows = Array.from(tableBody.getElementsByTagName('tr'));
+            rows.sort((a, b) => {
+              const idA = parseInt(a.querySelector('td:first-child').textContent);
+              const idB = parseInt(b.querySelector('td:first-child').textContent);
+              return idB - idA;
+            });
+            rows.forEach(row => tableBody.removeChild(row));
+            rows.forEach(row => tableBody.appendChild(row));
+          }
+          sortGamesById();
+        } else {
+          gameList.style.display = 'none';
+          gameList.classList.remove('opened');
+          arrowIcon.classList.remove('opened');
+        }
+    });
+  });
 
   async function fillingTable(data) {
     const playerStats = {};
@@ -178,13 +276,11 @@ async function dataHandling(responsedData) {
       const cell4 = row.insertCell(4);
       cell4.textContent = (player.points / player.games + (player.games / 1000)).toFixed(2);
       cell4.appendChild(realAvgPointSpan);
-  });
+    });
 
   }
-  fillingTable(data);
   
-  
-  getGlickoRating();
+  // getGlickoRating();
 
   winRatioChart(data);
   findBestDuo(data);
@@ -293,6 +389,123 @@ async function findBestDuo(data) {
   const bestMafiaPair = findFrequentPairs(allMafiaWinnersGroup);
   mafiaDuo.textContent = bestMafiaPair;
 }
+async function findPricelessPlayer(data) {
+  const playersScores = {};
+
+  data.forEach(game => {
+    game.allGames.forEach(playerGame => {
+      const username = playerGame.username;
+      const points = playerGame.points;
+
+      if (points < 0) {
+        if (playersScores[username]) {
+          playersScores[username] += points;
+        } else {
+          playersScores[username] = points;
+        }
+      }
+      
+    });
+  });
+
+  for (const username in playersScores) {
+    playersScores[username] = Math.abs(playersScores[username]);
+  }
+  console.table(playersScores);
+  let maxScoreUser = null;
+
+  for (const username in playersScores) {
+    if (maxScoreUser === null || playersScores[username] > playersScores[maxScoreUser]) {
+      maxScoreUser = username;
+    }
+  }
+
+  const pricelessPlayer = document.getElementById('pricelessPlayer');
+  pricelessPlayer.textContent = maxScoreUser;
+}
+async function findConsecutiveWinner(data) {
+  data.sort(function (a, b) {
+    return parseInt(a._id) - parseInt(b._id);
+  });
+
+  data.forEach(function (game) {
+      game.allGames.sort(function (gameA, gameB) {
+          return parseInt(gameA.ID) - parseInt(gameB.ID);
+      });
+  });
+
+  let results = {};
+
+  data.forEach(function (game){
+    game.allGames.forEach(function (playerGame) {
+      let username = playerGame.username;
+      let role = playerGame.role;
+      let victory = playerGame.victory;
+
+      if (!results[username]) {
+        results[username] = { mafiaStreak: 0, mafiaMaxStreak: 0, civilianStreak: 0, civilianMaxStreak: 0 };
+      }
+
+      if ((role === "Мафия" || role === "Дон") && victory === "Победа") {
+        results[username].mafiaStreak++;
+        if (results[username].mafiaStreak > results[username].mafiaMaxStreak) {
+            results[username].mafiaMaxStreak = results[username].mafiaStreak;
+        }
+      } else if ((role === "Мафия" || role === "Дон") && victory === "Поражение") {
+        results[username].mafiaStreak = 0;
+      } else if ((role === "Мирный" || role === "Шериф") && victory === "Победа") {
+        results[username].civilianStreak++;
+        if (results[username].civilianStreak > results[username].civilianMaxStreak) {
+            results[username].civilianMaxStreak = results[username].civilianStreak;
+        }
+      } else if ((role === "Мирный" || role === "Шериф") && victory === "Поражение") {
+        results[username].civilianStreak = 0;
+      }
+    });
+  });
+
+  console.table(results);
+
+  let maxMafiaStreak = 0;
+  let maxMafiaStreakUsername = '';
+  let maxCivilStreak = 0;
+  let maxCivilStreakUsername = '';
+
+  const civilBestStreakFirePngContainer = document.getElementById('civilBestStreakFirePngContainer');
+  const mafiaBestStreakFirePngContainer = document.getElementById('mafiaBestStreakFirePngContainer');
+  
+  for (const username in results) {
+    const userData = results[username];
+
+    if (userData.mafiaMaxStreak > maxMafiaStreak) {
+      maxMafiaStreak = userData.mafiaMaxStreak;
+      maxMafiaStreakUsername = username;
+      if (userData.mafiaMaxStreak == userData.mafiaStreak) {
+        mafiaBestStreakFirePngContainer.style.display = 'block';
+      } else {
+        mafiaBestStreakFirePngContainer.style.display = 'none';
+      }
+    }
+    if (userData.civilianMaxStreak > maxCivilStreak) {
+      maxCivilStreak = userData.civilianMaxStreak;
+      maxCivilStreakUsername = username;
+      if (userData.civilianMaxStreak == userData.civilianStreak) {
+        civilBestStreakFirePngContainer.style.display = 'block'; 
+      } else {
+        civilBestStreakFirePngContainer.style.display = 'none';
+      }
+    }
+  }
+  const civilBestStreakElement = document.getElementById('civilBestStreak');
+  const civilBestStreakCounterElement = document.getElementById('civilBestStreakCounter')
+  const mafiaBestStreakElement = document.getElementById('mafiaBestStreak');
+  const mafiaBestStreakCounterElement = document.getElementById('mafiaBestStreakCounter');
+
+  civilBestStreakElement.textContent = maxCivilStreakUsername;
+  civilBestStreakCounterElement.textContent = maxCivilStreak;
+  mafiaBestStreakElement.textContent = maxMafiaStreakUsername;
+  mafiaBestStreakCounterElement.textContent = maxMafiaStreak;
+}
 
 let isHidden;
 window.addEventListener('load', () => {
@@ -301,7 +514,6 @@ window.addEventListener('load', () => {
     deleteConfirmationRememberChoice.checked = 'true';
   }
 });
-
 async function deleteGameInit() {
   let deleteGameInitCount = localStorage.getItem('deleteGameInitCount');
   if (!deleteGameInitCount) {
@@ -487,8 +699,6 @@ async function editGame(gameId, data) {
     editConfirmation.style.display = 'none';
   }
 }
-
-
 async function editGameConfirm(gameId, updatedGameData) {
   console.log(updatedGameData);
   fetch(`${editGameOnServer}${gameId}`, {
@@ -509,127 +719,27 @@ async function editGameConfirm(gameId, updatedGameData) {
     console.error('Ошибка:', error);
   });
 }
-
-
-async function findPricelessPlayer(data) {
-  const playersScores = {};
-
-  data.forEach(game => {
-    game.allGames.forEach(playerGame => {
-      const username = playerGame.username;
-      const points = playerGame.points;
-
-      if (points < 0) {
-        if (playersScores[username]) {
-          playersScores[username] += points;
-        } else {
-          playersScores[username] = points;
-        }
-      }
-      
-    });
+async function saveGame(){
+  playersJson = JSON.stringify(players);
+  console.log(playersJson);
+  fetch(sendStatsOnServer, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: playersJson,
+  })
+  .then(response => response.json())
+  .then(data => {
+    // Уведомление
+    console.log('Ответ от сервера:', data);
+  })
+  .catch(error => {
+    alert('Ошибка сохранения игры!');
+    console.error('Ошибка отправки запроса:', error);
+    players = null;
   });
-
-  for (const username in playersScores) {
-    playersScores[username] = Math.abs(playersScores[username]);
-  }
-  console.table(playersScores);
-  let maxScoreUser = null;
-
-  for (const username in playersScores) {
-    if (maxScoreUser === null || playersScores[username] > playersScores[maxScoreUser]) {
-      maxScoreUser = username;
-    }
-  }
-
-  const pricelessPlayer = document.getElementById('pricelessPlayer');
-  pricelessPlayer.textContent = maxScoreUser;
 }
-
-async function findConsecutiveWinner(data) {
-  data.sort(function (a, b) {
-    return parseInt(a._id) - parseInt(b._id);
-  });
-
-  data.forEach(function (game) {
-      game.allGames.sort(function (gameA, gameB) {
-          return parseInt(gameA.ID) - parseInt(gameB.ID);
-      });
-  });
-
-  let results = {};
-
-  data.forEach(function (game){
-    game.allGames.forEach(function (playerGame) {
-      let username = playerGame.username;
-      let role = playerGame.role;
-      let victory = playerGame.victory;
-
-      if (!results[username]) {
-        results[username] = { mafiaStreak: 0, mafiaMaxStreak: 0, civilianStreak: 0, civilianMaxStreak: 0 };
-      }
-
-      if ((role === "Мафия" || role === "Дон") && victory === "Победа") {
-        results[username].mafiaStreak++;
-        if (results[username].mafiaStreak > results[username].mafiaMaxStreak) {
-            results[username].mafiaMaxStreak = results[username].mafiaStreak;
-        }
-      } else if ((role === "Мафия" || role === "Дон") && victory === "Поражение") {
-        results[username].mafiaStreak = 0;
-      } else if ((role === "Мирный" || role === "Шериф") && victory === "Победа") {
-        results[username].civilianStreak++;
-        if (results[username].civilianStreak > results[username].civilianMaxStreak) {
-            results[username].civilianMaxStreak = results[username].civilianStreak;
-        }
-      } else if ((role === "Мирный" || role === "Шериф") && victory === "Поражение") {
-        results[username].civilianStreak = 0;
-      }
-    });
-  });
-
-  console.table(results);
-
-  let maxMafiaStreak = 0;
-  let maxMafiaStreakUsername = '';
-  let maxCivilStreak = 0;
-  let maxCivilStreakUsername = '';
-
-  const civilBestStreakFirePngContainer = document.getElementById('civilBestStreakFirePngContainer');
-  const mafiaBestStreakFirePngContainer = document.getElementById('mafiaBestStreakFirePngContainer');
-  
-  for (const username in results) {
-    const userData = results[username];
-
-    if (userData.mafiaMaxStreak > maxMafiaStreak) {
-      maxMafiaStreak = userData.mafiaMaxStreak;
-      maxMafiaStreakUsername = username;
-      if (userData.mafiaMaxStreak == userData.mafiaStreak) {
-        mafiaBestStreakFirePngContainer.style.display = 'block';
-      } else {
-        mafiaBestStreakFirePngContainer.style.display = 'none';
-      }
-    }
-    if (userData.civilianMaxStreak > maxCivilStreak) {
-      maxCivilStreak = userData.civilianMaxStreak;
-      maxCivilStreakUsername = username;
-      if (userData.civilianMaxStreak == userData.civilianStreak) {
-        civilBestStreakFirePngContainer.style.display = 'block'; 
-      } else {
-        civilBestStreakFirePngContainer.style.display = 'none';
-      }
-    }
-  }
-  const civilBestStreakElement = document.getElementById('civilBestStreak');
-  const civilBestStreakCounterElement = document.getElementById('civilBestStreakCounter')
-  const mafiaBestStreakElement = document.getElementById('mafiaBestStreak');
-  const mafiaBestStreakCounterElement = document.getElementById('mafiaBestStreakCounter');
-
-  civilBestStreakElement.textContent = maxCivilStreakUsername;
-  civilBestStreakCounterElement.textContent = maxCivilStreak;
-  mafiaBestStreakElement.textContent = maxMafiaStreakUsername;
-  mafiaBestStreakCounterElement.textContent = maxMafiaStreak;
-}
-
 
 async function fetchData() {
   const loadingIndicator = document.getElementById('loadingPopup');
@@ -691,6 +801,7 @@ switchThemeCheckbox.addEventListener('change', function() {
   }
 });
 
+
 function switchTheme() {
   const switchThemeCheckbox = document.getElementById('switchThemeCheckbox');
   const checkThemeInStorage = localStorage.getItem('whiteTheme');
@@ -713,44 +824,6 @@ function switchTheme() {
 
 }
 switchTheme();
-
-
-async function saveGame(){
-  playersJson = JSON.stringify(players);
-  console.log(playersJson);
-  fetch(sendStatsOnServer, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: playersJson,
-  })
-  .then(response => response.json())
-  .then(data => {
-    // Уведомление
-    console.log('Ответ от сервера:', data);
-  })
-  .catch(error => {
-    alert('Ошибка сохранения игры!');
-    console.error('Ошибка отправки запроса:', error);
-    players = null;
-  });
-}
-
-function sortGamesById() {
-  const tableBody = document.getElementById('gameListId');
-  const rows = Array.from(tableBody.getElementsByTagName('tr'));
-
-  rows.sort((a, b) => {
-    const idA = parseInt(a.querySelector('td:first-child').textContent);
-    const idB = parseInt(b.querySelector('td:first-child').textContent);
-    return idB - idA;
-  });
-
-  rows.forEach(row => tableBody.removeChild(row));
-
-  rows.forEach(row => tableBody.appendChild(row));
-}
 
 document.getElementById('makeScreenShot').addEventListener('click', function() {
   makeScreenShot('container');
@@ -785,30 +858,7 @@ function makeScreenShot(screenToShot) {
     });
 }
 
-
-document.addEventListener('DOMContentLoaded', function () {
-  const infoBoxTotalGames = document.getElementById('infoBoxTotalGames');
-  const gameList = document.getElementById('gameList');
-  const arrowIcon = document.getElementById('arrowIcon');
-
-  infoBoxTotalGames.addEventListener('click', function () {
-      if (event.target === gameList || gameList.contains(event.target)) {
-          return;
-      }
-      if (gameList.style.display === 'none') {
-          gameList.style.display = 'block';
-          gameList.classList.add('opened');
-          arrowIcon.classList.add('opened');
-
-          sortGamesById();
-      } else {
-          gameList.style.display = 'none';
-          gameList.classList.remove('opened');
-          arrowIcon.classList.remove('opened');
-      }
-  });
-});
-
+// Добавление новой игры
 document.addEventListener('DOMContentLoaded', function () {
   const openPopupButton = document.getElementById('openPopupButton');
   const closePopupButton1 = document.getElementById('closePopupButton1');
@@ -887,54 +937,3 @@ function calculateRolePercentages(gameData) {
 
   console.table(playerRoleCounts);
 }
-
-
-
-// Выбор сезона
-document.addEventListener('DOMContentLoaded', function () {
-  
-
-
-
-
-  // const selectedSeason = document.getElementById('selectedSeason');
-  // const chooseToday = document.getElementById('chooseToday');
-  // const chooseSeason = document.getElementById('chooseSeason');
-  // const chooseSeasonButtons = chooseSeason.querySelectorAll('button');
-
-  // // Получаем значение из localStorage или устанавливаем по умолчанию
-  // let choosedSeason = localStorage.getItem('choosedSeason')
-
-  // // Обновляем текст выбранного сезона
-  // selectedSeason.textContent = choosedSeason === 'today' ? 'Сегодня' : `Сезон ${choosedSeason}`;
-
-  // // Плавное появление сезонов при нажатии на кнопку
-  // function showSeasons() {
-  //   chooseToday.style.transform = 'translateX(0%)';
-  //   chooseSeasonButtons.forEach((button, index) => {
-  //     setTimeout(() => {
-  //       button.style.opacity = 1;
-  //     }, 100 * (index + 1));
-  //   });
-  // }
-
-  // // Обработчики событий для кнопок выбора сезона и "Сегодня"
-  // chooseToday.addEventListener('click', function () {
-  //   choosedSeason = 'today';
-  //   localStorage.setItem('choosedSeason', choosedSeason);
-  //   selectedSeason.textContent = 'Сегодня';
-  //   showSeasons();
-  // });
-
-  // chooseSeasonButtons.forEach((button, index) => {
-  //   button.addEventListener('click', function () {
-  //     choosedSeason = `season${index + 5}`;
-  //     localStorage.setItem('choosedSeason', choosedSeason);
-  //     selectedSeason.textContent = `Сезон ${index + 5}`;
-  //     showSeasons();
-  //   });
-  // });
-
-  // // Показываем сезоны при загрузке страницы
-  // showSeasons();
-});
