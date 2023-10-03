@@ -702,8 +702,17 @@ async function editGame(gameId, data) {
   }
 }
 async function editGameConfirm(gameId, updatedGameData) {
-  console.log(updatedGameData);
-  fetch(`${editGameOnServer}${gameId}`, {
+  const choosedSeason = localStorage.getItem('choosedSeason');
+  let collectionName;
+  if (choosedSeason === 'today' || choosedSeason === 'season6') {
+    collectionName = 'season6';
+  } else if (choosedSeason === 'season5') {
+    collectionName = 'season5';
+  } else {
+    console.log('Сезон не найдет');
+  }
+
+  fetch(`${editGameOnServer}${collectionName}/${gameId}`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json'
