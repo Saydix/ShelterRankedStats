@@ -74,7 +74,12 @@ async function getData() {
     loadingGamesIndicator2.style.display = 'none';
   }
 }
-getData();
+if (localStorage.getItem('pageReloadWithMethod') !== 'true') {
+  getData();
+} else {
+  localStorage.setItem('pageReloadWithMethod', 'false');
+}
+  
 
 document.addEventListener('DOMContentLoaded', function() {
   let choosedSeason = localStorage.getItem('choosedSeason');
@@ -120,8 +125,8 @@ document.addEventListener('DOMContentLoaded', function() {
           button.id = season; 
           button.addEventListener('click', () => {
             localStorage.setItem('choosedSeason', season);
-            
-            dataHandling(responsedData);
+            localStorage.setItem('pageReloadWithMethod', 'true');
+            location.reload();
           });
           container.appendChild(button);
         }
@@ -132,8 +137,8 @@ document.addEventListener('DOMContentLoaded', function() {
     if(todayButton) {
       todayButton.addEventListener('click', () => {
         localStorage.setItem('choosedSeason', 'today');
-        
-        dataHandling(responsedData);
+        localStorage.setItem('pageReloadWithMethod', 'true');
+        location.reload();
       });
     }
   });
