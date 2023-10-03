@@ -74,11 +74,6 @@ async function getData() {
     loadingGamesIndicator2.style.display = 'none';
   }
 }
-if (localStorage.getItem('pageReloadWithMethod') !== 'true') {
-  getData();
-} else {
-  localStorage.setItem('pageReloadWithMethod', 'false');
-}
   
 
 document.addEventListener('DOMContentLoaded', function() {
