@@ -74,7 +74,7 @@ async function getData() {
     loadingGamesIndicator2.style.display = 'none';
   }
 }
-  
+getData();
 
 document.addEventListener('DOMContentLoaded', function() {
   let choosedSeason = localStorage.getItem('choosedSeason');
