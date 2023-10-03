@@ -60,8 +60,7 @@ async function getData() {
     if (!response.ok) {
       throw new Error('Ошибка при получении данных');
     }
-    
-    //responsedData = await response.json();
+    responsedData = await response.json();
     console.log(responsedData);
 
     dataHandling(responsedData);
