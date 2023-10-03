@@ -149,6 +149,7 @@ async function dataHandling(responsedData) {
       return num < 10 ? `0${num}` : `${num}`;
     }).join('/');
     console.log(formattedCurrentDate);
+    data = responsedData;
     data  = data.filter(game => game.addGameDate === formattedCurrentDate);
   } else if (localStoreSeason === 'season5') {
     data = responsedData.season5;
