@@ -48,6 +48,7 @@ let playersJson;
 let responsedData;
 
 const gameTable = document.getElementById('gameTable');
+const gameTableData = document.getElementById('gameTableData');
 
 async function getData() {
   const loadingGamesIndicator = document.getElementById('loadingGamesAnimation');
@@ -119,7 +120,8 @@ document.addEventListener('DOMContentLoaded', function() {
           button.id = season; 
           button.addEventListener('click', () => {
             localStorage.setItem('choosedSeason', season);
-            location.reload();
+            
+            dataHandling(responsedData);
           });
           container.appendChild(button);
         }
@@ -127,10 +129,13 @@ document.addEventListener('DOMContentLoaded', function() {
       container.id += '-active';
       todayButton.id += '-active';
     }
-    todayButton.addEventListener('click', () => {
-      localStorage.setItem('choosedSeason', 'today');
-      location.reload();
-    });
+    if(todayButton) {
+      todayButton.addEventListener('click', () => {
+        localStorage.setItem('choosedSeason', 'today');
+        
+        dataHandling(responsedData);
+      });
+    }
   });
 
 });
@@ -156,42 +161,6 @@ async function dataHandling(responsedData) {
   console.log(data);
   
   fillingTable(data);
-  
-
-  // Список всех игр и сортировка
-  document.addEventListener('DOMContentLoaded', function () {
-    const infoBoxTotalGames = document.getElementById('infoBoxTotalGames');
-    const gameList = document.getElementById('gameList');
-    const arrowIcon = document.getElementById('arrowIcon');
-
-    infoBoxTotalGames.addEventListener('click', function () {
-        if (event.target === gameList || gameList.contains(event.target)) {
-          return;
-        }
-        if (gameList.style.display === 'none') {
-          gameList.style.display = 'block';
-          gameList.classList.add('opened');
-          arrowIcon.classList.add('opened');
-
-          function sortGamesById() {
-            const tableBody = document.getElementById('gameListId');
-            const rows = Array.from(tableBody.getElementsByTagName('tr'));
-            rows.sort((a, b) => {
-              const idA = parseInt(a.querySelector('td:first-child').textContent);
-              const idB = parseInt(b.querySelector('td:first-child').textContent);
-              return idB - idA;
-            });
-            rows.forEach(row => tableBody.removeChild(row));
-            rows.forEach(row => tableBody.appendChild(row));
-          }
-          sortGamesById();
-        } else {
-          gameList.style.display = 'none';
-          gameList.classList.remove('opened');
-          arrowIcon.classList.remove('opened');
-        }
-    });
-  });
 
   async function fillingTable(data) {
     const playerStats = {};
@@ -291,6 +260,41 @@ async function dataHandling(responsedData) {
 
   calculateRolePercentages(data);
 }
+// Список всех игр и сортировка
+document.addEventListener('DOMContentLoaded', function () {
+  const infoBoxTotalGames = document.getElementById('infoBoxTotalGames');
+  const gameList = document.getElementById('gameList');
+  const arrowIcon = document.getElementById('arrowIcon');
+
+  infoBoxTotalGames.addEventListener('click', function () {
+      if (event.target === gameList || gameList.contains(event.target)) {
+        return;
+      }
+      if (gameList.style.display === 'none') {
+        gameList.style.display = 'block';
+        gameList.classList.add('opened');
+        arrowIcon.classList.add('opened');
+
+        function sortGamesById() {
+          const tableBody = document.getElementById('gameListId');
+          const rows = Array.from(tableBody.getElementsByTagName('tr'));
+          rows.sort((a, b) => {
+            const idA = parseInt(a.querySelector('td:first-child').textContent);
+            const idB = parseInt(b.querySelector('td:first-child').textContent);
+            return idB - idA;
+          });
+          rows.forEach(row => tableBody.removeChild(row));
+          rows.forEach(row => tableBody.appendChild(row));
+        }
+        sortGamesById();
+      } else {
+        gameList.style.display = 'none';
+        gameList.classList.remove('opened');
+        arrowIcon.classList.remove('opened');
+      }
+  });
+});
+
 
 async function getGlickoRating() {
   try {
