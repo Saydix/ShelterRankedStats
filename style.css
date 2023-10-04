@@ -824,21 +824,24 @@ span#mafiaBestStreak {
   opacity: 0.9;
 }
 #mafiaBestStreakCounter {
-  position: relative;
+  position: absolute;
   z-index: 9;
+  left: 135px;
+  top: 65px;
 }
 
 #civilBestStreakFirePngContainer {
   position:absolute;
   top: 26.8px;
-  left: 133.6px;
+  left: 135.6px;
   z-index:8;
   opacity: 0.9;
 }
 #civilBestStreakCounter {
-  position:relative;
+  position:absolute;
   z-index: 9;
-  padding-left: 13px;
+  left: 145px;
+  top: 36px;
 }
 
 

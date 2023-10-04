@@ -840,7 +840,6 @@ switchTheme();
 document.getElementById('makeScreenShot').addEventListener('click', function() {
   makeScreenShot('container');
 });
-
 function makeScreenShot(screenToShot) {
   const screenContainer = document.getElementById(screenToShot);
 
