@@ -79,15 +79,19 @@ getData();
 document.addEventListener('DOMContentLoaded', function() {
   let choosedSeason = localStorage.getItem('choosedSeason');
   if (choosedSeason === null) {
-    localStorage.setItem('choosedSeason', 'season5'); // Менять Сезон по дефолту
+    localStorage.setItem('choosedSeason', 'season6'); // Менять Сезон по дефолту
   }
   const choosedSeasonButton = document.getElementById('choosedSeasonButton');
   if (choosedSeason === 'today') {
     choosedSeasonButton.innerHTML = 'Сегодня';
+    const todayButtonForDisplay = document.getElementById('todayButton-active');
+    todayButtonForDisplay.style.display = 'none';
   } else if (choosedSeason === 'season5') {
     choosedSeasonButton.innerHTML = 'Сезон 5';
+    season5.style.display = 'none';
   } else if (choosedSeason === 'season6') {
     choosedSeasonButton.innerHTML = 'Сезон 6';
+    season6.style.display = 'none';
   }
 
   const allSeasons = {
