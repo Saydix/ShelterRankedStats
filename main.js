@@ -84,14 +84,10 @@ document.addEventListener('DOMContentLoaded', function() {
   const choosedSeasonButton = document.getElementById('choosedSeasonButton');
   if (choosedSeason === 'today') {
     choosedSeasonButton.innerHTML = 'Сегодня';
-    const todayButtonForDisplay = document.getElementById('todayButton-active');
-    todayButtonForDisplay.style.display = 'none';
   } else if (choosedSeason === 'season5') {
     choosedSeasonButton.innerHTML = 'Сезон 5';
-    season5.style.display = 'none';
   } else if (choosedSeason === 'season6') {
     choosedSeasonButton.innerHTML = 'Сезон 6';
-    season6.style.display = 'none';
   }
 
   const allSeasons = {
