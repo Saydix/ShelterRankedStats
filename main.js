@@ -297,12 +297,15 @@ let colIndex = -1;
   table.addEventListener('click', (e) => {
     const el = e.target;
     if (el.nodeName != 'TH') return;
+    if (el.nodeName === '') {
+      dataHandling(responsedData);
+    } else {
+      const index = el.cellIndex;
+      const type = el.getAttribute('data-type');
 
-    const index = el.cellIndex;
-    const type = el.getAttribute('data-type');
-
-    sort(index, type, colIndex === index);
-    colIndex = (colIndex === index) ? -1: index;
+      sort(index, type, colIndex === index);
+      colIndex = (colIndex === index) ? -1: index;
+    }
   });
 }
 sortTable();
