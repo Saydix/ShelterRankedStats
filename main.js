@@ -235,6 +235,7 @@ async function dataHandling(responsedData) {
       row.insertCell(1).textContent = player.username;
       row.insertCell(2).textContent = player.games;
       row.insertCell(3).textContent = (player.points).toFixed(2);
+      console.log(player.points);
       const realAvgPointSpan = document.createElement("span");
       realAvgPointSpan.textContent = `${(player.points / player.games).toFixed(2)}`;
       realAvgPointSpan.style.position = "relative";
@@ -295,11 +296,15 @@ let colIndex = -1;
     table.appendChild(thead);
   }
   table.addEventListener('click', (e) => {
-    const el = e.target;
+    let el = e.target;
+    let index = el.cellIndex;
+    let type = el.getAttribute('data-type');
     if (el.nodeName != 'TH') return;
-
-    const index = el.cellIndex;
-    const type = el.getAttribute('data-type');
+    if (el.textContent === 'Ср.Балл +'){
+        el = '<th data-type="integer">Место</th>'
+        index = 0;
+        type = 'integer'
+    }
 
     sort(index, type, colIndex === index);
     colIndex = (colIndex === index) ? -1: index;
