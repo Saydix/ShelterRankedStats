@@ -297,7 +297,7 @@ let colIndex = -1;
   table.addEventListener('click', (e) => {
     const el = e.target;
     if (el.nodeName != 'TH') return;
-    if (el.nodeName === '') {
+    if (el.nodeName === 'Ср.Балл +') {
       dataHandling(responsedData);
     } else {
       const index = el.cellIndex;
