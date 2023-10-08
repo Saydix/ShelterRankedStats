@@ -260,6 +260,55 @@ async function dataHandling(responsedData) {
 
   calculateRolePercentages(data);
 }
+
+function sortTable(){ 
+const table = document.getElementById('gameTable');
+let colIndex = -1;
+
+  const sort = function(index, type, isSorted = true){
+    const thead = table.querySelector('thead');
+    const compare = function (rowA, rowB){
+      const rowDataA = rowA.cells[index].innerHTML;
+      const rowDataB = rowB.cells[index].innerHTML;
+
+      switch(type){
+        case 'integer':
+        case 'float' :
+            return rowDataA - rowDataB;
+        case 'text' :
+            if ( rowDataA<rowDataB) return -1;
+            else if ( rowDataB>rowDataA) return 1;
+            return 0;
+      }
+    }
+    let rows = [].slice.call(thead.rows);
+    rows.shift() 
+    rows.sort(compare);
+
+    if (isSorted) rows.reverse();
+    
+    table.removeChild(thead);
+    for (let i = 1; i<rows.length; i++){
+        thead.appendChild(rows[i]);
+        console.log(rows[i])
+    }
+    table.appendChild(thead);
+  }
+  table.addEventListener('click', (e) => {
+    const el = e.target;
+    if (el.nodeName != 'TH') return;
+
+    const index = el.cellIndex;
+    const type = el.getAttribute('data-type');
+
+    sort(index, type, colIndex === index);
+    colIndex = (colIndex === index) ? -1: index;
+  });
+}
+sortTable();
+
+
+
 // Список всех игр и сортировка
 document.addEventListener('DOMContentLoaded', function () {
   const infoBoxTotalGames = document.getElementById('infoBoxTotalGames');
