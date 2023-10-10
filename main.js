@@ -264,7 +264,6 @@ async function dataHandling(responsedData) {
 function sortTable(){ 
 const table = document.getElementById('gameTable');
 let colIndex = -1;
-let sortedBy = true;
   const sort = function(index, type, isSorted){
     sortetBy = isSorted;
     const thead = table.querySelector('thead');
