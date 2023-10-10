@@ -126,8 +126,9 @@ input:checked + .switchThemeSlider::before {
   width: 90px;
 }
 #gameTable thead tr:nth-child(1) {
-  background-color:black;
-  cursor: pointer;   
+  background-color:black; 
+  cursor: pointer;  
+
 }
 #gameTable thead th:nth-child(1) {
   color:white;
@@ -504,6 +505,19 @@ input:checked + .switchThemeSlider::before {
 .deleteButton:active::before {
   transform: translateY(50%);
   transition: transform 0.3s ease;
+}
+
+.sortedUpBy::after {
+  content: '\203A';
+  transform: rotate(90deg); 
+  display: inline-block; 
+  margin-left: 5px;
+}
+.sortedDownBy::after {
+  content: '\203A';
+  transform: rotate(270deg); 
+  display: inline-block; 
+  margin-left: 1px;
 }
 
 .deleteConfirmation {

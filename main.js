@@ -265,8 +265,7 @@ async function dataHandling(responsedData) {
 function sortTable(){ 
 const table = document.getElementById('gameTable');
 let colIndex = -1;
-
-  const sort = function(index, type, isSorted = true){
+  const sort = function(index, type, isSorted){
     const thead = table.querySelector('thead');
     const compare = function (rowA, rowB){
       const rowDataA = rowA.cells[index].innerHTML;
@@ -284,6 +283,7 @@ let colIndex = -1;
     }
     let rows = [].slice.call(thead.rows);
     rows.shift() 
+    
     rows.sort(compare);
 
     if (isSorted) rows.reverse();
@@ -291,15 +291,47 @@ let colIndex = -1;
     table.removeChild(thead);
     for (let i = 1; i<rows.length; i++){
         thead.appendChild(rows[i]);
-        console.log(rows[i])
     }
     table.appendChild(thead);
   }
+  
+  const sortingState = {};
+
   table.addEventListener('click', (e) => {
     let el = e.target;
+    if (el.nodeName !== 'TH') return;
+  
     let index = el.cellIndex;
     let type = el.getAttribute('data-type');
-    if (el.nodeName != 'TH') return;
+  
+    const thElements = table.querySelectorAll('th');
+    thElements.forEach((th) => {
+      th.classList.remove('sortedUpBy', 'sortedDownBy');
+    });
+  
+    const currentState = sortingState[index] || 'none';
+  
+    let newState;
+    if (currentState === 'none' || currentState === 'desc') {
+      newState = 'asc';
+    } else {
+      newState = 'desc';
+    }
+  
+    if (newState === 'asc') {
+      el.classList.add('sortedUpBy'); 
+    } else {
+      el.classList.add('sortedDownBy'); 
+    }
+  
+    sortingState[index] = newState;
+  
+    thElements.forEach((th, idx) => {
+      if (idx !== index) {
+        sortingState[idx] = 'none';
+      }
+    });
+ 
     if (el.textContent === 'Ср.Балл +'){
         el = '<th data-type="integer">Место</th>'
         index = 0;
@@ -309,6 +341,7 @@ let colIndex = -1;
     sort(index, type, colIndex === index);
     colIndex = (colIndex === index) ? -1: index;
   });
+
 }
 sortTable();
 
