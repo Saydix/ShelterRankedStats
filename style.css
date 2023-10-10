@@ -128,7 +128,7 @@ input:checked + .switchThemeSlider::before {
 #gameTable thead tr:nth-child(1) {
   background-color:black; 
   cursor: pointer;  
-  
+
 }
 #gameTable thead th:nth-child(1) {
   color:white;
