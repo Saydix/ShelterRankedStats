@@ -265,7 +265,6 @@ function sortTable(){
 const table = document.getElementById('gameTable');
 let colIndex = -1;
   const sort = function(index, type, isSorted){
-    sortetBy = isSorted;
     const thead = table.querySelector('thead');
     const compare = function (rowA, rowB){
       const rowDataA = rowA.cells[index].innerHTML;
