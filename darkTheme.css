@@ -57,9 +57,13 @@ body {
 .popup, input[type="text"] {
     background-color: #172a46;
     color: #cfd8f3;
-    background-color: rgba(51, 95, 161, 0.95);
 }
-
+input#gameLinkInput {
+  background: rgb(28 59 104 / 95%);
+}
+input#gameLinkInput:focus {
+  background: rgba(51, 95, 161, 0.95);
+}
 /*Тг лого*/
 .LogoIconContainer {
     background-color: #172a46;
