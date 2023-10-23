@@ -1,5 +1,6 @@
 body {
     background-color: #0a192f;
+    color: #cfd8f3;
 }
 
 /*Меню*/
@@ -11,6 +12,30 @@ body {
 }
 
 /*Инфобоксы*/
-.infoBoxTotalGames, .infoBoxWinRatio, .infoBoxWinRatio h3, .infoBoxBestDuoId, .infoBoxMvp, .infoBoxMvp, .infoBoxBestStreakId {
+.infoBoxTotalGames, .infoBoxWinRatio, .infoBoxWinRatio h3, .infoBoxBestDuo, .infoBoxMvp, .infoBoxMvp, .infoBoxBestStreak {
     background-color: #172a46;
+}
+
+/*Таблица*/
+.gameTableStyle tr:nth-child(-n+11) {
+    background-color: #172a46;
+}
+.gameTableStyle tr:nth-child(n+12) {
+    background-color: #172A3D;
+}
+
+/*Список игрв*/
+.gameList, .editButtonContainer button {
+    background-color: #10213E;
+}
+.editButton svg {
+    fill: #cfd8f3;
+}
+.editConfirmation {
+    background-color: rgba(23, 42, 70, 0.95);
+}
+
+.popup, input[type="text"] {
+    background-color: #172a46;
+    color: #cfd8f3;
 }
