@@ -909,16 +909,16 @@ function switchTheme() {
   if (checkThemeInStorage === 'yes') {
 
     switchThemeCheckbox.checked = true;
-    
+    switchThemeStyle.href = 'darkTheme.css'; 
   } else if (checkThemeInStorage === 'no') {
 
     switchThemeCheckbox.checked = false;
-    
+    switchThemeStyle.href = ''; 
   } else {
 
     localStorage.setItem('whiteTheme', 'yes');
     switchThemeCheckbox.checked = true;
-    
+    switchThemeStyle.href = 'darkTheme.css'; 
   }
 
 }
