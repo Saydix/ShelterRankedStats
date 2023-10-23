@@ -17,6 +17,16 @@ body {
 }
 
 /*Таблица*/
+#gameTable thead tr:nth-child(2) {
+    color: gold;
+}
+  #gameTable thead tr:nth-child(3) {
+    color: #f7f6f6;
+}
+  #gameTable thead tr:nth-child(4) {
+    color: #e1a444;
+}
+
 .gameTableStyle tr:nth-child(-n+11) {
     background-color: #172a46;
 }
@@ -31,11 +41,16 @@ body {
 .editButton svg {
     fill: #cfd8f3;
 }
-.editConfirmation {
+.editConfirmation, .deleteConfirmation {
     background-color: rgba(23, 42, 70, 0.95);
 }
+.deleteConfirmationCheckBoxPath {
+    stroke: #cfd8f3;
+}
 
+/*Добавление игр*/
 .popup, input[type="text"] {
     background-color: #172a46;
     color: #cfd8f3;
+    background-color: rgba(51, 95, 161, 0.95);
 }

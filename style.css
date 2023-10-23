@@ -563,9 +563,9 @@ input:checked + .switchThemeSlider::before {
   margin-top: 105px;
 }
 .deleteConfirmation button {
-  padding: 10px 20px;
+  padding: 5px 25px;
   font-size: 16px;
-  margin: 0 10px;
+  margin: 0 20px;
   cursor: pointer;
   border-top-left-radius: 15%;
   border-top-right-radius: 0%;
