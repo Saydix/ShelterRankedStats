@@ -10,6 +10,11 @@ body {
 .signInContainer button {
     background-color: #10213E;
 }
+/*Сезоны*/
+#choosedSeason button {
+    background-color: #172a46;
+    color: #cfd8f3;
+}
 
 /*Инфобоксы*/
 .infoBoxTotalGames, .infoBoxWinRatio, .infoBoxWinRatio h3, .infoBoxBestDuo, .infoBoxMvp, .infoBoxMvp, .infoBoxBestStreak {
@@ -53,4 +58,9 @@ body {
     background-color: #172a46;
     color: #cfd8f3;
     background-color: rgba(51, 95, 161, 0.95);
+}
+
+/*Тг лого*/
+.LogoIconContainer {
+    background-color: #172a46;
 }

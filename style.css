@@ -148,14 +148,16 @@ input:checked + .switchThemeSlider::before {
 }
 
 #gameTable thead tr:nth-child(2) {
-  background-color:gold;   
+  color: #fbd400;
+  text-shadow: 0px 0px 10px rgb(255 249 0 / 100%); 
 }
 #gameTable thead tr:nth-child(3) {
-  background-color:#c2c2c2;
+  color: #c2c2c2;
+  text-shadow: 0px 0px 10px rgb(181 181 178);
 }
 #gameTable thead tr:nth-child(4) {
-  background-color:#cd7f32; 
-  opacity:0.9;
+  color: #cd7f32;
+  text-shadow: 0px 0px 10px rgb(237 165 45);
 }
 
 #choosedSeason {
@@ -863,9 +865,11 @@ span#mafiaBestStreak {
 /*Лого*/
 .logoIcon { 
   transition: transform 0.2s ease-in-out; 
-  max-height: 70px;
-  margin-left: 11%;
-  margin-top: 11%;
+  max-height: 50px;
+  margin-left: 14%;
+  margin-top: 14%;
+  background-color: white;
+  border-radius: 50%;
 }
 
 .logoIcon:hover {
@@ -879,8 +883,8 @@ span#mafiaBestStreak {
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 50%;
-  height: 90px;
-  width: 90px;
+  height: 70px;
+  width: 70px;
 }
 
 /*
