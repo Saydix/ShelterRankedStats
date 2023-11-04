@@ -843,8 +843,9 @@ span#mafiaBestStreak {
 #mafiaBestStreakCounter {
   position: absolute;
   z-index: 9;
-  left: 135px;
-  top: 65px;
+  left: 134px;
+  top: 66px;
+  color: black;
 }
 
 #civilBestStreakFirePngContainer {
@@ -859,6 +860,7 @@ span#mafiaBestStreak {
   z-index: 9;
   left: 145px;
   top: 36px;
+  color: red;
 }
 
 
